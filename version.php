@@ -28,8 +28,3 @@ $plugin->cron      = 0;
 $plugin->component = 'local_facilitators';
 $plugin->maturity  = MATURITY_ALPHA;
 $plugin->release   = 'v1.0-Alfa';
- 
-//$plugin->dependencies = array(
-//    'mod_forum' => ANY_VERSION,
-//    'mod_data'  => TODO
-//);
