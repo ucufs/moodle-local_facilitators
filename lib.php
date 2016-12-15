@@ -26,5 +26,5 @@ defined('MOODLE_INTERNAL') || die();
  * add the onlinejudge plugin into navigation
  */
 function local_facilitators_extends_navigation(global_navigation $navigation) {
-    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/'));
+    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/public/index.php'));
 }
