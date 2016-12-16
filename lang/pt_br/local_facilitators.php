@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,6 +16,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Strings for component 'facilitators', language 'en', branch 'MOODLE_26_STABLE' and 'MOODLE_26-FASE_V10'
+ *
  * @package   local_facilitators
  * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,7 +25,4 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-
-function local_facilitators_extends_navigation(global_navigation $navigation) {
-    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/public/index.php'));
-}
+$string['pluginname'] = 'Processo de Seleção de Facilitadores';

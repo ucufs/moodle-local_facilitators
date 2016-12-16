@@ -28,11 +28,21 @@ if ( $hassiteconfig ){
 	// Create the new settings page
 	// - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
 	// $settings will be NULL
-	$settings = new admin_settingpage( 'local_facilitators', 'Your Settings Page Title' );
+	$settings = new admin_settingpage( 'local_facilitators', 'Seleção de Facilitadores' );
 
 	// Create
 	$ADMIN->add( 'localplugins', $settings );
+	echo ' 
+  <div class="row">
+	  <div class="col-md-12">
+		  <button class="btn btn-default">Edital 01/2017</button>
+	  </div>
+  </div>
+  ';
 
+
+
+	/*
 	// Add a setting field to the settings for this page
 	$settings->add( new admin_setting_configtext(
 
@@ -52,5 +62,6 @@ if ( $hassiteconfig ){
 		PARAM_TEXT
 
 	) );
-
+	*/
 }
+
