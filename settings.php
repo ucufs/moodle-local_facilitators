@@ -32,15 +32,6 @@ if ( $hassiteconfig ){
 
 	// Create
 	$ADMIN->add( 'localplugins', $settings );
-	echo ' 
-  <div class="row">
-	  <div class="col-md-12">
-		  <button class="btn btn-default">Edital 01/2017</button>
-	  </div>
-  </div>
-  ';
-
-
 
 	/*
 	// Add a setting field to the settings for this page
