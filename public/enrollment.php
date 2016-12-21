@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . '/../../../config.php');
 require_once('registration_form.php');
+require_once('../classes/enrollment.php');
 
 $context = context_system::instance();
 $PAGE->set_context($context);
@@ -12,23 +13,6 @@ $PAGE->set_title(get_string('pluginname', 'local_facilitators'));
 $PAGE->navbar->add(get_string('pluginname', 'local_facilitators'));
 echo $OUTPUT->header();
 
-$mform = new registration_form();
- 
-//Form processing and displaying is done here
-if ($mform->is_cancelled()) {
-    //Handle form cancel operation, if cancel button is present on form
-} else if ($fromform = $mform->get_data()) {
-  //In this case you process validated data. $mform->get_data() returns data posted in form.
-} else {
-  // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
-  // or on the first display of the form.
- 
-  //Set default data (if any)
-  //$mform->set_data($toform);
-  //displays the form
-  $mform->display();
-}
-
 ?>
 
   <div class="container">
@@ -37,26 +21,27 @@ if ($mform->is_cancelled()) {
       
        <h3 class="text-center">Seleção de Facilitadores</h3>
         <div class="well">
-          <form>
+          <form action="enrollment_form.php" method="POST">
             <div class="control-group">
               <label class="control-label" for="matricula_siape">Matrícula SIAPE</label>
               <div class="controls">
-                <input type="text" id="matricula_siape" placeholder="Matrícula SIAPE" class="span12">
+                <input type="text" name="matricula_siape" placeholder="Matrícula SIAPE" required="required" class="span12">
               </div>
             </div>
 
             <div class="control-group">
               <label class="control-label" for="CPF">CPF</label>
               <div class="controls">
-                <input type="text" id="cpf" placeholder="CPF" class="span12">
+                <?php $inscricao = new Enrollment(); ?>
+                <input type="text" name="cpf" placeholder="CPF" class="span12" required="required" value="<?php $inscricao->teste() ?>">
               </div>
             </div>
 
             <div class="control-group">
               <label class="control-label" for="function_facilitator">Função</label>
               <div class="controls">
-                <select name="function_facilitator" class="span12">
-                  <option>Selecione</option>
+                <select name="function_facilitator" class="span12" required="required">
+                  <option></option>
                   <option>Função 1</option>
                   <option>Função 2</option>
                   <option>Função 3</option>
@@ -69,8 +54,8 @@ if ($mform->is_cancelled()) {
             <div class="control-group">
               <label class="control-label" for="course">Evento/Curso</label>
               <div class="controls">
-                <select name="course" class="span12">
-                  <option>Selecione</option>
+                <select name="course" class="span12" required="required">
+                  <option></option>
                   <option>Curso 1</option>
                   <option>Curso 2</option>
                   <option>Curso 3</option>
@@ -90,7 +75,7 @@ if ($mform->is_cancelled()) {
 
             <div class="control-group">
               <div class="controls text-center">
-                <button type="button" class="btn btn-primary">Realizar Inscrição</button>
+                <button type="submit" class="btn btn-primary">Realizar Inscrição</button>
               </div>
             </div>
 
