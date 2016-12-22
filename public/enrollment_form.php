@@ -13,7 +13,6 @@ $PAGE->set_title(get_string('pluginname', 'local_facilitators'));
 $PAGE->navbar->add(get_string('pluginname', 'local_facilitators'));
 echo $OUTPUT->header();
 
-//var_dump($_POST);
 $inscricao = new Enrollment();
 ?>
 
@@ -25,8 +24,8 @@ $inscricao = new Enrollment();
 
         <div class="well well-small">
           <p><b>Inscrição: </b><?= $inscricao->get_enrollment_number() ?></p>
-          <p><b>Função: </b><?= $_POST["function_facilitator"] ?></p>
-          <p><b>Curso/Evento: </b><?= $_POST["course"] ?></p>
+          <p><b>Função: </b><?= $inscricao->get_role_name($_POST["function_facilitator"]) ?></p>
+          <p><b>Curso/Evento: </b><?= $inscricao->get_course_name($_POST["course"]) ?></p>
         </div>
 
         <form action="#" method="POST">
