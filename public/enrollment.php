@@ -53,7 +53,7 @@ $roles = $DB->get_recordset_sql($sql_roles);
                 <input type="number" name="cpf" placeholder="CPF" class="span12" required="required" value="">
               </div>
             </div>
-
+          </div>
             <div class="control-group">
               <label class="control-label" for="function_facilitator">Função</label>
               <div class="controls">
@@ -65,7 +65,7 @@ $roles = $DB->get_recordset_sql($sql_roles);
                 </select>
               </div>
             </div>
-
+          </div>
             <div class="control-group">
               <label class="control-label" for="course">Evento/Curso</label>
               <div class="controls">
@@ -77,7 +77,7 @@ $roles = $DB->get_recordset_sql($sql_roles);
                 </select>
               </div>
             </div>
-
+          </div>
             <div class="control-group">
               <div class="controls">
                 <label>
@@ -86,21 +86,23 @@ $roles = $DB->get_recordset_sql($sql_roles);
                 </label>
               </div>
             </div>
-
+          </div>
             <div class="control-group">
               <div class="controls text-center">
                 <button type="submit" id="nextstap" class="btn btn-primary" disabled="disabled">Realizar Inscrição</button>
               </div>
             </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls text-center">
+              <button type="button" class="btn btn-primary">Realizar Inscrição</button>
+            </div>
+          </div>
 
 
-          </form>
-        </div>
-
+        </form>
       </div>
+
     </div>
   </div>
-
-<?php
-echo $OUTPUT->footer();
-?>
