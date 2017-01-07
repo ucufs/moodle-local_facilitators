@@ -1,0 +1,25 @@
+{
+  "name": "UcUFS",
+  "description": "Facilitators Project",
+  "authors": [
+    {
+      "name": "José Eduardo",
+      "email": "zeduardu@gmail.com",
+      "homepage": "http://zeduardu.apprentiz.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Jéssica",
+      "email": "jessicajpinto01@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "facilitators\\": "classes/"
+    }
+  },
+  "require": {
+    "silex/silex": "~2.0"
+  }
+}

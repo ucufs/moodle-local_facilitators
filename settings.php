@@ -20,10 +20,13 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+require_once('../../config.php');
+
 defined('MOODLE_INTERNAL') || die();
 
 // Ensure the configurations for this site are set
-if ( $hassiteconfig ){
+if ( $hassiteconfig )
+{
 
 	// Create the new settings page
 	// - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
@@ -55,4 +58,7 @@ if ( $hassiteconfig ){
 	) );
 	*/
 }
+
+// URL Base do projeto
+define('URL_BASE', $CFG->wwwroot . '/local/facilitators');
 

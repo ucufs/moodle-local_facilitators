@@ -24,5 +24,5 @@ defined('MOODLE_INTERNAL') || die();
 
 
 function local_facilitators_extends_navigation(global_navigation $navigation) {
-    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/public/enrollment.php'));
+    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/'));
 }

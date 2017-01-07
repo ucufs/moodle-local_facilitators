@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.lock
+*.phpproj
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -136,6 +138,7 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
+vendor/
 
 # Publish Web Output
 *.[Pp]ublish.xml
