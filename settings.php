@@ -20,9 +20,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../config.php');
-
 defined('MOODLE_INTERNAL') || die();
+
+global $CFG;
 
 // Ensure the configurations for this site are set
 if ( $hassiteconfig )
@@ -35,30 +35,4 @@ if ( $hassiteconfig )
 
 	// Create
 	$ADMIN->add( 'localplugins', $settings );
-
-	/*
-	// Add a setting field to the settings for this page
-	$settings->add( new admin_setting_configtext(
-
-		// This is the reference you will use to your configuration
-		'yourplugin_apikey',
-
-		// This is the friendly title for the config, which will be displayed
-		'External API: Key',
-
-		// This is helper text for this config field
-		'This is the key used to access the External API',
-
-		// This is the default value
-		'No Key Defined',
-
-		// This is the type of Parameter this config is
-		PARAM_TEXT
-
-	) );
-	*/
 }
-
-// URL Base do projeto
-define('URL_BASE', $CFG->wwwroot . '/local/facilitators');
-

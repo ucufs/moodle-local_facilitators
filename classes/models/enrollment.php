@@ -9,45 +9,63 @@ class Enrollment
 
     }
 
-    function get_enrollment_number()
+    function local_facilitators_get_enrollment_number()
     {
-        echo uniqid();
+        return uniqid();
     }
 
-    function get_role_name($id)
-    {
-        global $DB;
-        $role = $DB->get_record('role', array('id'=>$id));
-        echo $role->name;
-    }
-
-    function get_course_name($id)
-    {
-        global $DB;
-        $course = $DB->get_record('course', array('id'=>$id));
-        echo $course->fullname;
-    }
-
-    function local_facilitators_get_select_courses($categoryid)
+    function local_facilitators_get_role_name($id)
     {
         global $DB;
 
-        /**
-         * $DB->get_records_select_menu($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
-         * Get the first two columns from a number of records as an associative array which match a particular WHERE clause.
-         */
-        return $DB->get_records_select_menu('course', 'category = ?', array($categoryid) , 'fullname', 'id, fullname');
+        // $DB->get_field($table, $return, array $conditions, $strictness=IGNORE_MISSING)
+        // Get a single field value from a table record where all the given conditions met.
+        // @param int $strictness
+        //   IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
+        //   IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
+        //   MUST_EXIST means throw exception if no record or multiple records found
+        return $DB->get_field('role', 'name', array('id'=>$id), MUST_EXIST);
     }
 
-    function  local_facilitators_get_select_functions($role_ids)
+    function local_facilitators_get_course_name($id)
     {
         global $DB;
 
-        /**
-         * $DB->get_records_select_menu($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
-         * Get the first two columns from a number of records as an associative array which match a particular WHERE clause.
-         */
-        return $DB->get_records_select_menu('role', 'id in (?)', array($role_ids) , 'name', 'id, name');
+        // $DB->get_field($table, $return, array $conditions, $strictness=IGNORE_MISSING)
+        // Get a single field value from a table record where all the given conditions met.
+        // @param int $strictness
+        //   IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
+        //   IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
+        //   MUST_EXIST means throw exception if no record or multiple records found
+        return $DB->get_field('course', 'fullname', array('id'=>$id), MUST_EXIST);
+    }
+
+    function local_facilitators_get_select_courses(array $categoryid=null)
+    {
+        global $DB;
+
+        // Constructs 'IN()' or '=' sql fragment
+        $sqlfragments = $DB->get_in_or_equal($categoryid);
+        $in = $sqlfragments[0];
+        $params = $sqlfragments[1];
+
+        // $DB->get_records_select_menu($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
+        // Get the first two columns from a number of records as an associative array which match a particular WHERE clause.
+        return $DB->get_records_select_menu('course', "category $in", $params, 'fullname', 'id, fullname');
+    }
+
+    function  local_facilitators_get_select_functions(array $role_ids=null)
+    {
+        global $DB;
+
+        // Constructs 'IN()' or '=' sql fragment
+        $sqlfragments = $DB->get_in_or_equal($role_ids);
+        $in = $sqlfragments[0];
+        $params = $sqlfragments[1];
+
+        // $DB->get_records_select_menu($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
+        // Get the first two columns from a number of records as an associative array which match a particular WHERE clause.
+        return $DB->get_records_select_menu('role', "id $in", $params, 'name', 'id, shortname', 0, 0);
     }
 
 }

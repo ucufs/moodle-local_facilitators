@@ -7,7 +7,7 @@
        <h3 class="text-center">Seleção de Facilitadores</h3>
         <div class="well">
 
-          <form action="<?php URL_BASE . '/enrollment/register' ?>" method="POST">
+          <form action="<?php echo URL_BASE . '/enrollment/register' ?>" method="POST">
 
             <div class="control-group">
               <label class="control-label" for="matricula_siape">Matrícula SIAPE</label>
@@ -28,8 +28,8 @@
               <div class="controls">
                 <select name="function_facilitator" class="span12" required="required">
                   <option></option>
-                  <?php foreach ($roles as $role) { ?>
-                    <option value="<?= $role->id ?>"><?= $role->name; ?></option>
+                  <?php foreach ($roles as $key => $role) { ?>
+                    <option value="<?= $key ?>"><?= $role; ?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -40,8 +40,8 @@
               <div class="controls">
                 <select name="course" class="span12" required="required">
                   <option></option>
-                  <?php foreach ($courses as $course) { ?>
-                    <option value="<?= $course->id ?>"><?= $course->fullname; ?></option>
+                  <?php foreach ($courses as $key => $course) { ?>
+                    <option value="<?= $key ?>"><?= $course ?></option>
                   <?php } ?>
                 </select>
               </div>
