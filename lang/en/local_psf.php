@@ -16,9 +16,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'facilitators', language 'en', branch 'MOODLE_26_STABLE' and 'MOODLE_26-FASE_V10'
+ * Strings for component 'psf', language 'en', branch 'MOODLE_26_STABLE' and 'MOODLE_26-FASE_V10'
  *
- * @package   local_facilitators
+ * @package   local_psf
  * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

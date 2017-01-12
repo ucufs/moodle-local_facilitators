@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   local_facilitators
+ * @package   local_psf
  * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,7 +31,7 @@ if ( $hassiteconfig )
 	// Create the new settings page
 	// - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
 	// $settings will be NULL
-	$settings = new admin_settingpage( 'local_facilitators', 'Seleção de Facilitadores' );
+	$settings = new admin_settingpage( 'local_psf', 'Seleção de Facilitadores' );
 
 	// Create
 	$ADMIN->add( 'localplugins', $settings );

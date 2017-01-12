@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   local_facilitators
+ * @package   local_psf
  * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -23,6 +23,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-function local_facilitators_extends_navigation(global_navigation $navigation) {
-    $facilitators = $navigation->add(get_string('pluginname', 'local_facilitators'), new moodle_url('/local/facilitators/'));
+function local_psf_extends_navigation(global_navigation $navigation) {
+    $psf = $navigation->add(get_string('pluginname', 'local_psf'), new moodle_url('/local/psf/'));
 }

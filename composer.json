@@ -1,6 +1,6 @@
 {
   "name": "UcUFS",
-  "description": "Facilitators Project",
+  "description": "PSF Project",
   "authors": [
     {
       "name": "José Eduardo",
@@ -16,7 +16,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "facilitators\\": "classes/"
+      "psf\\": "classes/"
     }
   },
   "require": {

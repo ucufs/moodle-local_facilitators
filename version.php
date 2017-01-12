@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
-* @package local_facilitators
+* @package local_psf
 * @copyright 2016, Universidade Federal de Sergipe <didep@ufs.br>
 * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 **/
@@ -25,6 +25,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2016122100;
 $plugin->requires  = 2013111811;
 $plugin->cron      = 0;
-$plugin->component = 'local_facilitators';
+$plugin->component = 'local_psf';
 $plugin->maturity  = MATURITY_ALPHA;
 $plugin->release   = 'v1.0-Alfa';

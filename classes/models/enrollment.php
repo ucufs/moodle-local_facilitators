@@ -1,5 +1,5 @@
 <?php
-namespace facilitators\models;
+namespace psf\models;
 
 class Enrollment
 {
@@ -9,12 +9,12 @@ class Enrollment
 
     }
 
-    function local_facilitators_get_enrollment_number()
+    function local_psf_get_enrollment_number()
     {
         return uniqid();
     }
 
-    function local_facilitators_get_role_name($id)
+    function local_psf_get_role_name($id)
     {
         global $DB;
 
@@ -27,7 +27,7 @@ class Enrollment
         return $DB->get_field('role', 'name', array('id'=>$id), MUST_EXIST);
     }
 
-    function local_facilitators_get_course_name($id)
+    function local_psf_get_course_name($id)
     {
         global $DB;
 
@@ -40,7 +40,7 @@ class Enrollment
         return $DB->get_field('course', 'fullname', array('id'=>$id), MUST_EXIST);
     }
 
-    function local_facilitators_get_select_courses(array $categoryid=null)
+    function local_psf_get_select_courses(array $categoryid=null)
     {
         global $DB;
 
@@ -54,7 +54,7 @@ class Enrollment
         return $DB->get_records_select_menu('course', "category $in", $params, 'fullname', 'id, fullname');
     }
 
-    function  local_facilitators_get_select_functions(array $role_ids=null)
+    function  local_psf_get_select_functions(array $role_ids=null)
     {
         global $DB;
 
