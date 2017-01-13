@@ -13,14 +13,14 @@
             <div class="control-group">
               <label class="control-label" for="matricula_siape">Matrícula SIAPE</label>
               <div class="controls">
-                <input type="text" name="matricula_siape" placeholder="Matrícula SIAPE" required="required" class="span12">
+                <input type="number" name="matricula_siape" placeholder="Matrícula SIAPE" required="required" class="span12">
               </div>
             </div>
 
             <div class="control-group">
               <label class="control-label" for="CPF">CPF</label>
               <div class="controls">
-                <input type="text" name="cpf" placeholder="CPF" class="span12" required="required" value="">
+                <input type="number" name="cpf" placeholder="CPF" class="span12" required="required" value="">
               </div>
             </div>
 
@@ -30,7 +30,7 @@
                 <select name="function_facilitator" class="span12" required="required">
                   <option></option>
                   <?php foreach ($roles as $key => $role) { ?>
-                    <option value="<?= $key ?>"><?= $role; ?></option>
+                    <option value="<?= $key ?>"><?= $enrollment->local_psf_get_role_name($key); ?></option>
                   <?php } ?>
                 </select>
               </div>
