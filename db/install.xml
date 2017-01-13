@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/psf/db" VERSION="20170113" COMMENT="XMLDB file for Moodle local/psf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_psf" COMMENT="Default comment for local_psf, please edit me">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" DEFAULT="-" SEQUENCE="false" COMMENT="-"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="-"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_edict" COMMENT="Informações essenciais para o processo de seleção">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="validity_year" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="2000" SEQUENCE="false" COMMENT="A vigência do edital"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="250" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Título do edital, ex. &quot;Edital de Seleção de Facilitadores&quot;"/>
+        <FIELD NAME="edict_number" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Número do edital para ano vigente"/>
+        <FIELD NAME="opening" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital abre as inscrições"/>
+        <FIELD NAME="closing" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital fecha as inscrições"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_vacancy" COMMENT="Quadro de vagas e suas especificidades  do edital de seleção">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="edictid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do edital"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Curso disponíveis para concorrer"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Função relacionado ao curso disponível a concorrência"/>
+        <FIELD NAME="parentid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Curso pai da função (auto-relacionamento)"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="edictid" TYPE="foreign" FIELDS="edictid" REFTABLE="local_psf_edict" REFFIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+        <KEY NAME="roleid" TYPE="foreign" FIELDS="roleid" REFTABLE="role" REFFIELDS="id"/>
+        <KEY NAME="parentid" TYPE="foreign" FIELDS="parentid" REFTABLE="local_psf_vacancy" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_item" COMMENT="Itens do quadro de vagas">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="300" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome do item"/>
+        <FIELD NAME="maximum_points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Número de pontos máximo que consegue chegar por item geral"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_criteria" COMMENT="Cada item de análise possui critérios específicos">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Colocar a função primeiramente para definir os itens e os critérios"/>
+        <FIELD NAME="itemid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Item para cada função"/>
+        <FIELD NAME="criteria" TYPE="char" LENGTH="250" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Critério específico e que está relacionado ao item"/>
+        <FIELD NAME="points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Pontos de critério"/>
+        <FIELD NAME="maximum_points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Número máximo de pontos referente ao critério"/>
+        <FIELD NAME="measurement" TYPE="char" LENGTH="300" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Unidade de medida. Ex.: &quot;por capacitação&quot;."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="roleid" TYPE="foreign" FIELDS="roleid" REFTABLE="role" REFFIELDS="id"/>
+        <KEY NAME="itemid" TYPE="foreign" FIELDS="itemid" REFTABLE="local_psf_item" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_applicant" COMMENT="Informações do candidato">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome completo do candidato"/>
+        <FIELD NAME="address" TYPE="char" LENGTH="150" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Endereço completo concatenado com barras"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="45" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="E-mail do candidato"/>
+        <FIELD NAME="telephone" TYPE="char" LENGTH="11" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Telefone residêncial"/>
+        <FIELD NAME="cellular" TYPE="char" LENGTH="11" NOTNULL="true" DEFAULT="-" SEQUENCE="false"/>
+        <FIELD NAME="rg" TYPE="char" LENGTH="8" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número da carteira de identidade"/>
+        <FIELD NAME="agent" TYPE="char" LENGTH="30" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Orgão expedidor"/>
+        <FIELD NAME="cpf" TYPE="char" LENGTH="11" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Cadastro de pessoa física"/>
+        <FIELD NAME="siape" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número de matrícula cedido pelo Ministério do Planejamento a partir do momento que ingressa no serviço público"/>
+        <FIELD NAME="department" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome do departamento que servidor está alocado"/>
+        <FIELD NAME="department_telephone" TYPE="char" LENGTH="4" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Ramal"/>
+        <FIELD NAME="work_schedule" TYPE="char" LENGTH="40" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Horário de trabalho"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_curriculum" COMMENT="Currículo do candidato baseado nos critérios exigidos pelo edital">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="applicantid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do candidato"/>
+        <FIELD NAME="criteriaid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Critério de avaliação e que fará parte do currículo do candito"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="-" SEQUENCE="false"/>
+        <FIELD NAME="workload" TYPE="char" LENGTH="5" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Carga horária"/>
+        <FIELD NAME="dt_start" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Data do início do curso, evento, etc."/>
+        <FIELD NAME="dt_end" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Data em que finalizou do curso, evento, etc."/>
+        <FIELD NAME="institution" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome da instituição que lecionou, ou cursou, ou participou do evento, etc."/>
+        <FIELD NAME="document" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Documento que comprove as informações passadas no currículo"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="applcantid" TYPE="foreign" FIELDS="applicantid" REFTABLE="local_psf_applicant" REFFIELDS="id"/>
+        <KEY NAME="criteriaid" TYPE="foreign" FIELDS="criteriaid" REFTABLE="local_psf_criteria" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_psf_inscript" COMMENT="Inscrição do candidato">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="edictid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do edital"/>
+        <FIELD NAME="applicantid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do candidato"/>
+        <FIELD NAME="vacancyid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código da vaga que pretender concorrer"/>
+        <FIELD NAME="inscription_date" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Data de inscrição"/>
+        <FIELD NAME="inscription_number" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número de inscrição gerado pelo sistema"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="edict" TYPE="foreign" FIELDS="edictid" REFTABLE="local_psf_edict" REFFIELDS="id"/>
+        <KEY NAME="applicant" TYPE="foreign" FIELDS="applicantid" REFTABLE="local_psf_applicant" REFFIELDS="id"/>
+        <KEY NAME="vacancy" TYPE="foreign" FIELDS="vacancyid" REFTABLE="local_psf_vacancy" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
