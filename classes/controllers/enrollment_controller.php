@@ -10,6 +10,12 @@ class enrollment_controller
 {
     // Routes paths to enrollment
 
+    function index()
+    {
+        include __DIR__ . '/../../views/enrollment/index-html.php';
+        return '';
+    }
+
     function enrollment()
     {
         $enrollment = new Enrollment();
@@ -28,6 +34,18 @@ class enrollment_controller
         $rolename = $enrollment->local_psf_get_role_name($request->get('function_facilitator'));
         $coursename = $enrollment->local_psf_get_course_name($request->get('course'));
         include __DIR__ . '/../../views/enrollment/register-html.php';
+        return '';
+    }
+
+    function completion(Request $request)
+    {
+        include __DIR__ . '/../../views/enrollment/completion-html.php';
+        return '';
+    }
+
+    function receipt(Request $request)
+    {
+        include __DIR__ . '/../../views/enrollment/receipt-html.php';
         return '';
     }
 

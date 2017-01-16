@@ -16,6 +16,7 @@
     </div>
   </div>
 
+<form action="<?php echo URL_BASE . '/enrollment/completion' ?>" method="POST">
   <div class="row-fluid">
     <div class="span4 offset2">
       <label>Nome</label>
@@ -163,72 +164,7 @@
   </div>
 
   <div class="row-fluid">
-    <div class="span8 offset2">     
-
-      <!-- Modal capacitação -->
-      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Adicionar capacitação</h3>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label" for="inputEmail">Tipo</label>
-              <div class="controls">
-                <select name="criteria_id" class="span12">
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</option>
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 80 horas e maior que 20 horas</option>
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 20 horas e maior que 4 horas</option>
-                  <option>Capacitações na área de informática realizadas a partir do ano de 2012</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Título</label>
-              <div class="controls">
-                <input type="text" name="title" class="span12">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Carga Horária</label>
-              <div class="controls">
-                <input type="text" name="workload" class="span12">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Instituição</label>
-              <div class="controls">
-                <input type="text" name="institution" class="span12">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Data de Início</label>
-              <div class="controls">
-                <input type="text" name="dt_start" class="span6">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Data de Término</label>
-              <div class="controls">
-                <input type="text" name="dt_end" class="span6">
-              </div>              
-            </div>
-
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Documento Comprobatório</label>
-              <div class="controls">
-                <input type="file" name="document" class="span6">
-              </div>
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-          <button class="btn btn-primary">Salvar</button>
-        </div>
-      </div>
+    <div class="span8 offset2">
       <small>
         <table class="table small">
           <th>Tipo</th>
@@ -274,67 +210,6 @@
 
   <div class="row-fluid">
     <div class="span8 offset2">
-
-      <!-- Modal experiência -->
-      <div id="modal_exp" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Adicionar experiência</h3>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label" for="inputEmail">Tipo</label>
-              <div class="controls">
-                <select name="criteria_id" class="span12">
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</option>
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 80 horas e maior que 20 horas</option>
-                  <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 20 horas e maior que 4 horas</option>
-                  <option>Capacitações na área de informática realizadas a partir do ano de 2012</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Título</label>
-              <div class="controls">
-                <input type="text" name="title" class="span12">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Instituição</label>
-              <div class="controls">
-                <input type="text" name="institution" class="span12">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Data de Início</label>
-              <div class="controls">
-                <input type="text" name="dt_start" class="span6">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Data de Término</label>
-              <div class="controls">
-                <input type="text" name="dt_end" class="span6">
-              </div>              
-            </div>
-
-            <div class="control-group">
-              <label class="control-label" for="inputPassword">Documento Comprobatório</label>
-              <div class="controls">
-                <input type="file" name="document" class="span6">
-              </div>
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-          <button class="btn btn-primary">Salvar</button>
-        </div>
-      </div>
-
-
       <small>
         <table class="table">
           <th>Tipo</th>
@@ -375,6 +250,131 @@
       <button type="reset" class="btn btn-default pull-right">Cancelar</button>      
     </div>
   </div>
+</form>
 
 </div> <!-- container-fluid -->
 
+<!-- Modal capacitação -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Adicionar capacitação</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Tipo</label>
+        <div class="controls">
+          <select name="criteria_id" class="span12">
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</option>
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 80 horas e maior que 20 horas</option>
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 20 horas e maior que 4 horas</option>
+            <option>Capacitações na área de informática realizadas a partir do ano de 2012</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Título</label>
+        <div class="controls">
+          <input type="text" name="title" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Carga Horária</label>
+        <div class="controls">
+          <input type="text" name="workload" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Instituição</label>
+        <div class="controls">
+          <input type="text" name="institution" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Data de Início</label>
+        <div class="controls">
+          <input type="text" name="dt_start" class="span6">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Data de Término</label>
+        <div class="controls">
+          <input type="text" name="dt_end" class="span6">
+        </div>              
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Documento Comprobatório</label>
+        <div class="controls">
+          <input type="file" name="document" class="span6">
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-primary">Salvar</button>
+  </div>
+</div>
+
+
+<!-- Modal experiência -->
+<div id="modal_exp" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Adicionar experiência</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Tipo</label>
+        <div class="controls">
+          <select name="criteria_id" class="span12">
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</option>
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 80 horas e maior que 20 horas</option>
+            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 20 horas e maior que 4 horas</option>
+            <option>Capacitações na área de informática realizadas a partir do ano de 2012</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Título</label>
+        <div class="controls">
+          <input type="text" name="title" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Instituição</label>
+        <div class="controls">
+          <input type="text" name="institution" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Data de Início</label>
+        <div class="controls">
+          <input type="text" name="dt_start" class="span6">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Data de Término</label>
+        <div class="controls">
+          <input type="text" name="dt_end" class="span6">
+        </div>              
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Documento Comprobatório</label>
+        <div class="controls">
+          <input type="file" name="document" class="span6">
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-primary">Salvar</button>
+  </div>
+</div>
