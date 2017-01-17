@@ -5,3 +5,4 @@
 
 //Place file routes here
 require __DIR__ . '/routes/enrollment.php';
+require __DIR__ . '/routes/management.php';
