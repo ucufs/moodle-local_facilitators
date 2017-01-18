@@ -1,10 +1,11 @@
 <?php
 
 namespace psf\controllers;
+
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use psf\models\Management;
-use \stdClass;
+use stdClass;
 
 class management_controller
 {
@@ -12,6 +13,8 @@ class management_controller
 
     function index()
     {
+        global $DB;
+        $results = $DB->get_records('local_psf_edict');
         include __DIR__ . '/../../views/management/index-html.php';
         return '';
     }
@@ -22,17 +25,33 @@ class management_controller
         return '';
     }
 
-    function create()
+    function create(Request $request)
     {
-      global $DB, $CFG;
-      $record = new stdClass();
-      $record->title = $_POST["title"];
-      $record->edict_number = $_POST["edict_number"];
-      $record->validity_year = $_POST["validity_year"];
-      $record->opening = $_POST["opening"];
-      $record->closing = $_POST["closing"];
-      $lastinsertid = $DB->insert_record('local_psf_edict', $record);
-      // include __DIR__ . '/../../views/management/index-html.php';
-      // return '';
+        global $CFG;
+
+        $record = new stdClass();
+        $record->title = $request->get('title');
+        $record->edict_number = $request->get('edict_number');
+        $record->validity_year = $request->get('validity_year');
+        $record->opening = strtotime($request->get('opening'));
+        $record->closing = strtotime($request->get('closing'));
+        
+        $management = new Management();
+        $management->create($record, 'local_psf_edict');
+        
+        $app = new Application();
+
+        return $app->redirect(URL_BASE . '/management');
     }
+
+    function edit($id)
+    {
+        global $DB;
+
+        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
+
+        include __DIR__ . '/../../views/management/edit-html.php';
+        return '';
+    }
+    
 }
