@@ -26,4 +26,5 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Processo de Seleção de Facilitadores';
-$string['edictsettings'] = 'Gerenciar Editais';
+$string['edictmanagement'] = 'Gerenciar editar';
+$string['vacancymanagement'] = 'Gerenciar vagas';

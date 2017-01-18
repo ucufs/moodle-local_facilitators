@@ -13,28 +13,28 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
+ * Capability definitions for this module.
+ *
  * @package   local_psf
- * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
+ * @copyright  2016 UFS - Universidade Federal de Sergipe <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die();
-
-global $CFG;
-
-// Ensure the configurations for this site are set
-if ( $hassiteconfig )
-{
-
-    // Create folder / submenu in block menu, modsettings for activity modules, localplugins for Local plugins. 
-    // The default folders are defined in admin/settings/plugins.php.
-    $ADMIN->add('root', new admin_category('block_psf', get_string('pluginname', 'local_psf')));
-    
-    // This adds a link to an external page.
-    $ADMIN->add('block_psf', new admin_externalpage('block_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management'));
-
-    // Prevent Moodle from adding settings block in standard location.
-    $settings = null;
-}
+$capabilities = array(
+    'local/psf:view' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager'        => CAP_ALLOW
+        )
+    ),
+    'local/psf:manage' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        )
+    )
+);
