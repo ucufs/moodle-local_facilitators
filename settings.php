@@ -41,7 +41,7 @@ $ADMIN->add('root', new admin_category('block_psf', get_string('pluginname', 'lo
 // This adds the settings link to the folder/submenu.
 $ADMIN->add('block_psf', $settings);
 // This adds a link to an external page.
-$ADMIN->add('block_psf', new admin_externalpage('block_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management/'));
+$ADMIN->add('block_psf', new admin_externalpage('block_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management'));
 // Prevent Moodle from adding settings block in standard location.
 $settings = null;
 }

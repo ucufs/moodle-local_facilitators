@@ -1,53 +1,38 @@
 <?php
 
 namespace psf\controllers;
-
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use psf\models\Enrollment;
+use psf\models\Management;
+use \stdClass;
 
-class enrollment_controller
+class management_controller
 {
     // Routes paths to enrollment
 
     function index()
     {
-        include __DIR__ . '/../../views/managament/index-html.php';
+        include __DIR__ . '/../../views/management/index-html.php';
         return '';
     }
 
-    function enrollment()
+    function new_edict()
     {
-        $enrollment = new Enrollment();
-
-        $roles = $enrollment->local_psf_get_select_functions(array(1,2,3,4));
-        $courses = $enrollment->local_psf_get_select_courses(array(0,1));
-        include __DIR__ . '/../../views/enrollment/enrollment-html.php';
+        include __DIR__ . '/../../views/management/new_edict-html.php';
         return '';
     }
 
-    function register(Request $request)
+    function create()
     {
-        $enrollment = new Enrollment();
-
-        $enrollmentnumber = $enrollment->local_psf_get_enrollment_number();
-        $rolename = $enrollment->local_psf_get_role_name($request->get('function_facilitator'));
-        $coursename = $enrollment->local_psf_get_course_name($request->get('course'));
-        include __DIR__ . '/../../views/enrollment/register-html.php';
-        return '';
+      global $DB, $CFG;
+      $record = new stdClass();
+      $record->title = $_POST["title"];
+      $record->edict_number = $_POST["edict_number"];
+      $record->validity_year = $_POST["validity_year"];
+      $record->opening = $_POST["opening"];
+      $record->closing = $_POST["closing"];
+      $lastinsertid = $DB->insert_record('local_psf_edict', $record);
+      // include __DIR__ . '/../../views/management/index-html.php';
+      // return '';
     }
-
-    function completion(Request $request)
-    {
-        include __DIR__ . '/../../views/enrollment/completion-html.php';
-        return '';
-    }
-
-    function receipt(Request $request)
-    {
-        include __DIR__ . '/../../views/enrollment/receipt-html.php';
-        return '';
-    }
-
-    // ....................
 }
