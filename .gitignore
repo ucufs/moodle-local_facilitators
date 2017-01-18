@@ -8,6 +8,7 @@
 *.sln.docstates
 *.lock
 *.phpproj
+.htaccess
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

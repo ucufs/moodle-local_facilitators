@@ -28,3 +28,5 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Facilitators Selection Process';
 $string['edictmanagement'] = 'Edict Manage';
 $string['vacancymanagement'] = 'Vacancy Manage';
+$string['psf:view'] = 'View data for PSF';
+$string['psf:manage'] = 'Manage data for PSF';

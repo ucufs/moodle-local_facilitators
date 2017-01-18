@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,19 +13,28 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Strings for component 'psf', language 'en', branch 'MOODLE_26_STABLE' and 'MOODLE_26-FASE_V10'
+ * Capability definitions for this module.
  *
  * @package   local_psf
- * @copyright 2016, DIDEP/DDRH/UFS <didep@ufs.br>
+ * @copyright  2016 UFS - Universidade Federal de Sergipe <didep@ufs.br>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die();
-
-$string['pluginname'] = 'Processo de Seleção de Facilitadores';
-$string['edictmanagement'] = 'Gerenciar editar';
-$string['vacancymanagement'] = 'Gerenciar vagas';
-$string['psf:view'] = 'Visualizar dados';
-$string['psf:manage'] = 'Gerenciar dados';
+$capabilities = array(
+    'local/psf:view' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager'        => CAP_ALLOW
+        )
+    ),
+    'local/psf:manage' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        )
+    )
+);

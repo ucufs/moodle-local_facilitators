@@ -27,21 +27,14 @@ global $CFG;
 // Ensure the configurations for this site are set
 if ( $hassiteconfig )
 {
-// Create folder / submenu in block menu, modsettings for activity modules, localplugins for Local plugins. 
-// The default folders are defined in admin/settings/plugins.php.
-$ADMIN->add('root', new admin_category('block_psf', get_string('pluginname', 'local_psf')));
- 
-// // Create settings block.
-// $settings = new admin_settingpage($section, get_string('settings', 'block_sample'));
-// if ($ADMIN->fulltree) {
-//     $settings->add(new admin_setting_configcheckbox('block_sample_checkbox', get_string('checkbox', 'block_sample'),
-//         get_string('checkboxdescription', 'block_kronoshtml'), 0));
-// }
- 
-// This adds the settings link to the folder/submenu.
-$ADMIN->add('block_psf', $settings);
-// This adds a link to an external page.
-$ADMIN->add('block_psf', new admin_externalpage('block_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management'));
-// Prevent Moodle from adding settings block in standard location.
-$settings = null;
+
+    // Create folder / submenu in block menu, modsettings for activity modules, localplugins for Local plugins. 
+    // The default folders are defined in admin/settings/plugins.php.
+    $ADMIN->add('root', new admin_category('block_psf', get_string('pluginname', 'local_psf')));
+    
+    // This adds a link to an external page.
+    $ADMIN->add('block_psf', new admin_externalpage('page_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management'));
+
+    // Prevent Moodle from adding settings block in standard location.
+    $settings = null;
 }
