@@ -6,7 +6,7 @@
     
       <h3 class="text-center">Alterar Edital</h3>
 
-        <form action="<?php echo URL_BASE . '/management/update' ?>" method="POST">
+        <form action="<?php echo URL_BASE . '/management/update/' . $edict->id ?>" method="POST">
 
           <div class="row-fluid">
             <div class="span12">
@@ -17,19 +17,19 @@
           <div class="row-fluid">
             <div class="span3">
               <label>Número do edital</label>
-              <input type="number" name="edict_number" class="span12" placeholder="Número do edital" value="<?= $edict->edict_number ?>" required>
+              <input type="number" name="edict_number" class="span12" maxlength="4" placeholder="Número do edital" value="<?= $edict->edict_number ?>" required>
             </div>
             <div class="span3">
               <label>Ano</label>
-              <input type="number" name="validity_year" class="span12" placeholder="Ano" value="<?= $edict->validity_year ?>" required>
+              <input type="number" name="validity_year" maxlength="4" class="span12" placeholder="Ano" value="<?= $edict->validity_year ?>" required>
             </div>
             <div class="span3">
               <label>Data de início</label>
-              <input type="date" name="opening" class="span12" value="<?= date("d/m/Y", $edict->opening) ?>" required>
+              <input type="text" name="opening" class="span12" value="<?= date("d/m/Y", $edict->opening) ?>" required>
             </div>
             <div class="span3">
               <label>Data de encerramento</label>
-              <input type="date" name="closing" class="span12" placeholder="dd/mm/yyyy" value="<?= date("d/m/Y", $edict->closing) ?>" required>
+              <input type="text" name="closing" class="span12" placeholder="dd/mm/yyyy" value="<?= date("d/m/Y", $edict->closing) ?>" required>
             </div>
           </div>
 

@@ -47,4 +47,33 @@ function xmldb_local_psf_upgrade($oldversion=0)
         // Psf savepoint reached.
         upgrade_plugin_savepoint(true, 2017011804, 'local', 'psf');
     }
+
+    if ($oldversion < 2017011901)
+    {
+        // Define field status to be added to local_psf_edict.
+        $table = new xmldb_table('local_psf_edict');
+        $field = new xmldb_field('status', XMLDB_TYPE_CHAR, '4', null, XMLDB_NOTNULL, null, '1', 'edict_number');
+
+        // Conditionally launch add field status.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017011901, 'local', 'psf');
+    }
+
+    if ($oldversion < 2017011902) {
+
+        // Changing type of field status on table local_psf_edict to int.
+        $table = new xmldb_table('local_psf_edict');
+        $field = new xmldb_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'edict_number');
+
+        // Launch change of type for field status.
+        $dbman->change_field_type($table, $field);
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017011902, 'local', 'psf');
+    }
+
 }

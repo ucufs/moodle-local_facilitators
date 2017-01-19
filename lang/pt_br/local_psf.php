@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Processo de Seleção de Facilitadores';
-$string['edictmanagement'] = 'Gerenciar editar';
+$string['edictmanagement'] = 'Gerenciar edital';
 $string['vacancymanagement'] = 'Gerenciar vagas';
 $string['psf:view'] = 'Visualizar dados';
 $string['psf:manage'] = 'Gerenciar dados';

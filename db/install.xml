@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170118" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170119" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -20,6 +20,7 @@
         <FIELD NAME="validity_year" TYPE="char" LENGTH="4" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="A vigência do edital"/>
         <FIELD NAME="title" TYPE="char" LENGTH="250" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Título do edital, ex. &quot;Edital de Seleção de Facilitadores&quot;"/>
         <FIELD NAME="edict_number" TYPE="char" LENGTH="4" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número do edital para ano vigente"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Status do edital: 1 (ativo) ou 0 (inativo)"/>
         <FIELD NAME="opening" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital abre as inscrições"/>
         <FIELD NAME="closing" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital fecha as inscrições"/>
       </FIELDS>

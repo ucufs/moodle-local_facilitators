@@ -53,5 +53,26 @@ class management_controller
         include __DIR__ . '/../../views/management/edit-html.php';
         return '';
     }
+
+    function update(Request $request, $id)
+    {
+        global $DB;
+
+        $table = 'local_psf_edict';
+
+        $record = new stdClass();
+        $record->id = $id;
+        $record->title = $request->get('title');
+        $record->edict_number = $request->get('edict_number');
+        $record->validity_year = $request->get('validity_year');
+        $record->opening = strtotime($request->get('opening'));
+        $record->closing = strtotime($request->get('closing'));
+
+        $DB->update_record($table, $record);
+
+        $app = new Application();
+
+        return $app->redirect(URL_BASE . '/management');
+    }
     
 }
