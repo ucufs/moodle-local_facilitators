@@ -1,5 +1,4 @@
 <?php include __DIR__ . '/../base/header.php';?>
-<?php $PAGE->navbar->add('Inscrição');?>
 
   <div class="container">
     <div class="row">

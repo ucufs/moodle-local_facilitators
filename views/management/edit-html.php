@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../base/header.php';?>
+<?php include __DIR__ . '/../base/header.php'; ?>
 
 <div class="container-fluid">
   <div class="row">

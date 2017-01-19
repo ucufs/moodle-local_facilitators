@@ -15,6 +15,7 @@ class management_controller
     {
         global $DB;
         $results = $DB->get_records('local_psf_edict');
+        $title_breadcrumb = 'Gerenciar Editais';
         include __DIR__ . '/../../views/management/index-html.php';
         return '';
     }
@@ -69,6 +70,22 @@ class management_controller
         $record->closing = strtotime($request->get('closing'));
 
         $DB->update_record($table, $record);
+
+        $app = new Application();
+
+        return $app->redirect(URL_BASE . '/management');
+    }
+
+    function change_status($id)
+    {
+        global $DB;
+
+        $table = 'local_psf_edict';
+
+        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
+        $edict->status = ($edict->status==1) ? 0 : 1;
+
+        $DB->update_record($table, $edict);
 
         $app = new Application();
 

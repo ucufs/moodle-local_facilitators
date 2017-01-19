@@ -1,4 +1,5 @@
-<?php include __DIR__ . '/../base/header.php';?>
+<?php include __DIR__ . '/../base/header.php'; ?>
+
 
 <div class="container">
   <div class="row">
@@ -21,7 +22,7 @@
           <th colspan="2" class="center">Ações</th>
         </tr>
         <?php foreach ($results as $result) { ?>        
-        <tr>
+        <tr class="<?= $result->status == 1 ? '' : error ?>">
           <td style="vertical-align: middle"><?= $result->title; ?></td>
           <td style="vertical-align: middle"><?= $result->edict_number; ?></td>
           <td style="vertical-align: middle"><?= $result->validity_year; ?></td>
@@ -51,8 +52,8 @@
             <a href="<?php echo URL_BASE . '/management/edit/' . $result->id ?>" title="Alterar informações do edital">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  
             </a>            
-            <a href="#" title="Ativar/Desativar Edital">
-              <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+            <a href="<?php echo URL_BASE . '/management/change_status/' . $result->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
+              <i class="fa fa-thumbs-<?= ($result->status==1) ? 'down' : 'up' ?>" aria-hidden="true"></i>
             </a>
           </td>
         </tr>
