@@ -2,7 +2,7 @@
 namespace psf\models;
 use stdClass;
 
-class Management
+class edict
 {
 
     function __construct()

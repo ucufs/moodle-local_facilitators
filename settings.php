@@ -33,7 +33,7 @@ if ( $hassiteconfig )
     $ADMIN->add('root', new admin_category('block_psf', get_string('pluginname', 'local_psf')));
     
     // This adds a link to an external page.
-    $ADMIN->add('block_psf', new admin_externalpage('page_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/management'));
+    $ADMIN->add('block_psf', new admin_externalpage('page_psf', get_string('edictmanagement', 'local_psf'), $CFG->wwwroot.'/local/psf/edict'));
 
     // Prevent Moodle from adding settings block in standard location.
     $settings = null;

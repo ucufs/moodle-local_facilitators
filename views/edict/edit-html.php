@@ -6,7 +6,7 @@
     
       <h3 class="text-center">Alterar Edital</h3>
 
-        <form action="<?php echo URL_BASE . '/management/update/' . $edict->id ?>" method="POST">
+        <form action="<?php echo URL_BASE . '/edict/update/' . $edict->id ?>" method="POST">
 
           <div class="row-fluid">
             <div class="span12">

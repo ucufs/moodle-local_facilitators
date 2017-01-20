@@ -8,7 +8,8 @@ $management = $app['controllers_factory'];
 
 // *******Place file routes here***********
 require __DIR__ . '/routes/enrollment.php';
-require __DIR__ . '/routes/management.php';
+require __DIR__ . '/routes/edict.php';
+require __DIR__ . '/routes/vacancy.php';
 // ****************************************
 
 // Allows that any functionality be it requested before the controller is executed

@@ -7,7 +7,7 @@
     
       <h3 class="text-center">Novo Edital</h3>
 
-        <form action="<?php echo URL_BASE . '/management/create' ?>" method="POST">
+        <form action="<?php echo URL_BASE . '/edict/create' ?>" method="POST">
 
           <div class="row-fluid">
             <div class="span12">

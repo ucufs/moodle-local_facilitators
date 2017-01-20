@@ -76,4 +76,32 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017011902, 'local', 'psf');
     }
 
+    if ($oldversion < 2017012001) {
+
+        // Define field quantity to be added to local_psf_vacancy.
+        $table = new xmldb_table('local_psf_vacancy');
+        $field = new xmldb_field('quantity', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '0', 'roleid');
+
+        // Conditionally launch add field quantity.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }        
+
+        $key = new xmldb_key('parentid', XMLDB_KEY_FOREIGN, array('parentid'), 'local_psf_vacancy', array('id'));
+
+        // Launch drop key roleid.
+        $dbman->drop_key($table, $key);
+
+        $field_parentid = new xmldb_field('parentid');
+
+        // Conditionally launch drop field roleid.
+        if ($dbman->field_exists($table, $field_parentid)) {
+            $dbman->drop_field($table, $field_parentid);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017012001, 'local', 'psf');
+
+    }
+
 }

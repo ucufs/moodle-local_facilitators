@@ -4,10 +4,10 @@ namespace psf\controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use psf\models\Management;
+use psf\models\edict;
 use stdClass;
 
-class management_controller
+class edict_controller
 {
     // Routes paths to enrollment
 
@@ -15,14 +15,13 @@ class management_controller
     {
         global $DB;
         $results = $DB->get_records('local_psf_edict');
-        $title_breadcrumb = 'Gerenciar Editais';
-        include __DIR__ . '/../../views/management/index-html.php';
+        include __DIR__ . '/../../views/edict/index-html.php';
         return '';
     }
 
     function new_edict()
     {
-        include __DIR__ . '/../../views/management/new_edict-html.php';
+        include __DIR__ . '/../../views/edict/new_edict-html.php';
         return '';
     }
 
@@ -37,12 +36,12 @@ class management_controller
         $record->opening = strtotime($request->get('opening'));
         $record->closing = strtotime($request->get('closing'));
         
-        $management = new Management();
-        $management->create($record, 'local_psf_edict');
+        $edict = new edict();
+        $edict->create($record, 'local_psf_edict');
         
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/management');
+        return $app->redirect(URL_BASE . '/edict');
     }
 
     function edit($id)
@@ -51,7 +50,7 @@ class management_controller
 
         $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
 
-        include __DIR__ . '/../../views/management/edit-html.php';
+        include __DIR__ . '/../../views/edict/edit-html.php';
         return '';
     }
 
@@ -73,7 +72,7 @@ class management_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/management');
+        return $app->redirect(URL_BASE . '/edict');
     }
 
     function change_status($id)
@@ -89,7 +88,7 @@ class management_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/management');
+        return $app->redirect(URL_BASE . '/edict');
     }
     
 }

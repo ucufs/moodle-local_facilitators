@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170119" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170120" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -34,14 +34,13 @@
         <FIELD NAME="edictid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do edital"/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Curso disponíveis para concorrer"/>
         <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Função relacionado ao curso disponível a concorrência"/>
-        <FIELD NAME="parentid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Curso pai da função (auto-relacionamento)"/>
+        <FIELD NAME="quantity" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quantidade de vagas para cada par de curso e função"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
         <KEY NAME="edictid" TYPE="foreign" FIELDS="edictid" REFTABLE="local_psf_edict" REFFIELDS="id"/>
         <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
         <KEY NAME="roleid" TYPE="foreign" FIELDS="roleid" REFTABLE="role" REFFIELDS="id"/>
-        <KEY NAME="parentid" TYPE="foreign" FIELDS="parentid" REFTABLE="local_psf_vacancy" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
     <TABLE NAME="local_psf_item" COMMENT="Itens do quadro de vagas">
