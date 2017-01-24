@@ -26,11 +26,11 @@
             </div>
             <div class="span3">
               <label>Data de início</label>
-              <input type="date" name="opening" class="span12" placeholder="dd/mm/yyyy" required>
+              <input type="text" name="opening" class="span12" placeholder="dd/mm/yyyy" required>
             </div>
             <div class="span3">
               <label>Data de encerramento</label>
-              <input type="date" name="closing" class="span12" placeholder="dd/mm/yyyy" required>
+              <input type="text" name="closing" class="span12" placeholder="dd/mm/yyyy" required>
             </div>
           </div>
 

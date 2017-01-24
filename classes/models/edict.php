@@ -12,14 +12,22 @@ class edict
 
     function create(stdClass $record, $table)
     {
-      global $DB;
-      $DB->insert_record($table, $record);
+        global $DB;
+        $DB->insert_record($table, $record);
     }
 
-    function has_vacancy($id)
+    function has_vacancies($id)
     {
-        // #toDo check if edict has vancancy
-        return true;
+        global $DB;
+        $table = 'local_psf_vacancy';
+        $select = "edictid = {$id} and status = 1";
+        $vacancies = $DB->get_records_select($table,$select);
+        return (count($vacancies) > 0);
+    }
+
+    function has_criterias($id)
+    {
+        #ToDo
     }
 
 }

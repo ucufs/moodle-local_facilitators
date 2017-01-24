@@ -14,7 +14,12 @@ class edict_controller
     function index()
     {
         global $DB;
-        $results = $DB->get_records('local_psf_edict');
+        $table = 'local_psf_edict';
+        $conditions = null;
+        $sort = 'validity_year DESC';
+        $results = $DB->get_records($table, $conditions, $sort);
+        $edict = new edict();
+
         include __DIR__ . '/../../views/edict/index-html.php';
         return '';
     }
@@ -30,11 +35,7 @@ class edict_controller
         global $CFG;
 
         $record = new stdClass();
-        $record->title = $request->get('title');
-        $record->edict_number = $request->get('edict_number');
-        $record->validity_year = $request->get('validity_year');
-        $record->opening = strtotime($request->get('opening'));
-        $record->closing = strtotime($request->get('closing'));
+        $this->set_form_params($record, $request);
         
         $edict = new edict();
         $edict->create($record, 'local_psf_edict');
@@ -62,11 +63,7 @@ class edict_controller
 
         $record = new stdClass();
         $record->id = $id;
-        $record->title = $request->get('title');
-        $record->edict_number = $request->get('edict_number');
-        $record->validity_year = $request->get('validity_year');
-        $record->opening = strtotime($request->get('opening'));
-        $record->closing = strtotime($request->get('closing'));
+        $this->set_form_params($record, $request);
 
         $DB->update_record($table, $record);
 
@@ -89,6 +86,17 @@ class edict_controller
         $app = new Application();
 
         return $app->redirect(URL_BASE . '/edict');
+    }
+
+    private function set_form_params($record, $request)
+    {
+        $record->title = $request->get('title');
+        $record->edict_number = $request->get('edict_number');
+        $record->validity_year = $request->get('validity_year');
+        $opening = str_replace('/', '-', $request->get('opening'));
+        $record->opening = strtotime($opening);
+        $opening = str_replace('/', '-', $request->get('closing'));
+        $record->closing = strtotime($opening);
     }
     
 }
