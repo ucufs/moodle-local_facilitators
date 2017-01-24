@@ -34,7 +34,7 @@
                 <tr class="<?= true ? 'success' : 'error' ?>">
                   <td>Vagas</td>
                   <td>
-                    <a href="<?php echo URL_BASE . '/vacancy/edit/' . $result->id ?>" title="Gerenciar vagas ofertadas"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <a href="<?php echo URL_BASE . '/vacancy/' . $result->id ?>" title="Gerenciar vagas ofertadas"><i class="fa fa-cog" aria-hidden="true"></i></a>
                     <a href="#" title="Visualizar"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                   </td>
                 </tr>

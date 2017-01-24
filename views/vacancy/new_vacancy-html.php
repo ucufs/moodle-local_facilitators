@@ -1,64 +1,70 @@
-<!-- Modal new vacancy-->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Adicionar capacitação</h3>
-  </div>
-  <div class="modal-body">
-    <form class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label" for="inputEmail">Tipo</label>
-        <div class="controls">
-          <select name="criteria_id" class="span12">
-            <option>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</option>
-            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 80 horas e maior que 20 horas</option>
-            <option>Capacitações relacionadas à função de coordenação e/ou tutoria menor que 20 horas e maior que 4 horas</option>
-            <option>Capacitações na área de informática realizadas a partir do ano de 2012</option>
+<?php include __DIR__ . '/../base/header.php'; ?>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="span8 offset2">
+    
+    <h3 class="text-center">Adicionar item</h3>
+
+    <form action="<?php echo URL_BASE . '/vacancy/create/' . $edict->id ?>" method="POST">
+      <div class="row-fluid">
+        <div class="span7">
+          <label>Função</label>
+          <select name="roleid" required class="span12">
+            <option value=""></option>
+            <?php foreach ($roles as $role) { ?>
+              <option value="<?= $role->id; ?>" ><?= $role->name; ?></option>
+            <?php }; ?>
+          </select>
+        </div>
+        <div class="span3">
+          <label>Quantidade</label>
+          <input type="number" name="quantity" class="span12" maxlength="4" placeholder="Número de vagas" required>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span10">
+          <label>Evento/Curso</label>
+          <select name="courseid" class="span12">
+            <option value=""></option>
+            <?php foreach ($courses as $course) { ?>
+              <option value="<?= $course->id; ?>" ><?= local_psf_get_category_name($course->category) ?> / <?= $course->fullname; ?></option>
+            <?php }; ?>
           </select>
         </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Título</label>
-        <div class="controls">
-          <input type="text" name="title" class="span12">
+      <div class="row-fluid">
+        <div class="span5">
+          <label>Módulo
+          <small class="text-warning">(Preencha apenas quando o curso for modular)</small>
+          </label>
+          <input type="text" name="module" class="span12" placeholder="Módulo">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Carga Horária</label>
-        <div class="controls">
-          <input type="text" name="workload" class="span12">
+        <div class="span5">
+          <label>Campus
+          <small class="text-warning">(Preencha apenas a função exigir)</small>
+          </label>
+          <select class="span12" name="campus">
+            <option value=""></option>
+            <option>Campus de Itabaina</option>
+            <option>Campus de Lagarto</option>
+            <option>Campus de Laranjeiras</option>
+            <option>Campus do Sertão</option>
+          </select>
         </div>
+        
       </div>
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Instituição</label>
-        <div class="controls">
-          <input type="text" name="institution" class="span12">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Data de Início</label>
-        <div class="controls">
-          <input type="text" name="dt_start" class="span6">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Data de Término</label>
-        <div class="controls">
-          <input type="text" name="dt_end" class="span6">
-        </div>              
-      </div>
-
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Documento Comprobatório</label>
-        <div class="controls">
-          <input type="file" name="document" class="span6">
+      <br/>
+      <div class="row-fluid">
+        <div class="span10 text-center">
+          <button type="button" class="btn btn-default" onClick="history.go(-1)">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
       </div>
 
     </form>
+
+    </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button class="btn btn-primary">Salvar</button>
-  </div>
-</div>
+</div>   

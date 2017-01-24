@@ -1,84 +1,74 @@
 <?php include __DIR__ . '/../base/header.php'; ?>
-<?php include __DIR__ . '/new_vacancy-html.php'; ?>
 
 <div class="container-fluid">
   <div class="row">
     <div class="span8 offset2">
     
-      <h3 class="text-center">Gerenciar Vagas</h3>
+    <h3 class="text-center">Alterar item</h3>
 
-        <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict->id ?>" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-          <i class="fa fa-file-text" aria-hidden="true"></i> Adicionar item</a>
-        </p>
+    <form action="<?php echo URL_BASE . '/vacancy/update/' . $vacancy->edictid . '/' . $vacancy->id ?>" method="POST">
+      <div class="row-fluid">
+        <div class="span7">
+          <label>Função</label>
+          <select name="roleid" required class="span12">
+            <option value=""></option>
+            <?php foreach ($roles as $role) { ?>
+              <option value="<?= $role->id; ?>" <?= ($vacancy->roleid == $role->id) ? 'selected' : '' ?> >
+                <?= $role->name; ?>                
+              </option>
+            <?php }; ?>
+          </select>
+        </div>
+        <div class="span3">
+          <label>Quantidade</label>
+          <input type="number" name="quantity" class="span12" maxlength="4" placeholder="Número de vagas" value="<?= $vacancy->quantity; ?>" required>
+        </div>
+      </div>
 
-      <table class="table">
-        <tr>
-          <th>Evento/Curso</th>
-          <th>Função</th>
-          <th>Número de vagas</th>
-          <th colspan="2" class="center">Ações</th>
-        </tr>
-        <?php foreach ($vacancies as $vacancy) { ?>        
-        <tr>
-          <td style="vertical-align: middle"><?= $vacancy->courseid; ?></td>
-          <td style="vertical-align: middle"><?= $vacancy->roleid; ?></td>
-          <td style="vertical-align: middle"><?= $vacancy->quantity; ?></td>
-          <td style="vertical-align: middle">
-            <a href="" title="Alterar informações">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  
-            </a>            
-            <a href="" title="Excluir" onclick="confirm('Deseja excluir o item?')">
-              <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
-        <?php } ?>
-      </table>
+      <div class="row-fluid">
+        <div class="span10">
+          <label>Evento/Curso</label>
+          <select name="courseid" class="span12">
+            <option value=""></option>
+            <?php foreach ($courses as $course) { ?>
+              <option value="<?= $course->id; ?>" <?= ($vacancy->courseid == $course->id) ? 'selected' : '' ?> >
+                <?= local_psf_get_category_name($course->category) ?> / <?= $course->fullname; ?>
+              </option>
+            <?php }; ?>
+          </select>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span5">
+          <label>Módulo
+          <small class="text-warning">Preencha apenas quando o curso for modular</small>
+          </label>
+          <input type="text" name="module" class="span12" placeholder="Módulo" value="<?= $vacancy->module; ?>">
+        </div>
+        <div class="span5">
+          <label>Campus
+          <small class="text-warning">Preencha apenas a função exigir</small>
+          </label>
+          <select class="span12" name="campus">
+            <option value=""></option>
+            <option <?= ($vacancy->campus == 'Campus de Itabaina' ) ? 'selected' : '' ?> >Campus de Itabaina</option>
+            <option <?= ($vacancy->campus == 'Campus de Lagarto' ) ? 'selected' : '' ?> >Campus de Lagarto</option>
+            <option <?= ($vacancy->campus == 'Campus de Laranjeiras' ) ? 'selected' : '' ?> >Campus de Laranjeiras</option>
+            <option <?= ($vacancy->campus == 'Campus do Sertão' ) ? 'selected' : '' ?> >Campus do Sertão</option>
+          </select>
+        </div>
+        
+      </div>
+      <br/>
+      <div class="row-fluid">
+        <div class="span10 text-center">
+          <button type="button" class="btn btn-default" onClick="history.go(-1)">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
 
-        <form action="<?php echo URL_BASE . '/vacancy/update/' ?>" method="POST">
-          <?php foreach ($vacancies as $vacancy) { ?> 
-          <div class="row-fluid">
-            <div class="span5">
-              <label>Evento/Curso</label>
-              <input type="text" name="courseid" class="span12" placeholder="Nome do evento/curso"  required>
-            </div>
-            <div class="span5">
-              <label>Função</label>
-              <input type="text" name="roleid" class="span12" maxlength="4" placeholder="Função" required>
-            </div>
-            <div class="span2">
-              <label>Quantidade</label>
-              <input type="number" name="edict_number" class="span12" maxlength="4" placeholder="Número de vagas" required>
-            </div>
-          </div>
-          <?php } ?>
-          <div class="row-fluid">
-            <div class="span5">
-              <label>Evento/Curso</label>
-              <input type="text" name="courseid" class="span12" placeholder="Nome do evento/curso"  required>
-            </div>
-            <div class="span5">
-              <label>Função</label>
-              <input type="text" name="roleid" class="span12" maxlength="4" placeholder="Função" required>
-            </div>
-            <div class="span2">
-              <label>Quantidade</label>
-              <input type="number" name="edict_number" class="span12" maxlength="4" placeholder="Número de vagas" required>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <div class="controls text-center">
-              <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
-          </div>
-
-      </form>          
+    </form>
 
     </div>
   </div>
-</div>
-
-
+</div>   

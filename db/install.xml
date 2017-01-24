@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170120" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170124" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -35,6 +35,9 @@
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Curso disponíveis para concorrer"/>
         <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Função relacionado ao curso disponível a concorrência"/>
         <FIELD NAME="quantity" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quantidade de vagas para cada par de curso e função"/>
+        <FIELD NAME="module" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="single" SEQUENCE="false" COMMENT="Define o nome do módulo caso o curso seja modular"/>
+        <FIELD NAME="campus" TYPE="char" LENGTH="80" NOTNULL="false" DEFAULT="-" SEQUENCE="false" COMMENT="Definir o campus de atuação para as funções que são separadas por campus"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Status da vaga: 1 (ativo) ou 0 (inativo - quando a vaga for removida pelo usuário)"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

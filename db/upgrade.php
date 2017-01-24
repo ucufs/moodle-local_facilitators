@@ -103,5 +103,50 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017012001, 'local', 'psf');
 
     }
+    if ($oldversion < 2017012301) {
+        // Define field module to be added to local_psf_vacancy.
+        $table = new xmldb_table('local_psf_vacancy');
+        $field = new xmldb_field('module', XMLDB_TYPE_CHAR, '100', null, XMLDB_NOTNULL, null, 'single', 'quantity');
+
+        // Conditionally launch add field module.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017012301, 'local', 'psf');
+    }
+
+    if ($oldversion < 2017012302) {
+
+        // Define field campus to be added to local_psf_vacancy.
+        $table = new xmldb_table('local_psf_vacancy');
+        $field = new xmldb_field('campus', XMLDB_TYPE_CHAR, '80', null, null, null, '-', 'module');
+
+        // Conditionally launch add field campus.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017012302, 'local', 'psf');
+    }
+
+    if ($oldversion < 2017012401) {
+
+        // Define field status to be added to local_psf_vacancy.
+        $table = new xmldb_table('local_psf_vacancy');
+        $field = new xmldb_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'campus');
+
+        // Conditionally launch add field status.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017012401, 'local', 'psf');
+    }
+
+
 
 }
