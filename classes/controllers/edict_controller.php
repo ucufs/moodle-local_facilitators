@@ -9,36 +9,32 @@ use stdClass;
 
 class edict_controller
 {
-    // Routes paths to enrollment
 
     function index()
     {
-        global $DB;
-        $table = 'local_psf_edict';
-        $conditions = null;
-        $sort = 'validity_year DESC';
-        $results = $DB->get_records($table, $conditions, $sort);
+        global $templating;        
+        
         $edict = new edict();
+        $results = $edict->get_edict();
 
-        include __DIR__ . '/../../views/edict/index-html.php';
-        return '';
+        return $templating->render('edict/index-html.php', array('results' => $results, 'edict' => $edict));
     }
 
     function new_edict()
     {
-        include __DIR__ . '/../../views/edict/new_edict-html.php';
-        return '';
+        global $templating;
+        $edict = new edict();
+        $url = '/edict/create';
+        return $templating->render('edict/new_edict-html.php', array('edict' => $edict, 'url' => $url));
     }
 
     function create(Request $request)
     {
-        global $CFG;
-
         $record = new stdClass();
         $this->set_form_params($record, $request);
         
         $edict = new edict();
-        $edict->create($record, 'local_psf_edict');
+        $edict->create($record);
         
         $app = new Application();
 
@@ -47,25 +43,23 @@ class edict_controller
 
     function edit($id)
     {
-        global $DB;
+        global $templating;
 
-        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
+        $edict = new edict();
+        $result = $edict->get_edict($id);
+        $url = '/edict/update/' . $result->id;
 
-        include __DIR__ . '/../../views/edict/edit-html.php';
-        return '';
+        return $templating->render('edict/edit-html.php', array('edict' => $result, 'url' => $url));
     }
 
     function update(Request $request, $id)
     {
-        global $DB;
-
-        $table = 'local_psf_edict';
-
         $record = new stdClass();
         $record->id = $id;
         $this->set_form_params($record, $request);
 
-        $DB->update_record($table, $record);
+        $edict = new edict();
+        $edict->update($record);
 
         $app = new Application();
 
@@ -74,14 +68,8 @@ class edict_controller
 
     function change_status($id)
     {
-        global $DB;
-
-        $table = 'local_psf_edict';
-
-        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
-        $edict->status = ($edict->status==1) ? 0 : 1;
-
-        $DB->update_record($table, $edict);
+        $edict = new edict();
+        $edict->change_status($id);
 
         $app = new Application();
 

@@ -1,4 +1,8 @@
-<?php include __DIR__ . '/../base/header.php'; ?>
+<?php include __DIR__ . '../../../lib.php'; ?>
+
+<?php $view->extend('template-html.php') ?>
+
+<?php $view['slots']->start('body') ?>
 
 <div class="container-fluid">
   <div class="row">
@@ -7,7 +11,7 @@
       <h3 class="text-center">Gerenciar Vagas</h3>
 
         <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict->id ?>" class="btn btn-default">
+          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict_id ?>" class="btn btn-default">
           <i class="fa fa-file-text" aria-hidden="true"></i> Adicionar item</a>
         </p>
 
@@ -35,7 +39,7 @@
             <a href="<?php echo URL_BASE . '/vacancy/edit/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Alterar informações">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
             </a>            
-            <a href="<?php echo URL_BASE . '/vacancy/destroy/' . $vacancy->id ?>" title="Excluir" onclick="confirm('Deseja excluir o item?')">
+            <a href="<?php echo URL_BASE . '/vacancy/destroy/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Excluir" onclick="confirm('Deseja excluir o item?')">
               <i class="fa fa-times" aria-hidden="true"></i>
             </a>
           </td>
@@ -47,3 +51,5 @@
     </div>
   </div>
 </div>
+
+<?php $view['slots']->stop() ?>

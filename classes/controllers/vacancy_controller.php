@@ -10,90 +10,76 @@ use stdClass;
 class vacancy_controller
 {
 
-    function index($id)
+    function index($edict_id)
     {
-        global $DB;
-        
-        $table = 'local_psf_vacancy';
-        $select = "edictid = {$id} and status = 1"; //is put into the where clause
-        $vacancies = $DB->get_records_select($table,$select);
+        global $templating;
 
-        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
+        $obj = new vacancy();
+        $vacancies = $obj->get_vacancy(null, $edict_id);        
 
-        include __DIR__ . '/../../views/vacancy/index-html.php';
-        return '';
+        return $templating->render('vacancy/index-html.php', array('vacancies' => $vacancies, 'edict_id' => $edict_id));
     }
 
     function new_vacancy($id)
     {
-        global $DB;
-        $edict = $DB->get_record('local_psf_edict', array('id'=>$id));
-        $courses = get_courses($fields='c.id,c.category,c.name');
-        $roles = $DB->get_records('role');
-        $vacancy = new vacancy();
+        global $templating;
 
-        include __DIR__ . '/../../views/vacancy/new_vacancy-html.php';
-        return '';
+        $courses = get_courses($fields='c.id,c.category,c.name');
+        $vacancy = new vacancy();
+        $roles = $vacancy->get_roles();
+        $url = '/vacancy/create/' . $id;
+
+        return $templating->render('vacancy/new_vacancy-html.php', array('vacancy' => $vacancy, 'courses' => $courses, 'roles' => $roles, 'url' => $url));
     }
 
     function create(Request $request, $id)
     {
-        global $CFG;
-
         $record = new stdClass();
         $this->set_form_params($record, $request, $id);
         
         $vacancy = new vacancy();
-        $vacancy->create($record, 'local_psf_vacancy');
+        $vacancy->create($record);
         
         $app = new Application();
 
         return $app->redirect(URL_BASE . '/vacancy/' . $id);
     }
 
-    function edit($vacancy_id)
+    function edit($id, $vacancy_id)
     {
-        global $DB;
+        global $templating;
 
-        $vacancy = $DB->get_record('local_psf_vacancy', array('id'=>$vacancy_id));
-        $courses = get_courses($fields='c.id,c.category,c.name');
-        $roles = $DB->get_records('role');
+        $obj = new vacancy();
+        $vacancy = $obj->get_vacancy($vacancy_id);
+        $roles = $obj->get_roles();
+        $courses = get_courses($fields='c.id,c.category,c.name');        
+        $url = '/vacancy/update/' . $vacancy->edictid . '/' . $vacancy->id;
 
-        include __DIR__ . '/../../views/vacancy/edit-html.php';
-        return '';
+        return $templating->render('vacancy/edit-html.php', array('vacancy' => $vacancy, 'courses' => $courses, 'roles' => $roles, 'url' => $url));
     }
 
     function update(Request $request, $id, $vacancy_id)
     {
-        global $DB;
-        
-        $table = 'local_psf_vacancy';
-
         $record = new stdClass();
         $record->id = $vacancy_id;
         $this->set_form_params($record, $request, $id);
 
-        $DB->update_record($table, $record);
+        $vacancy = new vacancy();
+        $vacancy->update($record);
 
         $app = new Application();
 
         return $app->redirect(URL_BASE . '/vacancy/' . $id);   
     }
 
-    function destroy($vacancy_id)
+    function destroy($id, $vacancy_id)
     {
-        global $DB;
-
-        $table = 'local_psf_vacancy';
-
-        $vacancy = $DB->get_record('local_psf_vacancy', array('id'=>$vacancy_id));
-        $vacancy->status = ($vacancy->status==1) ? 0 : 1;
-
-        $DB->update_record($table, $vacancy);
+        $vacancy = new vacancy();
+        $vacancy->destroy($vacancy_id);
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/vacancy/' . $vacancy->edictid);
+        return $app->redirect(URL_BASE . '/vacancy/' . $id);
     }
 
     private function set_form_params($record, $request, $id)

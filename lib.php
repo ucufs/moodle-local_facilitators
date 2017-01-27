@@ -22,7 +22,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-
 function local_psf_extends_navigation(global_navigation $navigation) {
     $psf = $navigation->add(get_string('pluginname', 'local_psf'), new moodle_url('/local/psf/'));
 }
@@ -57,4 +56,9 @@ function local_psf_get_category_name($id)
 {
     global $DB;        
     return (empty($id)) ? '-' : $DB->get_field('course_categories', 'name', array('id'=>$id));    
+}
+
+function local_psf_print_date($date)
+{
+    return ($date == 0) ? '' : date("d/m/Y", $date);
 }
