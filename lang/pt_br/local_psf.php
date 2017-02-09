@@ -30,3 +30,6 @@ $string['edictmanagement'] = 'Gerenciar editais';
 $string['vacancymanagement'] = 'Gerenciar vagas';
 $string['psf:view'] = 'Visualizar dados';
 $string['psf:manage'] = 'Gerenciar dados';
+$string['messagesucess'] = '<strong>Ótimo!</strong> Sua ação foi bem-sucedida.';
+$string['messagefailure'] = '<strong>Foi ruim!</strong> Houve algum problema em fazer sua ação.';
+

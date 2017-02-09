@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170124" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170202" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -59,17 +59,20 @@
     <TABLE NAME="local_psf_criteria" COMMENT="Cada item de análise possui critérios específicos">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="edictid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código do edital"/>
         <FIELD NAME="roleid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Colocar a função primeiramente para definir os itens e os critérios"/>
         <FIELD NAME="itemid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Item para cada função"/>
         <FIELD NAME="criteria" TYPE="char" LENGTH="250" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Critério específico e que está relacionado ao item"/>
         <FIELD NAME="points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Pontos de critério"/>
         <FIELD NAME="maximum_points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Número máximo de pontos referente ao critério"/>
         <FIELD NAME="measurement" TYPE="char" LENGTH="300" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Unidade de medida. Ex.: &quot;por capacitação&quot;."/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Campo para representar a exclusão lógica"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
         <KEY NAME="roleid" TYPE="foreign" FIELDS="roleid" REFTABLE="role" REFFIELDS="id"/>
         <KEY NAME="itemid" TYPE="foreign" FIELDS="itemid" REFTABLE="local_psf_item" REFFIELDS="id"/>
+        <KEY NAME="edictid" TYPE="foreign" FIELDS="edictid" REFTABLE="edict" REFFIELDS="id" COMMENT="Código do edital"/>
       </KEYS>
     </TABLE>
     <TABLE NAME="local_psf_applicant" COMMENT="Informações do candidato">

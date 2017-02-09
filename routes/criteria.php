@@ -15,12 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Enrollment Routes Archive
+ * Criteria Routes Archive
  *
  * This archive define methods that access the fisic adress and define the url
  *
  * @package    local_psf
- * @category   backup
+ * @category   local
  * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
  * @author     José Eduardo (zeduardu@ufs.br)
  * @author     Jéssica de Jesus (jessicajpinto@ufs.br)
@@ -28,15 +28,15 @@
  */
 
 // Returns complete string of namespace and class (Shorten call to method).
-$controller = psf\controllers\enrollment_controller::class;
+$controller = psf\controllers\criteria_controller::class;
 
 // ********** Route Mapping ********** //
 
-$app->get('/', "$controller::index");
-$app->get('/inscricao', "$controller::enrollment");
-$app->post('/enrollment/register', "$controller::register");
-$app->post('/enrollment/completion', "$controller::completion");
-$app->get('/enrollment/receipt', "$controller::receipt");
+$management->get('/criteria/{edict_id}', "$controller::local_psf_view_index_criteria");
+$management->get('/criteria/{criteria_id}/{edict_id}/{role_id}/{item_id}/',"$controller::local_psf_view_form_criteria");
+
+$management->post('/criteria/createorupdate', "$controller::local_psf_create_or_update_criteria");
+$management->get('/criteria/update/status/{status}/{criteria_id}/{edict_id}', "$controller::local_psf_update_status");
 
 // *********************************** //
 

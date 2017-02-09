@@ -85,7 +85,7 @@ function xmldb_local_psf_upgrade($oldversion=0)
         // Conditionally launch add field quantity.
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
-        }        
+        }
 
         $key = new xmldb_key('parentid', XMLDB_KEY_FOREIGN, array('parentid'), 'local_psf_vacancy', array('id'));
 
@@ -147,6 +147,35 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017012401, 'local', 'psf');
     }
 
+    if ($oldversion < 2017012402)
+    {
 
+        // Define field edictid to be added to local_psf_criteria.
+        $table = new xmldb_table('local_psf_criteria');
+        $field = new xmldb_field('edictid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0', 'id');
 
+        // Conditionally launch add field edictid.
+        if (!$dbman->field_exists($table, $field))
+        {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017012402, 'local', 'psf');
+    }
+
+    if ($oldversion < 2017020200) {
+
+        // Define field status to be added to local_psf_criteria.
+        $table = new xmldb_table('local_psf_criteria');
+        $field = new xmldb_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'measurement');
+
+        // Conditionally launch add field status.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017020200, 'local', 'psf');
+    }
 }

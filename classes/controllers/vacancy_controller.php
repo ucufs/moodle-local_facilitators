@@ -27,7 +27,7 @@ class vacancy_controller
         $courses = get_courses($fields='c.id,c.category,c.name');
         $vacancy = new vacancy();
         $roles = $vacancy->get_roles();
-        $url = '/vacancy/create/' . $id;
+        $url = '/management/vacancy/create/' . $id;
 
         return $templating->render('vacancy/new_vacancy-html.php', array('vacancy' => $vacancy, 'courses' => $courses, 'roles' => $roles, 'url' => $url));
     }
@@ -42,7 +42,7 @@ class vacancy_controller
         
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/vacancy/' . $id);
+        return $app->redirect(URL_BASE . '/management/vacancy/' . $id);
     }
 
     function edit($id, $vacancy_id)

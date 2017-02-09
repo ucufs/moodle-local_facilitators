@@ -38,7 +38,7 @@ class edict_controller
         
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/edict');
+        return $app->redirect(URL_BASE . '/management/edict');
     }
 
     function edit($id)
@@ -63,7 +63,7 @@ class edict_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/edict');
+        return $app->redirect(URL_BASE . '/management/edict');
     }
 
     function change_status($id)
@@ -73,7 +73,7 @@ class edict_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/edict');
+        return $app->redirect(URL_BASE . '/management/edict');
     }
 
     private function set_form_params($record, $request)

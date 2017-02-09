@@ -11,7 +11,7 @@
       <h3 class="text-center">Gerenciar Vagas</h3>
 
         <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict_id ?>" class="btn btn-default">
+          <a href="<?php echo URL_BASE . '/management/vacancy/new_vacancy/' . $edict_id ?>" class="btn btn-default">
           <i class="fa fa-file-text" aria-hidden="true"></i> Adicionar item</a>
         </p>
 
@@ -36,10 +36,10 @@
           <td><?= $vacancy->module ?></td>
           <td><?= $vacancy->campus ?></td>
           <td>
-            <a href="<?php echo URL_BASE . '/vacancy/edit/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Alterar informações">
+            <a href="<?php echo URL_BASE . '/management/vacancy/edit/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Alterar informações">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
             </a>            
-            <a href="<?php echo URL_BASE . '/vacancy/destroy/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Excluir" onclick="confirm('Deseja excluir o item?')">
+            <a href="<?php echo URL_BASE . '/management/vacancy/destroy/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Excluir" onclick="confirm('Deseja excluir o item?')">
               <i class="fa fa-times" aria-hidden="true"></i>
             </a>
           </td>

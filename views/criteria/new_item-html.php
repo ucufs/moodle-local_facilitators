@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
-* @package local_psf
-* @copyright 2016, Universidade Federal de Sergipe <didep@ufs.br>
-* @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-**/
+ * New item modal page
+ *
+ * Page destined to feed the evaluation criteria used in the edict.
+ *
+ * @package    local_psf
+ * @category   backup
+ * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
+ * @author     José Eduardo (zeduardu@ufs.br)
+ * @author     Jéssica de Jesus (jessicajpinto@ufs.br)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+?>
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->version   = 2017020200;
-$plugin->requires  = 2013111811;
-$plugin->cron      = 0;
-$plugin->component = 'local_psf';
-$plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = 'v1.0-Alfa';

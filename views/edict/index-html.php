@@ -11,7 +11,7 @@
 
       <div class="well well-small">
         <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/edict/new_edict' ?>" class="btn btn-default">
+	  <a href="<?php echo URL_BASE . '/management/edict/new_edict' ?>" class="btn btn-default">
           <i class="fa fa-file-text" aria-hidden="true"></i> Novo Edital</a>
         </p>
         <small>
@@ -67,13 +67,14 @@
                 <tr class="<?= ($edict->has_vacancies($result->id)) ? 'success' : 'error' ?>">
                   <td>Vagas</td>
                   <td>
-                    <a href="<?php echo URL_BASE . '/vacancy/' . $result->id ?>" title="Gerenciar vagas ofertadas"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <a href="<?php echo URL_BASE . '/management/vacancy/' . $result->id ?>" title="Gerenciar vagas ofertadas"><i class="fa fa-cog" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 <tr class="<?= true ? 'success' : 'error' ?>">
                   <td>Critérios</td>
                   <td>
-                    <a href="#" title="Gerenciar critérios de seleção"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                      <a href="<?= URL_BASE.'/management/criteria/' . $result->id ?>" title="Gerenciar critérios de seleção"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <a href="#" title="Visualizar"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </table>
@@ -83,10 +84,10 @@
             <?php if ($result->status == 0) : ?>
             <span class="label label-important">Inativo</span><br/>
             <?php endif; ?>
-            <a href="<?php echo URL_BASE . '/edict/edit/' . $result->id ?>" title="Alterar informações do edital">
+            <a href="<?php echo URL_BASE . '/management/edict/edit/' . $result->id ?>" title="Alterar informações do edital">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  
             </a>            
-            <a href="<?php echo URL_BASE . '/edict/change_status/' . $result->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
+            <a href="<?php echo URL_BASE . '/management/edict/change_status/' . $result->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
               <i class="fa fa-thumbs-<?= ($result->status==1) ? 'down' : 'up' ?>" aria-hidden="true"></i>
             </a>
             <a href="#" title="Visualizar edital">

@@ -30,3 +30,5 @@ $string['edictmanagement'] = 'Edict Manage';
 $string['vacancymanagement'] = 'Vacancy Manage';
 $string['psf:view'] = 'View data for PSF';
 $string['psf:manage'] = 'Manage data for PSF';
+$string['messagesucess'] = '<strong>Great!</strong> His action was successful.';
+$string['messagefailure'] = '<strong>It was bad!</strong> There was some problem in getting your action done.';
