@@ -147,6 +147,45 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017012401, 'local', 'psf');
     }
 
+    if ($oldversion < 2017013001) {
+
+        // Define field file to be added to local_psf_edict.
+        $table = new xmldb_table('local_psf_edict');
+        $field = new xmldb_field('file', XMLDB_TYPE_TEXT, null, null, null, null, null, 'closing');
+
+        // Conditionally launch add field file.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017013001, 'local', 'psf');
+    }
+
+    if ($oldversion < 2017020601) {
+
+        // Define field base_requisite to be added to local_psf_vacancy.
+        $table = new xmldb_table('local_psf_vacancy');
+        $field = new xmldb_field('base_requisite', XMLDB_TYPE_CHAR, '50', null, XMLDB_NOTNULL, null, '-', 'status');
+
+        // Conditionally launch add field base_requisite.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field additional_requisite to be added to local_psf_vacancy.
+        $field = new xmldb_field('additional_requisite', XMLDB_TYPE_CHAR, '150', null, XMLDB_NOTNULL, null, '-', 'base_requisite');
+
+        // Conditionally launch add field additional_requisite.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017020601, 'local', 'psf');
+    }
+
+
 
 
 }

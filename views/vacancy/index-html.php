@@ -10,8 +10,15 @@
     
       <h3 class="text-center">Gerenciar Vagas</h3>
 
+      <div class="well well-small">
+        <p>
+          <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
+          <?= $edict->title ?>
+        </p>
+      </div>
+
         <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict_id ?>" class="btn btn-default">
+          <a href="<?php echo URL_BASE . '/vacancy/new_vacancy/' . $edict->id ?>" class="btn btn-default">
           <i class="fa fa-file-text" aria-hidden="true"></i> Adicionar item</a>
         </p>
 
@@ -21,10 +28,10 @@
       <small>
       <table class="table table-condensed table-hover">
         <tr>
-          <th style="width: 300px;">Evento/Curso</th>
+          <th style="width: 300px;">Evento</th>
           <th>Função</th>
           <th>Vagas</th>
-          <th>Módulo</th>
+          <th>Requisitos</th>
           <th>Campi</th>
           <th colspan="2" class="center">Ações</th>
         </tr>
@@ -33,7 +40,7 @@
           <td><?= local_psf_get_course_name($vacancy->courseid); ?></td>
           <td><?= local_psf_get_role_name($vacancy->roleid); ?></td>
           <td><?= $vacancy->quantity; ?></td>
-          <td><?= $vacancy->module ?></td>
+          <td><?= $vacancy->get_requisites ?></td>
           <td><?= $vacancy->campus ?></td>
           <td>
             <a href="<?php echo URL_BASE . '/vacancy/edit/' . $vacancy->edictid . '/' . $vacancy->id ?>" title="Alterar informações">

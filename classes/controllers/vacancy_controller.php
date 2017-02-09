@@ -5,6 +5,7 @@ namespace psf\controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use psf\models\vacancy;
+use psf\models\edict;
 use stdClass;
 
 class vacancy_controller
@@ -15,9 +16,16 @@ class vacancy_controller
         global $templating;
 
         $obj = new vacancy();
-        $vacancies = $obj->get_vacancy(null, $edict_id);        
+        $vacancies = $obj->get_vacancy(null, $edict_id);
 
-        return $templating->render('vacancy/index-html.php', array('vacancies' => $vacancies, 'edict_id' => $edict_id));
+        foreach ($vacancies as $vac) {
+            $vac->get_requisites = $obj->get_requisites($vac->id);
+        }
+
+        $ed = new edict();
+        $edict = $ed->get_edict($edict_id);
+
+        return $templating->render('vacancy/index-html.php', array('vacancies' => $vacancies, 'edict' => $edict));
     }
 
     function new_vacancy($id)
@@ -90,6 +98,8 @@ class vacancy_controller
         $record->quantity = $request->get('quantity');
         $record->module = $request->get('module');
         $record->campus = $request->get('campus');
+        $record->base_requisite = $request->get('base_requisite');
+        $record->additional_requisite = $request->get('additional_requisite');
     }
 
 }

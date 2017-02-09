@@ -12,6 +12,7 @@ class edict
         $this->edict_number = '';
         $this->opening = 0;
         $this->closing = 0;
+        $this->file = '';
     }
 
     function get_edict($id = null)
@@ -72,6 +73,7 @@ class edict
     function has_criterias($id)
     {
         #ToDo
+        return true;
     }
 
 }
