@@ -85,7 +85,7 @@
 
             <div class="control-group">
               <div class="controls text-center">
-                <button type="submit" class="btn btn-default" onClick="history.go(-1)">Cancelar</button>
+                <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>
                 <button type="submit" id="nextstap" class="btn btn-primary" disabled="disabled">Realizar Inscrição</button>
               </div>
             </div>

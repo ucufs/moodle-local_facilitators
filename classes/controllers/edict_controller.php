@@ -24,7 +24,7 @@ class edict_controller
     {
         global $templating;
         $edict = new edict();
-        $url = '/edict/create';
+        $url = '/management/edict/create';
         return $templating->render('edict/new_edict-html.php', array('edict' => $edict, 'url' => $url));
     }
 
@@ -47,7 +47,7 @@ class edict_controller
 
         $edict = new edict();
         $result = $edict->get_edict($id);
-        $url = '/edict/update/' . $result->id;
+        $url = '/management/edict/update/' . $result->id;
 
         return $templating->render('edict/edit-html.php', array('edict' => $result, 'url' => $url));
     }

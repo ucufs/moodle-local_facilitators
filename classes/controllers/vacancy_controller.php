@@ -61,7 +61,7 @@ class vacancy_controller
         $vacancy = $obj->get_vacancy($vacancy_id);
         $roles = $obj->get_roles();
         $courses = get_courses($fields='c.id,c.category,c.name');        
-        $url = '/vacancy/update/' . $vacancy->edictid . '/' . $vacancy->id;
+        $url = '/management/vacancy/update/' . $vacancy->edictid . '/' . $vacancy->id;
 
         return $templating->render('vacancy/edit-html.php', array('vacancy' => $vacancy, 'courses' => $courses, 'roles' => $roles, 'url' => $url));
     }
@@ -77,7 +77,7 @@ class vacancy_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/vacancy/' . $id);   
+        return $app->redirect(URL_BASE . 'management/vacancy/' . $id);   
     }
 
     function destroy($id, $vacancy_id)
@@ -87,7 +87,7 @@ class vacancy_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . '/vacancy/' . $id);
+        return $app->redirect(URL_BASE . 'management/vacancy/' . $id);
     }
 
     private function set_form_params($record, $request, $id)

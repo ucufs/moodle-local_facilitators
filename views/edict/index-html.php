@@ -8,7 +8,6 @@
     
       <h3 class="text-center">Gerenciar Editais</h3>
 
-
       <div class="well well-small">
         <p class="pull-right">
 	  <a href="<?php echo URL_BASE . '/management/edict/new_edict' ?>" class="btn btn-default">
@@ -22,7 +21,7 @@
           <tr>
             <td><center><i class="fa fa-cog" aria-hidden="true"></i></center></td>
             <td>Gerenciar (Vagas ou Critérios de Seleção)</td>
-            <td><center><i class="fa fa-thumbs-up" aria-hidden="true"></i></center></td>
+            <td><center><i class="fa fa-thumbs-down" aria-hidden="true"></i></center></td>
             <td>Ativar edital</td>
             <td><center><i class="fa fa-eye" aria-hidden="true"></i></center></td>
             <td>Visualizar edital</td>
@@ -30,7 +29,7 @@
           <tr>
             <td><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></td>
             <td>Alterar informações do edital</td>
-            <td><center><i class="fa fa-thumbs-down" aria-hidden="true"></i></center></td>
+            <td><center><i class="fa fa-thumbs-up" aria-hidden="true"></i></center></td>
             <td>Desativar edital</td>
             <td><center><span class="label label-important">Inativo</span></center></td>
             <td>Informa quando o edital está inativo</td>
@@ -40,12 +39,12 @@
             <td colspan="3">Indica que o edital já possui vagas ou critérios de seleção cadastrados</td>
             <td style="background-color: #f2dede"></td>
             <td colspan="3">Indica que o edital ainda não possui vagas ou critérios de seleção cadastrados</td>
-          </tr>       
+          </tr>
         </table>
         </small>
       </div>
 
-      <table class="table table-condensed">
+      <table class="table table-condensed table-bordered">
         <tr>
           <th>Título</th>
           <th>Número</th>
@@ -54,7 +53,7 @@
           <th><small>Fim das Inscrições</small></th>
           <th colspan="2">Ações</th>
         </tr>
-        <?php foreach ($results as $result) { ?>        
+        <?php foreach ($results as $result) { ?>      
         <tr>
           <td style="vertical-align: middle"><?= $result->title; ?></td>
           <td style="vertical-align: middle"><?= $result->edict_number; ?></td>
@@ -74,7 +73,6 @@
                   <td>Critérios</td>
                   <td>
                       <a href="<?= URL_BASE.'/management/criteria/' . $result->id ?>" title="Gerenciar critérios de seleção"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                    <a href="#" title="Visualizar"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </table>
@@ -85,14 +83,14 @@
             <span class="label label-important">Inativo</span><br/>
             <?php endif; ?>
             <a href="<?php echo URL_BASE . '/management/edict/edit/' . $result->id ?>" title="Alterar informações do edital">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  
-            </a>            
-            <a href="<?php echo URL_BASE . '/management/edict/change_status/' . $result->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
-              <i class="fa fa-thumbs-<?= ($result->status==1) ? 'down' : 'up' ?>" aria-hidden="true"></i>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+            <a href="<?php echo URL_BASE . '/management/edict/change_status/' . $result->id ?>" title="<?= ($result->status==1) ? 'Desativar' : 'Ativar' ?> Edital" onclick="confirm('Deseja alterar o status do edital?')">
+              <i class="fa fa-thumbs-<?= ($result->status==1) ? 'up' : 'down' ?>" aria-hidden="true"></i>
             </a>
             <a href="#" title="Visualizar edital">
               <i class="fa fa-eye" aria-hidden="true"></i>
-            </a>            
+            </a>
           </td>
         </tr>
         <?php } ?>

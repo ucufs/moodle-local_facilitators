@@ -18,7 +18,7 @@
       </div>
 
         <p class="pull-right">
-          <a href="<?php echo URL_BASE . '/management/vacancy/new_vacancy/' . $edict_id ?>" class="btn btn-default">
+          <a href="<?php echo URL_BASE . '/management/vacancy/new_vacancy/' . $edict->id ?>" class="btn btn-default">
           <i class="fa fa-file-text" aria-hidden="true"></i> Adicionar item</a>
         </p>
 

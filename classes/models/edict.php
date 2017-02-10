@@ -97,8 +97,12 @@ class edict
 
     function has_criterias($id)
     {
-        #ToDo
-        return true;
+        #toDo - add edict_id em local_psf_criteria
+        global $DB;
+        $table = 'local_psf_criteria';
+        $select = "edictid = {$id} and status = 1";
+        $criterias = $DB->get_records_select($table,$select);
+        #return (count($criterias) > 0);
     }
 
 }
