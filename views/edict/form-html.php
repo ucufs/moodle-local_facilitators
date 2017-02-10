@@ -18,12 +18,20 @@
       <input type="number" name="validity_year" maxlength="4" class="span12" placeholder="Ano" value="<?= $edict->validity_year ?>" required>
     </div>
     <div class="span3">
-      <label>Data de início</label>
+      <label>Início das Inscrições</label>
       <input type="text" name="opening" class="span12" placeholder="dd/mm/yyyy" value="<?= local_psf_print_date($edict->opening); ?>" required>
     </div>
     <div class="span3">
-      <label>Data de encerramento</label>
+      <label>Fim das Inscrições</label>
       <input type="text" name="closing" class="span12" placeholder="dd/mm/yyyy" value="<?= local_psf_print_date($edict->closing); ?>" required>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <label>Link para o edital
+        <small class="text-warning"></small>
+      </label>
+      <input type="text" name="file" class="span12" placeholder="Insira o link para o arquivo do edital" value="<?= $edict->file ?>">
     </div>
   </div>
 

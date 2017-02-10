@@ -85,6 +85,7 @@ class edict_controller
         $record->opening = strtotime($opening);
         $opening = str_replace('/', '-', $request->get('closing'));
         $record->closing = strtotime($opening);
+        $record->file = $request->get('file');
     }
     
 }

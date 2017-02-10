@@ -23,6 +23,7 @@
         <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Status do edital: 1 (ativo) ou 0 (inativo)"/>
         <FIELD NAME="opening" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital abre as inscrições"/>
         <FIELD NAME="closing" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Quando o edital fecha as inscrições"/>
+        <FIELD NAME="file" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Link para arquivos relacionados ao edital (edital, resultado, etc)"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

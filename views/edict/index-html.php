@@ -50,8 +50,8 @@
           <th>Título</th>
           <th>Número</th>
           <th>Ano</th>
-          <th>Data de início</th>
-          <th>Data de término</th>
+          <th><small>Início das Inscrições</small></th>
+          <th><small>Fim das Inscrições</small></th>
           <th colspan="2">Ações</th>
         </tr>
         <?php foreach ($results as $result) { ?>        

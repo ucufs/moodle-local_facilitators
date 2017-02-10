@@ -13,14 +13,18 @@ class vacancy
         $this->quantity = null;
         $this->module = null;
         $this->campus = null;
+        $this->base_requisite = '';
+        $this->additional_requisite = '';
     }
 
     function get_vacancy($id = null, $edict_id = null)
     {
         global $DB;
 
+        #toDo
+        #Ordenar por nome do evento
         $table = 'local_psf_vacancy';
-        $select = "edictid = {$edict_id} and status = 1";
+        $select = "edictid = {$edict_id} and status = 1 ORDER BY roleid";
 
         if ($id == null)
         {
@@ -52,7 +56,7 @@ class vacancy
         global $DB;
 
         $table = 'local_psf_vacancy';
-        $vacancy = $this->get_vacancy($vacancy_id, null);
+        $vacancy = $this->get_vacancy($vacancy_id);
         $vacancy->status = ($vacancy->status==1) ? 0 : 1;
 
         $DB->update_record($table, $vacancy);
@@ -62,6 +66,13 @@ class vacancy
     {
         global $DB;
         return $roles = $DB->get_records('role');
+    }
+
+    function get_requisites($id)
+    {
+        $vacancy = $this->get_vacancy($id);    
+
+        return ($vacancy->additional_requisite == '') ? $vacancy->base_requisite : $vacancy->base_requisite . ' + ' . $vacancy->additional_requisite;
     }
 
 }

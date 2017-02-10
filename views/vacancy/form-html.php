@@ -21,7 +21,7 @@
 
   <div class="row-fluid">
     <div class="span10">
-      <label>Evento/Curso</label>
+      <label>Evento</label>
       <select name="courseid" class="span12">
         <option value=""></option>
         <?php foreach ($courses as $course) { ?>
@@ -31,6 +31,20 @@
         <?php }; ?>
       </select>
     </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <label>Requisito base
+      <small class="text-warning">Ex.: Formação Superior</small>
+      </label>
+      <input type="text" name="base_requisite" class="span12" placeholder="Requisito base" value="<?= $vacancy->base_requisite; ?>">
+    </div>
+    <div class="span6">
+      <label>Requisito(s) adicional(is)
+      <small class="text-warning">Ex.: Experiência Profissional</small>
+      </label>
+        <input type="text" name="additional_requisite" class="span12" placeholder="Requisito adicional" value="<?= $vacancy->additional_requisite; ?>">
+    </div>    
   </div>
   <div class="row-fluid">
     <div class="span5">
@@ -48,11 +62,13 @@
         <option <?= ($vacancy->campus == 'Campus de Itabaina' ) ? 'selected' : '' ?> >Campus de Itabaina</option>
         <option <?= ($vacancy->campus == 'Campus de Lagarto' ) ? 'selected' : '' ?> >Campus de Lagarto</option>
         <option <?= ($vacancy->campus == 'Campus de Laranjeiras' ) ? 'selected' : '' ?> >Campus de Laranjeiras</option>
+        <option <?= ($vacancy->campus == 'Campus de São Cristóvão' ) ? 'selected' : '' ?> >Campus de São Cristóvão</option>
         <option <?= ($vacancy->campus == 'Campus do Sertão' ) ? 'selected' : '' ?> >Campus do Sertão</option>
+        <option <?= ($vacancy->campus == 'Campus Rural' ) ? 'selected' : '' ?> >Campus Rural</option>
       </select>
-    </div>
-    
+    </div>    
   </div>
+
   <br/>
   <div class="row-fluid">
     <div class="span10 text-center">
