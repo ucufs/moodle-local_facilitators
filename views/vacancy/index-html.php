@@ -26,7 +26,7 @@
       <p>Ainda não há vagas cadastradas.</p>
       <?php else: ?>
       <small>
-      <table class="table table-condensed table-hover">
+      <table class="table table-condensed table-hover sortable">
         <tr>
           <th style="width: 300px;">Evento</th>
           <th>Função</th>

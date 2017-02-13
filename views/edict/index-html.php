@@ -44,14 +44,14 @@
         </small>
       </div>
 
-      <table class="table table-condensed table-bordered">
-        <tr>
-          <th>Título</th>
-          <th>Número</th>
-          <th>Ano</th>
+      <table class="table table-condensed table-bordered sortable">
+        <tr>          
+          <th><small>Título</small></th>
+          <th><small>Número</small></th>
+          <th><small>Ano</small></th>
           <th><small>Início das Inscrições</small></th>
           <th><small>Fim das Inscrições</small></th>
-          <th colspan="2">Ações</th>
+          <th colspan="2"><small>Ações</small></th>
         </tr>
         <?php foreach ($results as $result) { ?>      
         <tr>
