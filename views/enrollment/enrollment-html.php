@@ -16,7 +16,7 @@
         <input type="hidden" name="edict_id" id="edict_id" value="<?= $edict->id ?>">
         <div class="well">
 
-          <form action="<?php echo URL_BASE . '/enrollment/register' ?>" method="POST">
+          <form action="<?php echo URL_BASE . '/enrollment/register/' . $edict->id ?>" method="POST">
 
             <div class="control-group">
               <label class="control-label" for="role_id">Função</label>
@@ -48,7 +48,7 @@
             <div class="control-group">
               <label class="control-label" for="course">Evento/Curso</label>
               <div class="controls">
-                <select name="course" class="span12" required="required">
+                <select name="course_id" class="span12" required="required">
                   <option></option>
                   <?php foreach ($courses as $key => $course) { ?>
                     <option value="<?= $key ?>" <?= ($enrollment->course_id == $key) ? 'selected' : '' ?> >
@@ -61,16 +61,16 @@
             <?php endif; ?>
 
             <div class="control-group">
-              <label class="control-label" for="siape">Matrícula SIAPE</label>
+              <label class="control-label" for="CPF">CPF</label>
               <div class="controls">
-                <input type="number" name="siape" value="<?= $enrollment->siape ?>" placeholder="Matrícula SIAPE" required="required" class="span12">
+                <input type="number" name="cpf" id="cpf" value="<?= $enrollment->cpf ?>" onBlur="validaCPF(this);" placeholder="CPF" class="span12" required="required">
               </div>
             </div>
 
             <div class="control-group">
-              <label class="control-label" for="CPF">CPF</label>
+              <label class="control-label" for="siape">Matrícula SIAPE</label>
               <div class="controls">
-                <input type="number" name="cpf" id="cpf" value="<?= $enrollment->cpf ?>" onkeyup="validaCPF(this);" placeholder="CPF" class="span12" required="required">
+                <input type="number" name="siape" value="<?= $enrollment->siape ?>" placeholder="Matrícula SIAPE" required="required" class="span12">
               </div>
             </div>
 
@@ -98,7 +98,3 @@
 </div>
 
 <?php $view['slots']->stop() ?>
-
-<script type="text/javascript">
-  alert('Olá');
-</script>

@@ -6,9 +6,12 @@
     <div class="span8 offset2">
       <h3 class="text-center">Inscrição</h3>
       <div class="well well-small">
-        <p><b>Inscrição: </b><?= $enrollmentnumber ?></p>
-        <p><b>Função: </b><?= $rolename ?></p>
-        <p><b>Curso/Evento: </b><?= $coursename ?></p>
+        <p>
+          <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
+          <?= $edict->title ?>
+        </p>
+        <p><b>Função: </b><?= $enroll->rolename ?></p>
+        <p><b>Evento: </b><?= $enroll->coursename ?></p>
       </div>
       <fieldset>
         <legend>Dados de Identificação</legend>
@@ -20,26 +23,26 @@
   <div class="row-fluid">
     <div class="span4 offset2">
       <label>Nome</label>
-      <input type="text" name="name" class="span12">
+      <input type="text" name="name" class="span12" required>
     </div>
     <div class="span2">
       <label>Matrícula SIAPE</label>
-      <input type="number" name="matricula_siape" class="span12">
+      <input type="number" name="siape" class="span12" value="<?= $enroll->siape ?>" readonly>
     </div>
     <div class="span2">
       <label>CPF</label>
-      <input type="number" name="cpf" class="span12">
+      <input type="number" name="cpf" class="span12" value="<?= $enroll->cpf ?>" readonly>
     </div>
   </div>
 
   <div class="row-fluid">
     <div class="span4 offset2">
       <label>Cargo</label>
-      <input type="text" name="cargo" class="span12">
+      <input type="text" name="cargo" class="span12" required>
     </div>
     <div class="span4">
       <label>E-mail</label>
-      <input type="text" name="email" class="span12">
+      <input type="text" name="email" class="span12" required>
     </div>
   </div>
 
@@ -58,18 +61,18 @@
     </div>
     <div class="span2">
       <label>Celular</label>
-      <input type="text" name="cellphone" class="span12">
+      <input type="text" name="cellphone" class="span12" required>
     </div>
   </div>
 
   <div class="row-fluid">
     <div class="span4 offset2">
       <label>Logradouro</label>
-      <input type="text" name="address" class="span12">
+      <input type="text" name="address" class="span12" required>
     </div>
     <div class="span2">
       <label>Número</label>
-      <input type="text" name="number" class="span12">
+      <input type="text" name="number" class="span12" required>
     </div>
     <div class="span2">
       <label>Complemento</label>
@@ -80,15 +83,15 @@
   <div class="row-fluid">
     <div class="span3 offset2">
       <label>Bairro</label>
-      <input type="text" name="neighborhood" class="span12">
+      <input type="text" name="neighborhood" class="span12" required>
     </div>
     <div class="span3">
       <label>Cidade</label>
-      <input type="text" name="city" class="span12">
+      <input type="text" name="city" class="span12" required>
     </div>
     <div class="span2">
       <label>Estado</label>
-      <select class="span12">
+      <select class="span12" required>
         <option value=""></option>
         <option value="AC">AC</option>
         <option value="AL">AL</option>
@@ -119,7 +122,25 @@
         <option value="TO">TO</option>
       </select>
     </div>
+  </div><br/>
+
+  <div class="row-fluid">
+    <div class="span8 offset2">
+      <fieldset>
+        <legend>Requisitos da Função</legend>
+      </fieldset>
+    </div>
   </div>
+  <div class="row-fluid">
+    <div class="span4 offset2">
+      <label>Requisito Base</label>
+      <input type="text" name="cargo" class="span12" required>
+    </div>
+    <div class="span4">
+      <label>Requisito(s) Adicional(is)</label>
+      <input type="text" name="email" class="span12" required>
+    </div>
+  </div><br/>
 
   <div class="row-fluid">
     <div class="span8 offset2">

@@ -39,6 +39,8 @@
         <FIELD NAME="module" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="single" SEQUENCE="false" COMMENT="Define o nome do módulo caso o curso seja modular"/>
         <FIELD NAME="campus" TYPE="char" LENGTH="80" NOTNULL="false" DEFAULT="-" SEQUENCE="false" COMMENT="Definir o campus de atuação para as funções que são separadas por campus"/>
         <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Status da vaga: 1 (ativo) ou 0 (inativo - quando a vaga for removida pelo usuário)"/>
+        <FIELD NAME="base_requisite" TYPE="char" LENGTH="150" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Requisito básico da função. Ex.: Formação Superior"/>
+        <FIELD NAME="additional_requisite" TYPE="char" LENGTH="400" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Requisito adicional da função. Ex.: Qualificação, Experiência Profissional"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
