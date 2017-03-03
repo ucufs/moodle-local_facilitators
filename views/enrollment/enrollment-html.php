@@ -1,10 +1,10 @@
-<?php include __DIR__ . '../../../lib.php'; ?>
+<?#php include __DIR__ . '../../../lib.php'; ?>
 <?php $view->extend('template-html.php') ?>
 
 <?php $view['slots']->start('body') ?>
   <div class="container">
     <div class="row">
-      <div class="span4 offset4">
+      <div class="span10 offset1">
        <h3 class="text-center">Seleção de Facilitadores</h3>
 
         <div class="well well-small">
@@ -14,85 +14,58 @@
           </p>
         </div>
         <input type="hidden" name="edict_id" id="edict_id" value="<?= $edict->id ?>">
-        <div class="well">
 
-          <form action="<?php echo URL_BASE . '/enrollment/register/' . $edict->id ?>" method="POST">
+        <p>Selecione a vaga que possui interesse e clique em <span class="label label-info">Prosseguir</span></p><br/>
 
-            <div class="control-group">
-              <label class="control-label" for="role_id">Função</label>
-              <div class="controls">
-                <select name="role_id" id="function_facilitator" onchange="pop_courses();" class="span12" required="required">
-                  <option value="0"></option>
-                  <?php foreach ($roles as $key => $role) { ?>
-                    <option value="<?= $key ?>" <?= ($enrollment->role_id == $key) ? 'selected' : '' ?> >
-                      <?= local_psf_get_role_name($key); ?>
-                    </option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-      
-            <?php if ($coord_presential): ?>
-              <div class="control-group">
-                <label class="control-label" for="campus">Campus</label>
-                <select class="span12" name="campus">
-                  <option value=""></option>
-                  <?php foreach ($campi as $campus) { ?>
-                    <option value="<?= $campus ?>" <?= ($enrollment->campus == $campus) ? 'selected' : '' ?> >
-                      <?= $campus ?>                      
-                    </option>
-                  <?php } ?>
-                </select>
-              </div>
-            <?php else: ?>
-            <div class="control-group">
-              <label class="control-label" for="course">Evento/Curso</label>
-              <div class="controls">
-                <select name="course_id" class="span12" required="required">
-                  <option></option>
-                  <?php foreach ($courses as $key => $course) { ?>
-                    <option value="<?= $key ?>" <?= ($enrollment->course_id == $key) ? 'selected' : '' ?> >
-                      <?= $course ?>                      
-                    </option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-            <?php endif; ?>
+        <?php if (count($vacancies) == 0): ?>
+        <p>Ainda não há vagas cadastradas.</p>
+        <?php else: ?>
+        <small>
+        <form action="<?php echo URL_BASE . '/enrollment/step/' . $edict->id ?>" method="POST">
+        <table class="table table-condensed table-hover table-bordered">
+          <tr>
+            <th></th>
+            <th style="width: 300px;">EVENTO</th>
+            <th>FUNÇÃO</th>
+            <th>VAGAS</th>
+            <th>REQUISITOS</th>
+            <th>CAMPI</th>
+          </tr>
+          <?php foreach ($vacancies as $vacancy) { ?>
+          <tr style="vertical-align: middle">
+            <td class="text-center" style="vertical-align: middle">
+              <input type="radio" name="vacancy_id" value="<?= $vacancy->id ?>" required>
+            </td>
+            <td style="vertical-align: middle"><b><?= $vacancy->course_name; ?></b></td>
+            <td style="vertical-align: middle"><?= $vacancy->role_name; ?></td>
+            <td class="text-center" style="vertical-align: middle"><span class="badge"><?= $vacancy->quantity; ?></span></td>
+            <td style="vertical-align: middle"><?= $vacancy->get_requisites ?></td>
+            <td style="vertical-align: middle"><?= $vacancy->campus ?></td>
+          </tr>
+          <?php }; ?>
+        </table>
+        </small>
+        <?php endif; ?>
 
-            <div class="control-group">
-              <label class="control-label" for="CPF">CPF</label>
-              <div class="controls">
-                <input type="number" name="cpf" id="cpf" value="<?= $enrollment->cpf ?>" onBlur="validaCPF(this);" placeholder="CPF" class="span12" required="required">
-              </div>
-            </div>
+        <div class="control-group text-center">
+          <div class="controls">
+            <label>
+              <input type="checkbox" onchange="document.getElementById('nextstap').disabled = !this.checked;"> 
+              <b>Li e aceito os termos do <a href="<?= $edict->file ?>" target="_blank">Edital</a></b>
+            </label>
+          </div>
+        </div>
 
-            <div class="control-group">
-              <label class="control-label" for="siape">Matrícula SIAPE</label>
-              <div class="controls">
-                <input type="number" name="siape" value="<?= $enrollment->siape ?>" placeholder="Matrícula SIAPE" required="required" class="span12">
-              </div>
-            </div>
-
-            <div class="control-group">
-              <div class="controls">
-                <label>
-                  <input type="checkbox" onchange="document.getElementById('nextstap').disabled = !this.checked;"> 
-                  <b>Li e aceito os termos do <a href="<?= $edict->file ?>" target="_blank">Edital</a></b>
-                </label>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <div class="controls text-center">
-                <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>
-                <button type="submit" id="nextstap" class="btn btn-primary" disabled="disabled">Realizar Inscrição</button>
-              </div>
-            </div>
+        <div class="control-group text-center">
+          <div class="controls">
+            <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>
+            <button type="submit" id="nextstap" class="btn btn-primary" disabled="disabled">
+            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Prosseguir</button>
+          </div>
+        </div>
 
         </form>
 
-      </div>
     </div>
   </div>
 </div>

@@ -36,7 +36,9 @@ $app->get('/', "$controller::index");
 $app->get('/inscricao/{id}', "$controller::enrollment");
 $app->get('/inscricao/{id}/{role_id}', "$controller::enrollment");
 $app->get('/inscricao/populate_courses/{role_id}', "$controller::populate_courses");
-$app->post('/enrollment/register/{edict_id}', "$controller::register");
+$app->post('/enrollment/step/{edict_id}', "$controller::step");
+$app->post('/enrollment/step1/{edict_id}/{vacancy_id}', "$controller::step1");
+$app->post('/enrollment/step2/{vacancy_id}', "$controller::step2");
 $app->post('/enrollment/completion', "$controller::completion");
 $app->get('/enrollment/receipt', "$controller::receipt");
 

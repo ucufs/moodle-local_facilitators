@@ -7,8 +7,9 @@ $PAGE->set_url('/local/psf/');
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_title(get_string('pluginname', 'local_psf'));
 $PAGE->set_pagelayout('admin');
-$PAGE->requires->js('/local/psf/javascript/main.js', true);
-$PAGE->requires->js('/local/psf/javascript/sorttable.js', true);
-#$PAGE->requires->js_init_call('hello');
+$PAGE->requires->js('/local/psf/js/main.js', true);
+$PAGE->requires->js('/local/psf/js/sorttable.js', true);
+$PAGE->requires->js('/local/psf/js/jquery.filer.min.js', true);
+$PAGE->requires->css('/local/psf/css/jquery.filer.css', true);
 
 echo $OUTPUT->header();

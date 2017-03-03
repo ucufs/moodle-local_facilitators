@@ -224,5 +224,62 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017021301, 'local', 'psf');
     }
 
+    if ($oldversion < 2017021700) {
+
+        // Define field role to be added to local_psf_applicant.
+        $table = new xmldb_table('local_psf_applicant');
+        $field = new xmldb_field('role', XMLDB_TYPE_CHAR, '50', null, XMLDB_NOTNULL, null, '-', 'work_schedule');
+
+        // Conditionally launch add field role.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field number to be added to local_psf_applicant.
+        $field = new xmldb_field('number', XMLDB_TYPE_CHAR, '10', null, null, null, '-', 'role');
+
+        // Conditionally launch add field number.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field complement to be added to local_psf_applicant.
+        $field = new xmldb_field('complement', XMLDB_TYPE_CHAR, '50', null, XMLDB_NOTNULL, null, '-', 'number');
+
+        // Conditionally launch add field complement.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field neighborhood to be added to local_psf_applicant.
+        $field = new xmldb_field('neighborhood', XMLDB_TYPE_CHAR, '50', null, XMLDB_NOTNULL, null, '-', 'complement');
+
+        // Conditionally launch add field neighborhood.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field city to be added to local_psf_applicant.
+        $field = new xmldb_field('city', XMLDB_TYPE_CHAR, '60', null, XMLDB_NOTNULL, null, '-', 'neighborhood');
+
+        // Conditionally launch add field city.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field state to be added to local_psf_applicant.
+        $field = new xmldb_field('state', XMLDB_TYPE_CHAR, '2', null, XMLDB_NOTNULL, null, '-', 'city');
+
+        // Conditionally launch add field state.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017021700, 'local', 'psf');
+    }
+
+
 
 }

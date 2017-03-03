@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170202" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170217" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -91,8 +91,14 @@
         <FIELD NAME="cpf" TYPE="char" LENGTH="11" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Cadastro de pessoa física"/>
         <FIELD NAME="siape" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número de matrícula cedido pelo Ministério do Planejamento a partir do momento que ingressa no serviço público"/>
         <FIELD NAME="department" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome do departamento que servidor está alocado"/>
-        <FIELD NAME="department_telephone" TYPE="char" LENGTH="4" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Ramal"/>
+        <FIELD NAME="department_telephone" TYPE="char" LENGTH="11" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Ramal"/>
         <FIELD NAME="work_schedule" TYPE="char" LENGTH="40" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Horário de trabalho"/>
+        <FIELD NAME="role" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Cargo do servidor."/>
+        <FIELD NAME="number" TYPE="char" LENGTH="10" NOTNULL="false" DEFAULT="-" SEQUENCE="false" COMMENT="Número (endereço)."/>
+        <FIELD NAME="complement" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Complemento (endereço)."/>
+        <FIELD NAME="neighborhood" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Bairro (endereço)."/>
+        <FIELD NAME="city" TYPE="char" LENGTH="60" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Cidade (endereço)."/>
+        <FIELD NAME="state" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Estado (endereço)."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

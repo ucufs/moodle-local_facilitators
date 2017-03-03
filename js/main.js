@@ -31,7 +31,7 @@ function validaCPF(obj){
     showError(obj.id, 'CPF inválido');
     return false;
   } else
-    removeError(obj.id);
+    removeError(obj.id, 'CPF válido');
 }
 
 function showError(id, msg){
@@ -44,15 +44,23 @@ function showError(id, msg){
   }
 }
 
-function removeError(id){
+function removeError(id, msg){
   elem = $('#'.concat(id));
   elem.parent().parent().removeClass('text-error');
   elem.parent().parent().addClass('text-success');
-  elem.parent().parent().attr('title', '');
+  elem.parent().parent().attr('title', msg);
   elem.parent().parent().children('label').children().remove();
 }
+
+$(function (){
+   $('[data-toggle="tooltip"]').tooltip();
+});
 
 document.onreadystatechange = function () {
   var function_facilitator = document.getElementById('function_facilitator');
   var edict_id = document.getElementById('edict_id');
 };
+
+$(document).ready(function() {
+  $('.filer_input').filer();       
+});

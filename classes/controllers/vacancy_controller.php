@@ -77,7 +77,7 @@ class vacancy_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . 'management/vacancy/' . $id);   
+        return $app->redirect(URL_BASE . '/management/vacancy/' . $id);   
     }
 
     function destroy($id, $vacancy_id)
@@ -87,7 +87,7 @@ class vacancy_controller
 
         $app = new Application();
 
-        return $app->redirect(URL_BASE . 'management/vacancy/' . $id);
+        return $app->redirect(URL_BASE . '/management/vacancy/' . $id);
     }
 
     private function set_form_params($record, $request, $id)

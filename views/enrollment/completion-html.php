@@ -8,6 +8,7 @@
       <div class="alert alert-success" role="alert">
         <p><b>Inscrição realizada com sucesso!</b></p>
         <!-- <p>O comprovante de inscrição foi enviado para seu e-mail.</p> -->
+        Reponse <?= $response ?>
         <p>
           <a href="<?php echo URL_BASE . '/enrollment/receipt' ?>" class="btn btn-primary right-block">
             <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Gerar Comprovante

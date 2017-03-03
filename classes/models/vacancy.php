@@ -75,4 +75,30 @@ class vacancy
         return ($vacancy->additional_requisite == '') ? $vacancy->base_requisite : $vacancy->base_requisite . ' + ' . $vacancy->additional_requisite;
     }
 
+    function local_psf_get_role_name($id)
+    {
+        global $DB;
+
+        // $DB->get_field($table, $return, array $conditions, $strictness=IGNORE_MISSING)
+        // Get a single field value from a table record where all the given conditions met.
+        // @param int $strictness
+        //   IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
+        //   IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
+        //   MUST_EXIST means throw exception if no record or multiple records found
+        return (empty($id)) ? '-' : $DB->get_field('role', 'name', array('id'=>$id), MUST_EXIST);
+    }
+
+    function local_psf_get_course_name($id)
+    {
+        global $DB;
+
+        // $DB->get_field($table, $return, array $conditions, $strictness=IGNORE_MISSING)
+        // Get a single field value from a table record where all the given conditions met.
+        // @param int $strictness
+        //   IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
+        //   IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
+        //   MUST_EXIST means throw exception if no record or multiple records found
+        return $DB->get_field('course', 'fullname', array('id'=>$id), MUST_EXIST);
+    }
+
 }
