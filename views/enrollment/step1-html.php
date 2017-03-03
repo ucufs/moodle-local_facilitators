@@ -1,42 +1,42 @@
-<?php include __DIR__ . '/../base/header.php';?>
+
+<?php $view->extend('template-html.php') ?>
+
+<?php $view['slots']->start('body') ?>
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span8 offset2">
-      <h3 class="text-center">Inscrição</h3>
-      <div class="well well-small">
-        <p>
-          <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
-          <?= $edict->title ?>
-        </p>
-        <p><b>Função: </b><?= $vacancy->role_name ?></p>
-        <p><b>Evento: </b><?= $vacancy->course_name ?></p>
-      </div>
-      <fieldset>
-        <legend>Dados de Identificação</legend>
-      </fieldset>
-    </div>
-  </div>
+
+<h3 class="text-center">Inscrição</h3>
+<div class="well well-small">
+  <p>
+    <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
+    <?= $edict->title ?>
+  </p>
+  <p><b>Função: </b><?= $vacancy->role_name ?></p>
+  <p><b>Evento: </b><?= $vacancy->course_name ?></p>
+</div>
+<fieldset>
+  <legend>Dados de Identificação</legend>
+</fieldset>
 
 <form action="<?php echo URL_BASE . '/enrollment/step2/' . $vacancy->id ?>" method="POST" enctype="multipart/form-data">
 
   <div class="row-fluid">
-    <div class="span4 offset2">
+    <div class="span6">
       <label>Nome</label>
       <input type="text" name="name" class="span12" required>
     </div>
-    <div class="span2">
+    <div class="span3">
       <label>Matrícula SIAPE</label>
       <input type="number" name="siape" class="span12" value="<?= $applicant->siape ?>" readonly>
     </div>
-    <div class="span2">
+    <div class="span3">
       <label>CPF</label>
       <input type="number" name="cpf" class="span12" value="<?= $applicant->cpf ?>" readonly>
     </div>
   </div>
 
   <div class="row-fluid">
-    <div class="span3 offset2">
+    <div class="span5">
       <label>Cargo</label>
       <input type="text" name="role" class="span12" required>
     </div>
@@ -44,18 +44,18 @@
       <label>Departamento</label>
       <input type="text" name="department" class="span12" required>
     </div>
-    <div class="span3">
+    <div class="span5">
       <label>E-mail</label>
       <input type="text" name="email" class="span12" required>
     </div>
   </div>
 
   <div class="row-fluid">
-    <div class="span1 offset2">
+    <div class="span2">
       <label>RG</label>
       <input type="text" name="rg" class="span12">
     </div>
-    <div class="span1">
+    <div class="span2">
       <label>Emissor</label>
       <select name="agent" class="span12">
         <option value="SSP">SSP - Secretaria de Segurança Pública</option>
@@ -80,11 +80,11 @@
         <option value="ZZZ">ZZZ - Outros (inclusive exterior)</option>
       </select>
     </div>
-    <div class="span2">
+    <div class="span3">
       <label>Tel. Residencial</label>
       <input type="text" name="telephone" class="span12">
     </div>
-    <div class="span2">
+    <div class="span3">
       <label>Telefone Departamento</label>
       <input type="text" name="department_telephone" class="span12">
     </div>
@@ -95,7 +95,7 @@
   </div>
 
   <div class="row-fluid">
-    <div class="span4 offset2">
+    <div class="span6">
       <label>Logradouro</label>
       <input type="text" name="address" class="span12" required>
     </div>
@@ -103,18 +103,18 @@
       <label>Número</label>
       <input type="text" name="number" class="span12" required>
     </div>
-    <div class="span2">
+    <div class="span4">
       <label>Complemento</label>
       <input type="text" name="complement" class="span12">
     </div>
   </div>
 
   <div class="row-fluid">
-    <div class="span3 offset2">
+    <div class="span5">
       <label>Bairro</label>
       <input type="text" name="neighborhood" class="span12" required>
     </div>
-    <div class="span3">
+    <div class="span5">
       <label>Cidade</label>
       <input type="text" name="city" class="span12" required>
     </div>
@@ -154,7 +154,7 @@
   </div><br/>
 
   <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span12">
       <fieldset>
         <legend>Requisitos da Função</legend>
       </fieldset>
@@ -172,14 +172,14 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span4 offset2">
+    <div class="span6">
       <label>Requisito Base
         <a href="#" data-toggle="tooltip" data-placement="right" title="" 
         data-original-title="<?= $vacancy->base_requisite ?>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
       <input type="file" class="span12 filer_input" name="base_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
     </div>
-    <div class="span4">
+    <div class="span6">
       <label>Requisito(s) Adicional(is)
         <a href="#" data-toggle="tooltip" data-placement="right" title="" 
         data-original-title="<?= $vacancy->additional_requisite ?>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
@@ -189,7 +189,7 @@
   </div><br/>
 
   <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span12">
       <button type="submit" class="btn btn-primary pull-right">
       <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Prosseguir</button>
       <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>      
@@ -198,3 +198,5 @@
 </form>
 
 </div> <!-- container-fluid -->
+
+<?php $view['slots']->stop() ?>
