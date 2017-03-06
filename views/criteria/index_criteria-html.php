@@ -28,17 +28,22 @@
 
 <?php $view['slots']->start('body') ?>
 
-<?php if (isset($message)) { ?>
-<div class="alert <?= (empty($message['sucess']))?'alert-error':'alert-success' ?>">
-    <button class="close" type="button" data-dismiss="alert">×</button>
-    <?= (empty($message['sucess']))?$message['failure']:$message['sucess'] ?>
+<h3 class="text-center">Critérios para pontuação</h3>
+<div class="well well-small">
+    <p>
+        <b>
+            Edital n° <?php echo $select_edict->edict_number." / ".$select_edict->validity_year ?>
+        </b>
+        <br />
+        <?php echo $select_edict->title ?>
+    </p>
 </div>
-<?php } ?>
-      
-<h4 class="text-center"><?= $select_edict->title ?> - <?= $select_edict->edict_number ?>/<?= $select_edict->validity_year ?></h4>
-
-<h4 class="text-center">Critérios para pontuação</h4>
-
+<?php if (empty($role_itens)): ?>
+<p class="text-center">É necessário montar o quadro de vagas para cadastrar os critérios.</p>
+<p class="text-center">
+    <a href="<?php echo URL_BASE . '/management/vacancy/' . $select_edict->id ?>" class="btn">Cadastrar vagas</a>
+</p>
+<?php else: ?>
 <div class="accordion" id="accordion1">
     <?php foreach ($role_itens as $role) { ?>
     <div class="accordion-group">
@@ -105,9 +110,11 @@
                 </div>
                 <?php } ?>
             </div>
+
         </div>
     </div>
     <?php } ?>
 </div>
+<?php endif ?>
 
 <?php $view['slots']->stop() ?>
