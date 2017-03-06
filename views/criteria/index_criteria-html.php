@@ -32,10 +32,10 @@
 <div class="well well-small">
     <p>
         <b>
-            Edital n° <?php echo $edict->edict_number." / ".$edict->validity_year ?>
+            Edital n° <?php echo $select_edict->edict_number." / ".$select_edict->validity_year ?>
         </b>
         <br />
-        <?php echo $edict->title ?>
+        <?php echo $select_edict->title ?>
     </p>
 </div>
 <?php if (empty($role_itens)): ?>
