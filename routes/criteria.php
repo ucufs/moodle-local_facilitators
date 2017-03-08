@@ -21,9 +21,9 @@
  *
  * @package    local_psf
  * @category   local
- * @copyright  2017 Divis√£o de Desenvolvimento de Pessoal - Funda√ß√£o Universidade Federal de Sergipe
- * @author     Jos√© Eduardo (zeduardu@ufs.br)
- * @author     J√©ssica de Jesus (jessicajpinto@ufs.br)
+ * @copyright  2017 Divis„o de Desenvolvimento de Pessoal - FundaÁ„o Universidade Federal de Sergipe
+ * @author     JosÈ Eduardo (zeduardu@ufs.br)
+ * @author     JÈssica de Jesus (jessicajpinto@ufs.br)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
