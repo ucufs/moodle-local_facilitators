@@ -67,6 +67,7 @@ class criteria_controller
         global $templating;
         $edict_obj = new edict();
         $criteria_obj = new criteria();
+
         $params = array(
             'edict' => $edict_obj->get_edict($edictid),
             'role' =>  $criteria_obj->local_psf_get_role_by_id($role_id),
@@ -74,6 +75,7 @@ class criteria_controller
             'psf_criteria' => ($criteria_id != 0) ? $criteria_obj->local_psf_get_criteria_by_id($criteria_id) : null,
             'button_text' => ($criteria_id == 0) ? 'Salvar' : 'Atualizar'
             );
+
         return $templating->render('criteria/new_criteria-html.php', $params);
     }
     function local_psf_view_item_form_new(Request $request)
@@ -111,8 +113,10 @@ class criteria_controller
                 unset($criteria_objects);
             }
         }
+
         return $role_objects;
     }
+
     function local_psf_create_or_update_criteria(Request $request)
     {
         // Record to send as parameter
@@ -138,6 +142,7 @@ class criteria_controller
         );
         return $templating->render('criteria/index_criteria-html.php', $params);
     }
+
     /**
      * Update the status of criteria
      *
@@ -155,8 +160,10 @@ class criteria_controller
     function local_psf_update_status($criteria_id, $status, $edictid)
     {
         global $templating;
+
         $edict_obj = new edict();
         $criteria_obj = new criteria();
+
         $params = array(
             'edict' => $edict_obj->get_edict($edictid),
             'role_itens' => $this->local_psf_mount_criteria_params($edictid),
@@ -166,6 +173,7 @@ class criteria_controller
     }
     function local_psf_item_populate(Request $request)
     {
+        $app = new Application();
         $record = new stdClass();
         $record->id = $request->get('id');
         $record->name = $request->get('name');
