@@ -21,9 +21,9 @@
  *
  * @package    local_psf
  * @category   local
- * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
- * @author     José Eduardo (zeduardu@ufs.br)
- * @author     Jéssica de Jesus (jessicajpinto@ufs.br)
+ * @copyright  2017 Divisï¿½o de Desenvolvimento de Pessoal - Fundaï¿½ï¿½o Universidade Federal de Sergipe
+ * @author     Josï¿½ Eduardo (zeduardu@ufs.br)
+ * @author     Jï¿½ssica de Jesus (jessicajpinto@ufs.br)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -34,9 +34,12 @@ $controller = psf\controllers\criteria_controller::class;
 
 $management->get('/criteria/{edict_id}', "$controller::local_psf_view_index_criteria");
 $management->get('/criteria/{criteria_id}/{edict_id}/{role_id}/{item_id}/',"$controller::local_psf_view_form_criteria");
+$management->get('/criteria/item/form/new', "$controller::local_psf_view_form_item");
+$management->get('/criteria/item/form/update/{id}', "$controller::local_psf_view_form_item")
 
 $management->post('/criteria/createorupdate', "$controller::local_psf_create_or_update_criteria");
 $management->get('/criteria/update/status/{status}/{criteria_id}/{edict_id}', "$controller::local_psf_update_status");
+$management->post('/criteria/item/populate', "$controller::local_psf_item_populate");
 
 // *********************************** //
 

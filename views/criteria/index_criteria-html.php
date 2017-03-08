@@ -44,6 +44,10 @@
     <a href="<?php echo URL_BASE . '/management/vacancy/' . $select_edict->id ?>" class="btn">Cadastrar vagas</a>
 </p>
 <?php else: ?>
+<form style="margin-bottom: 5px" class="text-right" action="<?php echo URL_BASE.'/management/criteria/item/form/new' ?>" method="GET">
+    <input type="hidden" name="id" value="0">
+    <button class="btn btn-small" type="submit">Cadastrar item</button>
+</form>
 <div class="accordion" id="accordion1">
     <?php foreach ($role_itens as $role) { ?>
     <div class="accordion-group">
@@ -55,6 +59,9 @@
         </div>
         <div id="<?= $role->shortname ?>" class="accordion-body collapse">
             <div class="accordion" id="accordion-<?= $role->shortname ?>">
+                <?php if (empty($role->itens)): ?>
+                <p class="text-center">Não há itens cadastrados, por favor cadastre-os.</p>
+                <?php else: ?>
                 <?php foreach ($role->itens as $item) { ?>
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -62,7 +69,7 @@
                             - <?= $item->name ?>
                         </a>
                         <div class="btn-group pull-right" style="top:5px;">
-                            <a class="btn btn-small disabled" style="" href="#">Inserir criterio</a>
+                            <a class="btn btn-small disabled" href="#">Inserir criterio</a>
                             <a class="btn btn-small btn-primary" href="<?= URL_BASE. '/management/criteria/0/' . $select_edict->id . '/' . $role->id . '/' . $item->id ?>">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
@@ -109,6 +116,7 @@
                     </div>
                 </div>
                 <?php } ?>
+                <?php endif ?>
             </div>
 
         </div>

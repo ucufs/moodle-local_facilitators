@@ -24,13 +24,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace psf\controllers;
-
 use psf\models\criteria;
 use psf\models\edict;
 use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
-
 /**
  * Defines methods that will render a page, perform some action, or access the database.
  *
@@ -66,7 +64,6 @@ class criteria_controller
         global $templating;
         $edict_obj = new edict();
         $criteria_obj = new criteria();
-
         $params = array(
             'edict' => $edict_obj->get_edict($edict_id),
             'role' =>  $criteria_obj->local_psf_get_role_by_id($role_id),
@@ -74,14 +71,21 @@ class criteria_controller
             'psf_criteria' => ($criteria_id != 0) ? $criteria_obj->local_psf_get_criteria_by_id($criteria_id) : null,
             'button_text' => ($criteria_id == 0) ? 'Salvar' : 'Atualizar'
             );
-
         return $templating->render('criteria/new_criteria-html.php', $params);
     }
-
+    function local_psf_view_form_item($action)
+    {
+        global $templating;
+        $itemobj = new item();
+        $params = array(
+            'item' => 'Oi',
+            'submittext' => ($action == 'new')?'Salvar':'Atualizar'
+            );
+        return $templating->render('criteria/form_item-html.php', $params);
+    }
     function local_psf_mount_criteria_params($edict_id)
     {
         $criteria = new criteria();
-
         $role_objects = $criteria->local_psf_get_roles_join_vacancy_by_edict($edict_id);
         foreach ($role_objects as $role_object)
         {
@@ -93,14 +97,11 @@ class criteria_controller
                 unset($criteria_objects);
             }
         }
-
         return $role_objects;
     }
-
     function local_psf_create_or_update_criteria(Request $request)
     {
         $app = new Application();
-
         $record = new stdClass();
         $record->id = $request->get('criteria_id');
         $record->edictid = $request->get('edict_id');
@@ -111,14 +112,10 @@ class criteria_controller
         $record->maximum_points = $request->get('maximum_points');
         $record->measurement = $request->get('measurement');
         $record->status = 1;
-
         $criteria_obj = new criteria();
         $criteria_obj->local_psf_create_or_update($record);
-
-
         return $app->redirect(URL_BASE . '/management/criteria/' . $record->edictid);
     }
-
     /**
      * Update the status of criteria
      *
@@ -136,16 +133,24 @@ class criteria_controller
     function local_psf_update_status($criteria_id, $status, $edict_id)
     {
         global $templating;
-
         $edict_obj = new edict();
         $criteria_obj = new criteria();
-
         $params = array(
             'select_edict' => $edict_obj->get_edict($edict_id),
             'role_itens' => $this->local_psf_mount_criteria_params($edict_id),
             'message' => $criteria_obj->local_psf_update_status_by_id($criteria_id, $status)
             );
-
         return $templating->render('criteria/index_criteria-html.php', $params);
+    }
+    function local_psf_item_populate()
+    {
+        $app = new Application();
+        $record = new stdClass();
+        $record->id = $request->get('id');
+        $record->name = $request->get('name');
+        $record->maximum_points = $request->get('maximum_points');
+        $itemobj = new criteria();
+        $itemobj->local_psf_populate($record);
+        return $app->redirect(URL_BASE . '/management/criteria/' . $record->edictid);
     }
 }
