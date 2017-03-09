@@ -26,6 +26,7 @@
 namespace psf\controllers;
 use psf\models\criteria;
 use psf\models\edict;
+use psf\models\item;
 use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
@@ -73,13 +74,24 @@ class criteria_controller
             );
         return $templating->render('criteria/new_criteria-html.php', $params);
     }
-    function local_psf_view_form_item($action)
+    function local_psf_view_item_form_new(Request $request)
     {
         global $templating;
         $itemobj = new item();
         $params = array(
-            'item' => 'Oi',
-            'submittext' => ($action == 'new')?'Salvar':'Atualizar'
+            'edictid' => $request->get('edictid'),
+            'item' => null,
+            'submittext' => 'Salvar'
+            );
+        return $templating->render('criteria/form_item-html.php', $params);
+    }
+    function local_psf_view_item_form_alter($id)
+    {
+        global $templating;
+        $itemobj = new item();
+        $params = array(
+            'item' => $itemobj->local_psf_get_item_by_id($id),
+            'submittext' => 'Atualizar'
             );
         return $templating->render('criteria/form_item-html.php', $params);
     }
@@ -142,15 +154,15 @@ class criteria_controller
             );
         return $templating->render('criteria/index_criteria-html.php', $params);
     }
-    function local_psf_item_populate()
+    function local_psf_item_populate(Request $request)
     {
         $app = new Application();
         $record = new stdClass();
         $record->id = $request->get('id');
         $record->name = $request->get('name');
         $record->maximum_points = $request->get('maximum_points');
-        $itemobj = new criteria();
-        $itemobj->local_psf_populate($record);
-        return $app->redirect(URL_BASE . '/management/criteria/' . $record->edictid);
+        $itemobj = new item();
+        $itemobj->local_psf_item_populate($record);
+        return $app->redirect(URL_BASE . '/management/criteria/' . $request->get('edictid'));
     }
 }

@@ -76,7 +76,7 @@ use stdClass;
             {
                 // $DB->update_record($table, $dataobject, $bulk=false)
                 // Update a record in a table.
-                $DB->update_record('local_psf_update', $record, false);
+                $DB->update_record('local_psf_item', $record, false);
             }
         }
 

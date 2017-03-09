@@ -44,8 +44,8 @@
     <a href="<?php echo URL_BASE . '/management/vacancy/' . $select_edict->id ?>" class="btn">Cadastrar vagas</a>
 </p>
 <?php else: ?>
-<form style="margin-bottom: 5px" class="text-right" action="<?php echo URL_BASE.'/management/criteria/item/form/new' ?>" method="GET">
-    <input type="hidden" name="id" value="0">
+<form class="text-right" action="<?php echo URL_BASE.'/management/criteria/item/form/new' ?>" method="POST">
+    <input type="hidden" name="edictid" value="<?php echo $select_edict->id ?>">
     <button class="btn btn-small" type="submit">Cadastrar item</button>
 </form>
 <div class="accordion" id="accordion1">
@@ -53,7 +53,7 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#<?= $role->shortname ?>">
-                <?= $role->name ?>
+                <?php echo $role->name ?>
                 <i class="fa fa-angle-double-right pull-right" aria-hidden="true"></i>
             </a>
         </div>
@@ -66,10 +66,9 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" style="display:inline-block; width: 60% !important;" data-toggle="collapse" data-parent="#accordion-<?= $role->shortname ?>" href="#item<?= $item->id . $role->id ?>">
-                            - <?= $item->name ?>
+                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i> <?= $item->name ?>
                         </a>
                         <div class="btn-group pull-right" style="top:5px;">
-                            <a class="btn btn-small disabled" href="#">Inserir criterio</a>
                             <a class="btn btn-small btn-primary" href="<?= URL_BASE. '/management/criteria/0/' . $select_edict->id . '/' . $role->id . '/' . $item->id ?>">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>

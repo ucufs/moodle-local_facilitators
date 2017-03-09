@@ -29,18 +29,19 @@
 <?php $view->extend('template-html.php') ?>
 <?php $view['slots']->start('body') ?>
 <h3 class="text-center">Item para pontuação</h3>
-<form action="<?php echo URL_BASE."/criteria/item/populate" ?>" method="POST">
-    <input type="hidden" name="id" value=""/>
+<form action="<?php echo URL_BASE.'/management/criteria/item/populate' ?>" method="POST">
+    <input type="hidden" name="edictid" value="<?php echo $edictid ?>"/>
+    <input type="hidden" name="id" value="<?php echo (empty($item))?0:$item->id ?>"/>
     <div class="row-fluid">
         <div class="span12">
             <label>Nome</label>
-            <input type="text" name="name" class="span12" value="" required />
+            <input type="text" name="name" class="span12" value="<?php echo (empty($item))?'':$item->name ?>" required />
         </div>
     </div>
     <div class="row-fluid">
         <div class="span3">
             <label>Pontos</label>
-            <input type="text" name="maximum_points" class="span12" maxlength="4" value="" required />
+            <input type="text" name="maximum_points" class="span12" maxlength="4" value="<?php echo (empty($item))?'':$item->maximum_points ?>" required />
         </div>
     </div>
     <div class="control-group">
