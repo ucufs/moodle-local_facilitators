@@ -62,22 +62,33 @@ use stdClass;
             $result = $DB->get_record_select('local_psf_item', 'id = ?', array($id), '*', IGNORE_MISSING);
             return $result;
         }
+
+        /**
+        * The description should be first, with asterisks laid out exactly
+        * like this example. If you want to refer to a another function,
+        * use @see as below.   If it's useful to link to Moodle
+        * documentation on the web, you can use a @link below or also 
+        * inline like this {@link https://docs.moodle.org/dev/something}
+        * Then, add descriptions for each parameter and the return value as follows.
+        *
+        * @param int   $postid The PHP type is followed by the variable name
+        * @param array $scale The PHP type is followed by the variable name
+        * @param array $ratings The PHP type is followed by the variable name
+        * @return bool A status indicating success or failure
+        */
         function local_psf_item_populate(stdclass $record)
         {
             global $DB;
 
-            if ($record->id == 0)
-            {
-                // $DB->insert_record($table, $dataobject, $returnid=true, $bulk=false)
-                // Insert a record into a table and return the "id" field if required
-                $DB->insert_record('local_psf_item', $record, true, false);
-            }
-            else
+            if ($record->id != 0)
             {
                 // $DB->update_record($table, $dataobject, $bulk=false)
                 // Update a record in a table.
-                $DB->update_record('local_psf_item', $record, false);
+                return $DB->update_record('local_psf_item', $record, false);
             }
+            // $DB->insert_record($table, $dataobject, $returnid=true, $bulk=false)
+            // Insert a record into a table and return the "id" field if required
+            return $DB->insert_record('local_psf_item', $record, false, false);
         }
 
         /**

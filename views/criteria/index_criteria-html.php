@@ -32,20 +32,20 @@
 <div class="well well-small">
     <p>
         <b>
-            Edital n° <?php echo $select_edict->edict_number." / ".$select_edict->validity_year ?>
+            Edital n° <?php echo $edict->edict_number." / ".$edict->validity_year ?>
         </b>
         <br />
-        <?php echo $select_edict->title ?>
+        <?php echo $edict->title ?>
     </p>
 </div>
 <?php if (empty($role_itens)): ?>
 <p class="text-center">É necessário montar o quadro de vagas para cadastrar os critérios.</p>
 <p class="text-center">
-    <a href="<?php echo URL_BASE . '/management/vacancy/' . $select_edict->id ?>" class="btn">Cadastrar vagas</a>
+    <a href="<?php echo URL_BASE . '/management/vacancy/' . $edict->id ?>" class="btn">Cadastrar vagas</a>
 </p>
 <?php else: ?>
 <form class="text-right" action="<?php echo URL_BASE.'/management/criteria/item/form/new' ?>" method="POST">
-    <input type="hidden" name="edictid" value="<?php echo $select_edict->id ?>">
+    <input type="hidden" name="edictid" value="<?php echo $edict->id ?>">
     <button class="btn btn-small" type="submit">Cadastrar item</button>
 </form>
 <div class="accordion" id="accordion1">
@@ -69,7 +69,7 @@
                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i> <?= $item->name ?>
                         </a>
                         <div class="btn-group pull-right" style="top:5px;">
-                            <a class="btn btn-small btn-primary" href="<?= URL_BASE. '/management/criteria/0/' . $select_edict->id . '/' . $role->id . '/' . $item->id ?>">
+                            <a class="btn btn-small btn-primary" href="<?= URL_BASE. '/management/criteria/0/' . $edict->id . '/' . $role->id . '/' . $item->id ?>">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -102,10 +102,10 @@
                                     <span class="label label-important">Inativo</span>
                                     <br />
                                     <?php endif; ?>
-                                    <a href="<?= URL_BASE. '/management/criteria/'. $criteria->id . '/' . $select_edict->id . '/' . $role->id . '/' . $item->id ?>" title="Alterar informações do edital">
+                                    <a href="<?= URL_BASE. '/management/criteria/'. $criteria->id . '/' . $edict->id . '/' . $role->id . '/' . $item->id ?>" title="Alterar informações do edital">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
-                                    <a href="<?= URL_BASE . '/management/criteria/update/status/'.$criteria->status.'/'.$criteria->id.'/'.$select_edict->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
+                                    <a href="<?= URL_BASE . '/management/criteria/update/status/'.$criteria->status.'/'.$criteria->id.'/'.$edict->id ?>" title="Ativar/Desativar Edital" onclick="confirm('Deseja alterar o status do edital?')">
                                         <i class="fa fa-thumbs-<?= ($criteria->status==1) ? 'up' : 'down' ?>" aria-hidden="true"></i>
                                     </a>
                                 </td>
