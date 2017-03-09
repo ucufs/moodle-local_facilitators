@@ -173,7 +173,6 @@ class criteria_controller
     }
     function local_psf_item_populate(Request $request)
     {
-        $app = new Application();
         $record = new stdClass();
         $record->id = $request->get('id');
         $record->name = $request->get('name');
