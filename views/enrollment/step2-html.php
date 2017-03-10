@@ -2,134 +2,204 @@
 
 <?php $view['slots']->start('body') ?>
 
-<div class="row-fluid">
-    <div class="span8 offset2">
+  <h3 class="text-center">Inscrição</h3>
+  <div class="well well-small">
+    <p>
+      <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
+      <?= $edict->title ?>
+    </p>
+    <p><b>Função: </b><?= $vacancy->role_name ?></p>
+    <p><b>Evento: </b><?= $vacancy->course_name ?></p>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span12">
       <fieldset>
         <legend>Educação Formal</legend>
       </fieldset>
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="span8 offset2">
-      <p><b>Informe sua titulação de maior nível e anexe seu diploma</b></p>
-      <label><input type="radio" name="formal_education" value="male" checked>
-      Doutorado, com ou sem pós-doutoramento, na área do curso, ou relacionado diretamente à função que irá desempenhar</label><br/>
-      <label><input type="radio" name="formal_education" value="female">
-      Doutorado, com ou sem pós-doutoramento, em outras áreas</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Mestrado na área do curso, ou relacionado diretamente à função que irá desempenhar</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Mestrado em outras áreas</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Especialização na área do curso, ou relacionada diretamente à função que irá desempenhar</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Especialização em outra áreas</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Graduação na área do curso, ou relacionada diretamente à função que irá desempenhar</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Graduação em outras áreas</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Ensino médio / Formação técnica na área, ou relacionado diretamente à função que irá desempenhar</label><br/>
-      <label><input type="radio" name="formal_education" value="other">
-      Ensino médio / Formação técnica em outras áreas</label>
-    </div>
-  </div><br/>
+<form action="<?php echo URL_BASE . '/enrollment/completion/' . $inscript->id ?>" method="POST" enctype="multipart/form-data">
+  <p><b>Informe sua titulação de maior nível</b></p>
 
+  <?php foreach ($edu_formal as $ef){ ?>
+    <label>
+      <input type="radio" value="<?= $ef->id?>" name="criteria_id[]" value="" checked>
+      <?= $ef->criteria ?>
+    </label><br/>        
+  <?php };?>
+  <br />
   <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span6">
+      <label>Nome do curso</label>
+      <input type="text" name="title[]" class="span12" placeholder="Digite o nome do curso" required>
+    </div>
+    <div class="span6">
+      <label>Instituição</label>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" required>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3">
+      <label>Data de Início
+        <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+    </div>
+    <div class="span3">
+      <label>Data de Término
+      <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+    </div>
+    <div class="span6">
+      <label>Comprovante de titulação
+        <a href="#" data-toggle="tooltip" data-placement="right" title="diplomas, certificados, certidões e ata/declaração de aprovação sem restrição e diplomas estrangeiros revalidados no Brasil" 
+        data-original-title="Insira aqui o comprovante de Educação Formal"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+      </label>
+      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+    </div>
+  </div>
+
+<div id="capacitacao" class="clone_capacitacao">
+  <div class="row-fluid">
+    <div class="span12">
       <fieldset>
-        <legend>Capacitação</legend>
+        <legend>Capacitação
+        <div>
+        <ul class="options unstyled">
+          <li class="delete"><a href="#" onClick="deleteItem(this);return false" title="Remover">Remover</a></li>
+        </ul>
+        </div>
+        </legend>
       </fieldset>
     </div>
   </div>
-
   <div class="row-fluid">
-    <div class="span8 offset2">
-      <small>
-        <table class="table small">
-          <th>Tipo</th>
-          <th>Título</th>
-          <th>Carga Horária</th>
-          <th>Instituição</th>
-          <th>Data de Início</th>
-          <th>Data de Término</th>
-          <th width="70px">Documentação</th>
-          <th></th>
-          <tr>
-            <td>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</td>
-            <td>Programação Orientada a Objetos</td>
-            <td>60</td>
-            <th>Fundação Bradesco</th>
-            <td>01/03/2016</td>
-            <td>30/06/2016</td>
-            <td>
-              <div class="thumbnail">
-                <img src="images/certificado.jpg" alt="Comprovante de experiência" width="70px">
-              </div>
-            </td>
-            <td>
-              <a href="#" title="Remover">
-                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-              </a>
-            </td>
-          </tr>
-        </table>
-      </small>
-      <button class="btn btn-small btn-primary" type="button" data-toggle="modal" data-target="#myModal">Adicionar capacitação</button>
-      <br/><br/>
+    <div class="span6">
+      <label>Título da capacitação</label>
+      <input type="text" name="title[]" class="span12" placeholder="Digite o título da capacitação" required>
+    </div>
+    <div class="span6">
+      <label>Instituição</label>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" required>
     </div>
   </div>
-
   <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span8">
+      <label>Tipo de capacitação</label>
+      <select name="criteria_id[]" class="span12">
+        <option></option>
+        <?php foreach ($capacitacao as $cap){ ?>
+          <option value="<?= $cap->id?>"><?= $cap->criteria ?></option>
+        <?php };?>
+      </select>
+    </div>
+    <div class="span4">
+      <label>Carga Horária</label>
+      <input type="number" name="workload[]" class="span12" value="" placeholder="Carga horária" required>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3">
+      <label>Data de Início
+        <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+    </div>
+    <div class="span3">
+      <label>Data de Término
+      <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+    </div>
+    <div class="span6">
+      <label>Comprovante de capacitação
+        <a href="#" data-toggle="tooltip" data-placement="right" title="certificados de conclusão ou declaração de aprovação" 
+        data-original-title="Insira aqui o comprovante"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+      </label>
+      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+    </div>
+  </div>
+</div>
+
+<div id="nova_capacitacao">  
+</div>
+<div class="row-fluid">
+  <a class="btn btn-primary btn-small pull-right" onclick="add_input('capacitacao', 'nova_capacitacao');"> Nova Capacitação </a>  
+</div>
+
+<div id="exp_prof" class="clone_exp_prof">
+  <div class="row-fluid">
+    <div class="span12">
       <fieldset>
-        <legend>Experiência Profissional</legend>
+        <legend>Experiência Profissional
+        <div>
+        <ul class="options unstyled">
+          <li class="delete"><a href="#" onClick="deleteItem(this);return false" title="Remover">Remover</a></li>
+        </ul>
+        </div>
+        </legend>
       </fieldset>
     </div>
   </div>
-
   <div class="row-fluid">
-    <div class="span8 offset2">
-      <small>
-        <table class="table">
-          <th>Tipo</th>
-          <th>Carga Horária</th>
-          <th>Instituição</th>
-          <th>Data de Início</th>
-          <th>Data de Término</th>
-          <th width="70px">Documentação</th>
-          <th></th>
-          <tr>
-            <td>Capacitações relacionadas à função de coordenação e/ou tutoria maior que 80 horas</td>
-            <td>Programação Orientada a Objetos</td>
-            <th>Fundação Bradesco</th>
-            <td>01/03/2016</td>
-            <td>30/06/2016</td>
-            <td>
-              <div class="thumbnail">
-                <img src="images/certificado.jpg" alt="Comprovante de experiência" width="70px">
-              </div>
-            </td>
-            <td>
-              <a href="#" title="Remover">
-                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-              </a>
-            </td>
-          </tr>
-        </table>
-      </small>
-      <button class="btn btn-small btn-primary" type="button" data-toggle="modal" data-target="#modal_exp">Adicionar experiência</button>
-      <br/><br/>
-    </div>    
+    <div class="span6">
+      <label>Título</label>
+      <input type="text" name="title[]" class="span12" placeholder="Digite o título" required>
+    </div>
+    <div class="span6">
+      <label>Empresa/Instituição</label>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Empresa/Instituição" required>
+    </div>
   </div>
-
-
   <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span8">
+      <label>Tipo de experiência</label>
+      <select name="criteria_id[]" class="span12">
+        <option></option>
+        <?php foreach ($exp_prof as $xp){ ?>
+          <option value="<?= $xp->id?>"><?= $xp->criteria ?></option>
+        <?php };?>
+      </select>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3">
+      <label>Data de Início
+        <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+    </div>
+    <div class="span3">
+      <label>Data de Término
+      <small class="text-warning">dd/mm/yyyy</small>
+      </label>
+      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+    </div>
+    <div class="span6">
+      <label>Comprovante de experiência profissional
+        <a href="#" data-toggle="tooltip" data-placement="right" title="carteira profissional de trabalho, certificado de atuação e declaração expedida por Órgão ou Empresa Pública ou Privada na qual o candidato tenha desempenhado as atividades"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+      </label>
+      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+    </div>
+  </div>
+</div>
+
+<div id="nova_exp_prof">  
+</div>
+<div class="row-fluid">
+  <a class="btn btn-primary btn-small pull-right" onclick="add_input('exp_prof', 'nova_exp_prof');"> Nova Experiência Profissional </a>  
+</div>
+
+ <br />
+  <div class="row-fluid">
+    <div class="span12">
       <button type="submit" class="btn btn-success pull-right">Finalizar inscrição</button>
-      <button type="reset" class="btn btn-default pull-right">Cancelar</button>      
+      <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>
     </div>
   </div>
 
+</form>
 <?php $view['slots']->stop() ?>

@@ -36,24 +36,24 @@ function validaCPF(obj){
 
 function showError(id, msg){
   elem = $('#'.concat(id));
-  elem.parent().parent().attr('title', msg);
-  elem.parent().parent().removeClass('text-success');
-  elem.parent().parent().addClass('text-error');
+  elem.prev().attr('title', msg);
+  elem.prev().removeClass('text-success');
+  elem.prev().addClass('text-error');
   if ($('#icon_error').length == 0){
-    $(' <i class="fa fa-exclamation-triangle" id="icon_error" aria-hidden="true"></i>').appendTo(elem.parent().parent().children('label'));
+    $(' <i class="fa fa-exclamation-triangle" id="icon_error" aria-hidden="true"></i>').appendTo(elem.prev());
   }
 }
 
 function removeError(id, msg){
   elem = $('#'.concat(id));
-  elem.parent().parent().removeClass('text-error');
-  elem.parent().parent().addClass('text-success');
-  elem.parent().parent().attr('title', msg);
-  elem.parent().parent().children('label').children().remove();
+  elem.prev().removeClass('text-error');
+  elem.prev().addClass('text-success');
+  elem.prev().attr('title', msg);
+  elem.prev().children().remove();
 }
 
 $(function (){
-   $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 document.onreadystatechange = function () {
@@ -63,4 +63,33 @@ document.onreadystatechange = function () {
 
 $(document).ready(function() {
   $('.filer_input').filer();       
+});
+
+function add_input(source, destiny){
+  $('#' + source).clone().find("input").val("").end().appendTo('#' + destiny);
+  drawNavigation();
+}
+
+function remove_input(destiny) {
+  $('#' + destiny).children().eq(length).remove();
+  drawNavigation();
+}
+
+function deleteItem(e) {
+    $(e).parents(".clone_capacitacao").remove();
+    drawNavigation();
+}
+
+function drawNavigation() {
+  var num_elem = $(".clone_capacitacao").length;
+  if (num_elem > 1) {
+    $("#capacitacao li.delete").show();
+  }
+  else {
+    $("#capacitacao li.delete").hide();
+  }
+}
+
+$(function() {
+    drawNavigation();
 });

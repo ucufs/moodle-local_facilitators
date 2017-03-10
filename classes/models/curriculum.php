@@ -40,32 +40,17 @@ use stdClass;
  * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class applicant
+class curriculum
 {
-    function __construct(){
-        $this->name = '';
-        $this->address = '';
-        $this->email = '';
-        $this->telephone = '';
-        $this->cellular = '';
-        $this->rg = '';
-        $this->cpf = '';
-        $this->siape = '';
-        $this->department = '';
-        $this->department_telephone = '';
-        $this->work_schedule = '';
-        $this->base_requisite = '';
-        $this->additional_requisite = '';
+    function __construct()
+    {
+
     }
 
-    function get_applicant($id){
+    function create($record)
+    {
         global $DB;
-        return $DB->get_record('local_psf_applicant', array('id'=>$id));
-    }
-
-    function create($record){
-        global $DB;
-        $table = 'local_psf_applicant';
+        $table = 'local_psf_curriculum';
         return $DB->insert_record($table, $record);
     }
 }

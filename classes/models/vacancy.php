@@ -21,8 +21,6 @@ class vacancy
     {
         global $DB;
 
-        #toDo
-        #Ordenar por nome do evento
         $table = 'local_psf_vacancy';
         $select = "edictid = {$edict_id} and status = 1 ORDER BY roleid";
 

@@ -28,7 +28,9 @@
  */
 ?>
 
-<?php include __DIR__ . '/../base/header.php'; ?>
+<?php $view->extend('template-html.php') ?>
+
+<?php $view['slots']->start('body') ?>
 
 <div class="container-fluid">
     <div class="row">
@@ -108,3 +110,5 @@
         </div>
     </div>
 </div>
+
+<?php $view['slots']->stop() ?>

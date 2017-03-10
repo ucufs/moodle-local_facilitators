@@ -1,0 +1,11 @@
+.tip {
+	/* vertical-align: middle; */
+    /* display: table-cell; */
+    display: table-cell;
+    height: 40px;
+    /* list-style-type: none; */
+    /*margin: 10px;*/
+    vertical-align: middle;
+    font-weight: bold;
+    font-style: color:red;
+}

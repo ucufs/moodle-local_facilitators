@@ -18,7 +18,7 @@
   <legend>Dados de Identificação</legend>
 </fieldset>
 
-<form action="<?php echo URL_BASE . '/enrollment/step2/' . $vacancy->id ?>" method="POST" enctype="multipart/form-data">
+<form action="<?php echo URL_BASE . '/enrollment/step2/' . $inscript->id ?>" method="POST" enctype="multipart/form-data">
 
   <div class="row-fluid">
     <div class="span6">
@@ -53,7 +53,7 @@
   <div class="row-fluid">
     <div class="span2">
       <label>RG</label>
-      <input type="text" name="rg" class="span12">
+      <input type="text" name="rg" class="span12" maxlength="8">
     </div>
     <div class="span2">
       <label>Emissor</label>
@@ -90,7 +90,7 @@
     </div>
     <div class="span2">
       <label>Celular</label>
-      <input type="text" name="cellphone" class="span12" required>
+      <input type="text" name="cellular" class="span12" required>
     </div>
   </div>
 

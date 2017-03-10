@@ -1,94 +1,49 @@
-<?php include __DIR__ . '/../base/header.php';?>
+<?php $view->extend('template-html.php') ?>
 
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-md-8 col-md-offset-2">
+<?php $view['slots']->start('body') ?>
       
-      <table align="center">
-        <tr class="text-center"><td><b>UNIVERSIDADE FEDERAL DE SERGIPE</b></td></tr>
-        <tr class="text-center"><td><b>PRÓ-REITORIA DE GESTÃO DE PESSOAS</b></td></tr>
-      </table><br/>
+<table align="center">
+  <tr class="text-center"><td><b>UNIVERSIDADE FEDERAL DE SERGIPE</b></td></tr>
+  <tr class="text-center"><td><b>PRÓ-REITORIA DE GESTÃO DE PESSOAS</b></td></tr>
+</table><br/>
 
-      <div class="well well-sm">
-        <div class="row">
-          <div class="span10 offset1">
-            <h5>Inscrições para a matrícula SIAPE <b>2255966</b> </h5>
-            <h5>EDITAL 001/2017</h5>
-          </div>
-          <div class="span10 offset1">
-            <button class="btn btn-primary pull-right" onClick="javascript:window.print()">Imprimir</button>
-          </div>
-        </div>       
-      </div>
+<h3 class="text-center">Comprovante de Inscrição</h3>
 
-      <table class="table table-bordered">
-        <tr>
-          <td width="200px">Inscrição</td>
-          <td><b>201701001</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Nome</td>
-          <td>Jéssica de Jesus Pinto</td>
-        </tr>
-        <tr>
-          <td width="200px">Matrícula SIAPE</td>
-          <td>2255968</td>
-        </tr>
-        <tr>
-          <td width="200px">Função</td>
-          <td><b>Revisor Ortográfico</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Evento/Curso</td>
-          <td><b>Formação de Tutores Para Cursos EaD</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Data da Inscrição</td>
-          <td>12/12/2016 09:55</td>
-        </tr>
-        <tr>
-          <td width="200px">Código Validador</td>
-          <td>23F56A4587B465D</td>
-        </tr>
-      </table>
-
-
-      <table class="table table-bordered">
-
-        <tr>
-          <td width="200px">Inscrição</td>
-          <td><b>201701002</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Nome</td>
-          <td>Jéssica de Jesus Pinto</td>
-        </tr>
-        <tr>
-          <td width="200px">Matrícula SIAPE</td>
-          <td>2255968</td>
-        </tr>
-        <tr>
-          <td width="200px">Função</td>
-          <td><b>Tutor de Conteúdo</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Evento/Curso</td>
-          <td><b>Introdução ao Moodle</b></td>
-        </tr>
-        <tr>
-          <td width="200px">Data da Inscrição</td>
-          <td>10/12/2016 15:36</td>
-        </tr>
-        <tr>
-          <td width="200px">Código Validador</td>
-          <td>2F5989C546546D12</td>
-        </tr>
-      </table>
-
-    </div>     
-
-  </div>
-
+<div class="well well-sm">
+  <p>
+    <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
+    <?= $edict->title ?>
+    <button class="btn btn-primary pull-right" onClick="javascript:window.print()">
+      <i class="fa fa-print" aria-hidden="true"></i>
+    Imprimir</button>    
+  </p>
 </div>
+
+<table class="table table-bordered">
+  <tr>
+    <td width="200px">Inscrição</td>
+    <td><b><?= $resume_inscript->inscription_number ?></b></td>
+  </tr>
+  <tr>
+    <td width="200px">Nome</td>
+    <td><?= $resume_inscript->name ?></td>
+  </tr>
+  <tr>
+    <td width="200px">Matrícula SIAPE</td>
+    <td><?= $resume_inscript->siape ?></td>
+  </tr>
+  <tr>
+    <td width="200px">Função</td>
+    <td><b><?= $resume_inscript->role_name ?></b></td>
+  </tr>
+  <tr>
+    <td width="200px">Evento/Curso</td>
+    <td><b><?= $resume_inscript->course_name ?></b></td>
+  </tr>
+  <tr>
+    <td width="200px">Data da Inscrição</td>
+    <td><?= date("d/m/Y H:i:s", $resume_inscript->inscription_date) ?></td>
+  </tr>
+</table>
+
+<?php $view['slots']->stop() ?>

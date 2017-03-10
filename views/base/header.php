@@ -11,5 +11,6 @@ $PAGE->requires->js('/local/psf/js/main.js', true);
 $PAGE->requires->js('/local/psf/js/sorttable.js', true);
 $PAGE->requires->js('/local/psf/js/jquery.filer.min.js', true);
 $PAGE->requires->css('/local/psf/css/jquery.filer.css', true);
+$PAGE->requires->css('/local/psf/css/main.css', true);
 
 echo $OUTPUT->header();

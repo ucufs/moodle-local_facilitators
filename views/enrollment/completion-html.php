@@ -1,22 +1,20 @@
-<?php include __DIR__ . '/../base/header.php';?>
+<?php $view->extend('template-html.php') ?>
 
-<div class="container">
+<?php $view['slots']->start('body') ?>
 
-  <div class="row">
+
   <br/><br/>
-    <div class="col-md-8 col-md-offset-2">
-      <div class="alert alert-success" role="alert">
-        <p><b>Inscrição realizada com sucesso!</b></p>
-        <!-- <p>O comprovante de inscrição foi enviado para seu e-mail.</p> -->
-        Reponse <?= $response ?>
-        <p>
-          <a href="<?php echo URL_BASE . '/enrollment/receipt' ?>" class="btn btn-primary right-block">
-            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Gerar Comprovante
-          </a>
-        </p>
-      </div>
-    </div>
 
+  <div class="alert alert-success" role="alert">
+    <p><b>Inscrição realizada com sucesso!</b></p>
+    <!-- <p>O comprovante de inscrição foi enviado para seu e-mail.</p> -->
+    Reponse <?= $response ?>
+    <p>
+      <a href="<?php echo URL_BASE . '/enrollment/receipt/' . $inscript->id ?>" class="btn btn-success right-block">
+       Gerar Comprovante
+      </a>
+    </p>
   </div>
 
-</div>
+
+<?php $view['slots']->stop() ?>

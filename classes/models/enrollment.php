@@ -28,12 +28,6 @@ namespace psf\models;
 class enrollment
 {
 
-    function local_psf_generate_inscription_number()
-    {
-        return uniqid();
-    }
-
-
     function local_psf_get_select_courses($edict_id, $role_id = null)
     {
         global $DB;

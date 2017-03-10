@@ -5,26 +5,57 @@ use stdClass;
 class inscript
 {
 
-    function __construct($edict_id, $vacancy_id)
-    {
-        $this->edictid = $edict_id;
-        $this->vacancyid = $vacancy_id;
-        $this->inscription_number = $this->local_psf_get_enrollment_number();
+    function __construct(){
+
     }
 
-    function create($applicant_id)
-    {
+    function local_psf_generate_inscription_number(){
+        return uniqid();
+    }
+
+    function get_inscript($id = null, $edict_id = null){
+        global $DB;
+
+        $table = 'local_psf_inscript';
+        $select = "edictid = {$edict_id}";
+
+        if ($id == null)
+        {
+            $result = $DB->get_records_select($table,$select);
+        }else
+        {
+            $result = $DB->get_record($table, array('id'=>$id));
+        }
+        return $result;
+    }
+
+    function create($edict_id, $vacancy_id){
         global $DB;
         
         $table = 'local_psf_inscript';
         
         $record = new stdClass();
-        $record->applicant_id = $applicant_id;
-        $record->$edictid = $this->edictid;
-        $record->$vacancyid = $this->vacancyid;
-        $record->inscription_number = $this->inscription_number;
+        $record->edictid = $edict_id;
+        $record->vacancyid = $vacancy_id;
+        $record->inscription_number = $this->local_psf_generate_inscription_number();
+        date_default_timezone_set('America/Sao_Paulo');
+        $current_date = date("d-m-Y H:i:s", time());
+        $record->inscription_date = strtotime($current_date);
+        return $DB->insert_record($table, $record);
+    }
 
-        $DB->insert_record($table, $record);
+    function update($inscript_id, $applicant_id){
+        global $DB;
+
+        $table = 'local_psf_inscript';
+
+        $record = new stdClass();
+        $record->id = $inscript_id;
+        $record->applicantid = $applicant_id;
+        $DB->update_record($table, $record);
+    }
+
+    function local_psf_get_resume_inscript($inscript_id){
     }
 
 }
