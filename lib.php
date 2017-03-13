@@ -60,5 +60,5 @@ function local_psf_get_category_name($id)
 
 function local_psf_print_date($date)
 {
-    return ($date == 0) ? '' : date("d/m/Y", $date);
+    return ($date == 0) ? '' : date("d/m/Y H:i", $date);
 }

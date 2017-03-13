@@ -38,7 +38,6 @@ class inscript
         $record->edictid = $edict_id;
         $record->vacancyid = $vacancy_id;
         $record->inscription_number = $this->local_psf_generate_inscription_number();
-        date_default_timezone_set('America/Sao_Paulo');
         $current_date = date("d-m-Y H:i:s", time());
         $record->inscription_date = strtotime($current_date);
         return $DB->insert_record($table, $record);

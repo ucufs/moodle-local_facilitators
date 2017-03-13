@@ -54,8 +54,8 @@
     <td style="vertical-align: middle"><small><?= $result->title; ?></small></td>
     <td style="vertical-align: middle"><small><?= $result->edict_number; ?></small></td>
     <td style="vertical-align: middle"><small><?= $result->validity_year; ?></small></td>
-    <td style="vertical-align: middle"><small><?= date("d/m/Y", $result->opening); ?></small></td>
-    <td style="vertical-align: middle"><small><?= date("d/m/Y", $result->closing); ?></small></td>
+    <td style="vertical-align: middle"><small><?= date("d/m/Y H:i", $result->opening); ?></small></td>
+    <td style="vertical-align: middle"><small><?= date("d/m/Y H:i", $result->closing); ?></small></td>
     <td>
       <small>
         <table style="padding: 4px">

@@ -34,8 +34,8 @@ $controller = psf\controllers\enrollment_controller::class;
 
 $app->get('/', "$controller::index");
 $app->get('/inscricao/{id}', "$controller::enrollment");
-$app->get('/inscricao/{id}/{role_id}', "$controller::enrollment");
-$app->get('/inscricao/populate_courses/{role_id}', "$controller::populate_courses");
+// $app->get('/inscricao/{id}/{role_id}', "$controller::enrollment");
+// $app->get('/inscricao/populate_courses/{role_id}', "$controller::populate_courses");
 $app->post('/enrollment/step/{edict_id}', "$controller::step");
 $app->post('/enrollment/step1/{inscript_id}', "$controller::step1");
 $app->post('/enrollment/step2/{inscript_id}', "$controller::step2");

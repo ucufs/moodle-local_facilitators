@@ -25,6 +25,7 @@ class enrollment_controller
         foreach ($edicts as $obj){
             $obj->has_vacancies = $edict->has_vacancies($obj->id);
             $obj->has_criterias = false;
+            $obj->has_opened = $edict->has_opened($obj->id);
         }
 
         return $templating->render('enrollment/index-html.php', array('edicts' => $edicts));
@@ -52,6 +53,7 @@ class enrollment_controller
 
         $obj = new edict();
         $edict = $obj->get_edict($id);
+        $edict->has_opened = $obj->has_opened($edict->id);
         
         return $templating->render('enrollment/enrollment-html.php', array('edict' => $edict, 'vacancies' => $vacancies));
     }

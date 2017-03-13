@@ -95,14 +95,12 @@ class edict
         return (count($vacancies) > 0);
     }
 
-    function has_criterias($id)
+    function has_opened($id)
     {
-        #toDo - add edict_id em local_psf_criteria
         global $DB;
-        $table = 'local_psf_criteria';
-        $select = "edictid = {$id} and status = 1";
-        $criterias = $DB->get_records_select($table,$select);
-        #return (count($criterias) > 0);
+        $edict = $this->get_edict($id);
+        $current_date = strtotime(date("d-m-Y H:i", time()));
+        return (($current_date >= $edict->opening) && ($current_date <= $edict->closing));
     }
 
 }
