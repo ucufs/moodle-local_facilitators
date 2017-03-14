@@ -69,7 +69,7 @@
         <legend>Capacitação
         <div>
         <ul class="options unstyled">
-          <li class="delete"><a href="#" onClick="deleteItem(this);return false" title="Remover">Remover</a></li>
+          <li class="delete"><a href="#" onClick="deleteItem(this, 'clone_capacitacao');return false" title="Remover">Remover</a></li>
         </ul>
         </div>
         </legend>
@@ -114,12 +114,14 @@
       </label>
       <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
     </div>
-    <div class="span6">
+    <div class="span6 input_filer">
       <label>Comprovante de capacitação
         <a href="#" data-toggle="tooltip" data-placement="right" title="certificados de conclusão ou declaração de aprovação" 
         data-original-title="Insira aqui o comprovante"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+      <div id="group_1">
+      <input type="file" class="filer_input span12" name="document[]" id="cap_1" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+      </div>
     </div>
   </div>
 </div>
@@ -137,7 +139,7 @@
         <legend>Experiência Profissional
         <div>
         <ul class="options unstyled">
-          <li class="delete"><a href="#" onClick="deleteItem(this);return false" title="Remover">Remover</a></li>
+          <li class="delete"><a href="#" onClick="deleteItem(this, 'clone_exp_prof');return false" title="Remover">Remover</a></li>
         </ul>
         </div>
         </legend>
@@ -182,7 +184,9 @@
       <label>Comprovante de experiência profissional
         <a href="#" data-toggle="tooltip" data-placement="right" title="carteira profissional de trabalho, certificado de atuação e declaração expedida por Órgão ou Empresa Pública ou Privada na qual o candidato tenha desempenhado as atividades"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
+      <div id="group_1">
       <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>
+      </div>
     </div>
   </div>
 </div>

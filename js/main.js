@@ -66,30 +66,50 @@ $(document).ready(function() {
 });
 
 function add_input(source, destiny){
-  $('#' + source).clone().find("input").val("").end().appendTo('#' + destiny);
+  clone = $('#' + source).clone().find("input").val("").end();  
+  cloneCount = $('#' + source + ' .filer_input').length + 1;
+  
+  new_id = "group_" + cloneCount;
+  clone.find('#group_1').attr('id', new_id).end();
+  clone.find("input[type=file]").attr('id', cloneCount).end().appendTo('#' + destiny);
+  $('#group_' + cloneCount).find("input[type=file]").parent().detach();
+  
+  new_input = '<input type="file" class="span12 filer_input" name="document[]" id="' + cloneCount +
+   '" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>';
+  
+  $('#group_' + cloneCount).append(new_input);
+  $('#' + cloneCount + '.filer_input').filer();
+  $('[data-toggle="tooltip"]').tooltip();
   drawNavigation();
 }
 
-function remove_input(destiny) {
-  $('#' + destiny).children().eq(length).remove();
-  drawNavigation();
-}
+// function remove_input(destiny) {
+//   $('#' + destiny).children().eq(length).remove();
+//   drawNavigation();
+// }
 
-function deleteItem(e) {
-    $(e).parents(".clone_capacitacao").remove();
-    drawNavigation();
+function deleteItem(e, class_name) {
+  $(e).parents("." + class_name).remove();
+  drawNavigation();
 }
 
 function drawNavigation() {
   var num_elem = $(".clone_capacitacao").length;
   if (num_elem > 1) {
-    $("#capacitacao li.delete").show();
+    $("#nova_capacitacao li.delete").show();
   }
   else {
     $("#capacitacao li.delete").hide();
   }
+  var num_exp = $(".clone_exp_prof").length;
+  if (num_exp > 1) {
+    $("#nova_exp_prof li.delete").show();
+  }
+  else {
+    $("#exp_prof li.delete").hide();
+  }
 }
 
 $(function() {
-    drawNavigation();
+  drawNavigation();
 });
