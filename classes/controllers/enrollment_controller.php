@@ -229,7 +229,7 @@ class enrollment_controller
     function set_form_params_curriculum($record, $request, $inscript, $key){
         global $CFG;
         $record->applicantid = $inscript->applicantid;
-        $record->title = $request->get('criteria_id')[$key];
+        $record->criteriaid = $request->get('criteria_id')[$key];
         $record->title = $request->get('title')[$key];
         $record->institution = $request->get('institution')[$key];
         
