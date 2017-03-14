@@ -23,9 +23,9 @@
  *
  * @package    local_psf
  * @category   local
- * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
- * @author     José Eduardo (zeduardu@ufs.br)
- * @author     Jéssica de Jesus (jessicajpinto@ufs.br)
+ * @copyright  2017 Divisï¿½o de Desenvolvimento de Pessoal - Fundaï¿½ï¿½o Universidade Federal de Sergipe
+ * @author     Josï¿½ Eduardo (zeduardu@ufs.br)
+ * @author     Jï¿½ssica de Jesus (jessicajpinto@ufs.br)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -37,7 +37,7 @@ use stdClass;
 	 * Criteria model for access data
 	 *
      * @package    local_psf
-     * @copyright  2017 Divisão de Desenvolvimento de Pessoal - Fundação Universidade Federal de Sergipe
+     * @copyright  2017 Divisï¿½o de Desenvolvimento de Pessoal - Fundaï¿½ï¿½o Universidade Federal de Sergipe
      * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
      */
 	class criteria
@@ -138,22 +138,25 @@ use stdClass;
             return $result;
         }
 
-        function local_psf_create_or_update(stdclass $record)
+        /**
+        * Populate the table "criteria" inserting ou updating depending of action of user.
+        *
+        * @see criteria_controller::local_psf_create_or_update_criteria()
+        * @param \stdClass $record The data of criteria to update or insert depending of context
+        * @return bool A status indicating success or failure
+        */
+        function local_psf_criteria_populate(stdclass $record)
         {
             global $DB;
 
-            if ($record->id == 0)
-            {
-                // $DB->insert_record($table, $dataobject, $returnid=true, $bulk=false)
-                // Insert a record into a table and return the "id" field if required
-                $DB->insert_record('local_psf_criteria', $record, true, false);
-            }
-            else
-            {
+            if ($record->id != 0) {
                 // $DB->update_record($table, $dataobject, $bulk=false)
                 // Update a record in a table.
-                $DB->update_record('local_psf_criteria', $record, false);
+                return $DB->update_record('local_psf_criteria', $record, false);
             }
+                // $DB->insert_record($table, $dataobject, $returnid=true, $bulk=false)
+                // Insert a record into a table and return the "id" field if required
+                return $DB->insert_record('local_psf_criteria', $record, false, false);
         }
 
         /**

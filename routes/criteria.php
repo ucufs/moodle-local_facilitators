@@ -32,8 +32,8 @@ $controller = psf\controllers\criteria_controller::class;
 
 // ********** Route Mapping ********** //
 
-$management->get('/criteria/{edict_id}', "$controller::local_psf_view_index_criteria");
-$management->get('/criteria/{criteria_id}/{edict_id}/{role_id}/{item_id}/',"$controller::local_psf_view_form_criteria");
+$management->get('/criteria/{edictid}', "$controller::local_psf_view_index_criteria");
+$management->get('/criteria/{criteria_id}/{edictid}/{role_id}/{item_id}/',"$controller::local_psf_view_form_criteria");
 $management->post('/criteria/item/form/new', "$controller::local_psf_view_item_form_new");
 $management->get('/criteria/item/form/alter/{id}', "$controller::local_psf_item_form_alter");
 

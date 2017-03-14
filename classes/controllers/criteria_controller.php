@@ -115,7 +115,7 @@ class criteria_controller
     }
     function local_psf_create_or_update_criteria(Request $request)
     {
-        $app = new Application();
+        // Record to send as parameter
         $record = new stdClass();
         $record->id = $request->get('criteria_id');
         $record->edictid = $request->get('edict_id');
@@ -126,9 +126,17 @@ class criteria_controller
         $record->maximum_points = $request->get('maximum_points');
         $record->measurement = $request->get('measurement');
         $record->status = 1;
-        $criteria_obj = new criteria();
-        $criteria_obj->local_psf_create_or_update($record);
-        return $app->redirect(URL_BASE . '/management/criteria/' . $record->edictid);
+        // Instances
+        $criteriaobj = new criteria();
+        $edictobj = new edict();
+        // Show the page of criterias
+        global $templating;
+        $params = array(
+            'edict' => $edictobj->get_edict($edictid),
+            'role_itens' => $this->local_psf_mount_criteria_params($edictid),
+            'sucess' => $criteriaobj->local_psf_criteria_populate($record)
+        );
+        return $templating->render('criteria/index_criteria-html.php', $params);
     }
     /**
      * Update the status of criteria
