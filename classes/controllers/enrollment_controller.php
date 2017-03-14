@@ -154,13 +154,13 @@ class enrollment_controller
         $inscript = $inscript_obj->get_inscript($inscript_id);
 
         $curriculum = new curriculum();
+
         foreach( $request->get('title') as $key => $t ) {
             $this->set_form_params_curriculum($record, $request, $inscript, $key);
             $curriculum->create($record);
         }
 
-        $response = 'Ok';
-        return $templating->render('enrollment/completion-html.php', array('inscript' => $inscript, 'response' => $response));
+        return $templating->render('enrollment/completion-html.php', array('inscript' => $inscript));
     }
 
     function receipt($inscript_id){
@@ -229,7 +229,7 @@ class enrollment_controller
     function set_form_params_curriculum($record, $request, $inscript, $key){
         global $CFG;
         $record->applicantid = $inscript->applicantid;
-        $record->criteriaid = $request->get('criteria_id')[$key];
+        $record->title = $request->get('criteria_id')[$key];
         $record->title = $request->get('title')[$key];
         $record->institution = $request->get('institution')[$key];
         
@@ -238,10 +238,7 @@ class enrollment_controller
         
         $dt_end = str_replace('/', '-', $request->get('dt_end'))[$key];
         $record->dt_end = strtotime($dt_end);
-
-        if (isset($request->get('workload')[$key])){
-            $record->workload = $request->get('workload')[$key];
-        }
+        $record->workload = $request->get('workload')[$key];
         $document = $request->files->get('document')[$key];
         if ($document !== null){
             $path = $CFG->dataroot . '\\psf\\' . $inscript->edictid . '\\' . $inscript->inscription_number;

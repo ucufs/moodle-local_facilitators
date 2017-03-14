@@ -45,14 +45,15 @@
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
     </div>
+    <input type="hidden" name="workload[]" value="-">
     <div class="span6">
       <label>Comprovante de titulação
         <a href="#" data-toggle="tooltip" data-placement="right" title="diplomas, certificados, certidões e ata/declaração de aprovação sem restrição e diplomas estrangeiros revalidados no Brasil" 
@@ -106,13 +107,13 @@
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
     </div>
     <div class="span6 input_filer">
       <label>Comprovante de capacitação
@@ -167,19 +168,20 @@
       </select>
     </div>
   </div>
+  <input type="hidden" name="workload[]" value="-">
   <div class="row-fluid">
     <div class="span3">
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="text" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
-    </div>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+    </div>    
     <div class="span6">
       <label>Comprovante de experiência profissional
         <a href="#" data-toggle="tooltip" data-placement="right" title="carteira profissional de trabalho, certificado de atuação e declaração expedida por Órgão ou Empresa Pública ou Privada na qual o candidato tenha desempenhado as atividades"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
