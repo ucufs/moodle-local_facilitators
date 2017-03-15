@@ -69,7 +69,7 @@
         <FIELD NAME="points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Pontos de critério"/>
         <FIELD NAME="maximum_points" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Número máximo de pontos referente ao critério"/>
         <FIELD NAME="measurement" TYPE="char" LENGTH="300" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Unidade de medida. Ex.: &quot;por capacitação&quot;."/>
-        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Campo para representar a exclusão lógica"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Campo para representar a exclusão lógica"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
