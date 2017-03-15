@@ -1,6 +1,7 @@
 <?php $view->extend('template-html.php') ?>
 
 <?php $view['slots']->start('body') ?>
+  <?php var_dump($_SESSION['last_request']); ?>
 
   <h3 class="text-center">Inscrição</h3>
   <div class="well well-small">
@@ -41,7 +42,7 @@
 
   <?php foreach ($edu_formal as $ef){ ?>
     <label>
-      <input type="radio" value="<?= $ef->id?>" name="criteria_id[]" value="" checked>
+      <input type="radio" value="<?= $ef->id?>" name="criteria_id[]" value="" autofocus checked>
       <?= $ef->criteria ?>
     </label><br/>        
   <?php };?>
@@ -49,11 +50,11 @@
   <div class="row-fluid">
     <div class="span6">
       <label>Nome do curso</label>
-      <input type="text" name="title[]" class="span12" placeholder="Digite o nome do curso" required>
+      <input type="text" name="title[]" class="span12" placeholder="Digite o nome do curso" maxlength="100" required>
     </div>
     <div class="span6">
       <label>Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" maxlength="100" required>
     </div>
   </div>
   <div class="row-fluid">
@@ -61,13 +62,13 @@
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" maxlength="10" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" maxlength="10" required>
     </div>
     <input type="hidden" name="workload[]" value="-">
     <div class="span6">
@@ -105,17 +106,17 @@
     </div>
     <div class="span4">
       <label>Carga Horária</label>
-      <input type="number" name="workload[]" class="span12" value="" placeholder="Carga horária" required>
+      <input type="number" name="workload[]" class="span12" value="" placeholder="Carga horária" maxlength="5" required>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span6">
       <label>Título da capacitação</label>
-      <input type="text" name="title[]" class="span12" placeholder="Digite o título da capacitação" required>
+      <input type="text" name="title[]" class="span12" placeholder="Digite o título da capacitação" maxlength="100" required>
     </div>
     <div class="span6">
       <label>Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" maxlength="100" required>
     </div>
   </div>
   <div class="row-fluid">
@@ -123,13 +124,13 @@
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" maxlength="10" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" maxlength="10" required>
     </div>
     <div class="span6 input_filer">
       <label>Comprovante de capacitação
@@ -177,11 +178,11 @@
   <div class="row-fluid">
     <div class="span6">
       <label>Função</label>
-      <input type="text" name="title[]" class="span12" placeholder="Digite o título" required>
+      <input type="text" name="title[]" class="span12" placeholder="Digite a função" maxlength="100" required>
     </div>
     <div class="span6">
       <label>Empresa/Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Empresa/Instituição" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Empresa/Instituição" maxlength="100" required>
     </div>
   </div>
   <input type="hidden" name="workload[]" value="-">
@@ -190,13 +191,13 @@
       <label>Data de Início
         <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" required>
+      <input type="date" name="dt_start[]" class="span12" value="" placeholder="Data de Início" maxlength="10" required>
     </div>
     <div class="span3">
       <label>Data de Término
       <small class="text-warning">dd/mm/yyyy</small>
       </label>
-      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" required>
+      <input type="date" name="dt_end[]" class="span12" value="" placeholder="Data de Término" maxlength="10" required>
     </div>    
     <div class="span6">
       <label>Comprovante de experiência profissional

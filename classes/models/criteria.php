@@ -103,15 +103,22 @@ use stdClass;
             return $result;
         }
 
-        function local_psf_get_all_criteria_by_params($edict_id, $role_id, $item_id)
+        function local_psf_get_all_criteria_by_params($edict_id, $role_id, $item_id, $status = null)
         {
             global $DB;
 
             // $DB->get_records_select($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
             // Get a number of records as an array of objects which match a particular WHERE clause.
             // The 'select' parameter is (if not empty) is dropped directly into the WHERE clause without alteration.
-            $select = "edictid = ? AND roleid = ? AND itemid = ?"; //is put into the where clause
-            $params = array($edict_id, $role_id, $item_id);
+            if ($status != null) {
+                $select = "edictid = ? AND roleid = ? AND itemid = ? AND status = ?"; //is put into the where clause    
+                $params = array($edict_id, $role_id, $item_id, $status);
+            } else {
+                $select = "edictid = ? AND roleid = ? AND itemid = ?"; //is put into the where clause    
+                $params = array($edict_id, $role_id, $item_id);
+            }
+            
+            
             $result = $DB->get_records_select('local_psf_criteria',$select, $params, 'criteria', '*');
 
             return $result;

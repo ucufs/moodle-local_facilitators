@@ -1,7 +1,7 @@
 <?php $view->extend('template-html.php') ?>
 
 <?php $view['slots']->start('body') ?>
-
+  <?php var_dump($_SESSION['last_request']); ?>
 
   <br/><br/>
 

@@ -27,7 +27,7 @@ class enrollment_controller
             $obj->has_criterias = false;
             $obj->has_opened = $edict->has_opened($obj->id);
         }
-
+        unset($_SESSION['last_request']);
         return $templating->render('enrollment/index-html.php', array('edicts' => $edicts));
     }
 
@@ -61,106 +61,158 @@ class enrollment_controller
     function step(Request $request, $edict_id){
         global $templating;
 
-        $vac = new vacancy();
-        $vacancy = $vac->get_vacancy($request->get('vacancy_id'));
-        $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
-        $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+        if( $_SERVER['REQUEST_METHOD']=='POST' )
+        {
+            $current_request = md5( implode( $_POST ) );
 
-        $edict_obj = new edict();
-        $edict = $edict_obj->get_edict($edict_id);
+            if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
+            {
+                return $templating->render('enrollment/error-html.php');
+            }
+            else
+            {
+                $_SESSION['last_request']  = $current_request;
+                $vac = new vacancy();
+                $vacancy = $vac->get_vacancy($request->get('vacancy_id'));
+                $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
+                $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
 
-        $inscript = new inscript();
-        $inscript_id = $inscript->create($edict->id, $vacancy->id);
+                $edict_obj = new edict();
+                $edict = $edict_obj->get_edict($edict_id);
 
-        return $templating->render('enrollment/step-html.php', array('vacancy' => $vacancy, 'edict' => $edict, 'inscript_id' => $inscript_id));
+                $inscript = new inscript();
+                $inscript_id = $inscript->create($edict->id, $vacancy->id);
+
+                return $templating->render('enrollment/step-html.php', array('vacancy' => $vacancy, 'edict' => $edict, 'inscript_id' => $inscript_id));
+            }
+        }
     }
 
     function step1(Request $request, $inscript_id){
         global $templating;
 
-        $applicant = new applicant();
-        $applicant->cpf = $request->get('cpf');
-        $applicant->siape = $request->get('siape');
+        if( $_SERVER['REQUEST_METHOD']=='POST' )
+        {
+            $current_request = md5( implode( $_POST ) );
 
-        $inscript_obj = new inscript();
-        $inscript = $inscript_obj->get_inscript($inscript_id);
+            if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
+            {
+                return $templating->render('enrollment/error-html.php');
+            }
+            else
+            {
+                $_SESSION['last_request']  = $current_request;
+                $applicant = new applicant();
+                $applicant->cpf = $request->get('cpf');
+                $applicant->siape = $request->get('siape');
 
-        $vac = new vacancy();
-        $vacancy = $vac->get_vacancy($inscript->vacancyid);
-        $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
-        $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+                $inscript_obj = new inscript();
+                $inscript = $inscript_obj->get_inscript($inscript_id);
 
-        $obj = new edict();
-        $edict = $obj->get_edict($inscript->edictid);
+                $vac = new vacancy();
+                $vacancy = $vac->get_vacancy($inscript->vacancyid);
+                $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
+                $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
 
-        return $templating->render('enrollment/step1-html.php', array('edict' => $edict, 'inscript' => $inscript, 'vacancy' => $vacancy, 'applicant' => $applicant));
+                $obj = new edict();
+                $edict = $obj->get_edict($inscript->edictid);
+
+                return $templating->render('enrollment/step1-html.php', array('edict' => $edict, 'inscript' => $inscript, 'vacancy' => $vacancy, 'applicant' => $applicant));
+            }
+        }
     }
 
     function step2(Request $request, $inscript_id){
         global $templating;
 
-        $record = new stdClass();
-        $applicant = new applicant();
+        if( $_SERVER['REQUEST_METHOD']=='POST' )
+        {
+            $current_request = md5( implode( $_POST ) );
 
-        $inscript_obj = new inscript();
-        $inscript = $inscript_obj->get_inscript($inscript_id);
+            if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
+            {
+                return $templating->render('enrollment/error-html.php');
+            }
+            else
+            {
+                $_SESSION['last_request']  = $current_request;
+                $record = new stdClass();
+                $applicant = new applicant();
 
-        # exibir informações do edital no topo da página
-        $vac = new vacancy();
-        $vacancy = $vac->get_vacancy($inscript->vacancyid);
-        $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
-        $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
-        $obj = new edict();
-        $edict = $obj->get_edict($vacancy->edictid);
+                $inscript_obj = new inscript();
+                $inscript = $inscript_obj->get_inscript($inscript_id);
 
-        # cria o applicant
-        $this->set_form_params($request, $record, $vacancy, $inscript);
-        $applicant_id = $applicant->create($record);
+                # exibir informações do edital no topo da página
+                $vac = new vacancy();
+                $vacancy = $vac->get_vacancy($inscript->vacancyid);
+                $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
+                $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+                $obj = new edict();
+                $edict = $obj->get_edict($vacancy->edictid);
 
-        # insere o applicant_id em inscript
-        $inscript_obj->update($inscript->id, $applicant_id);
+                # cria o applicant
+                $this->set_form_params($request, $record, $vacancy, $inscript);
+                $applicant_id = $applicant->create($record);
+
+                # insere o applicant_id em inscript
+                $inscript_obj->update($inscript->id, $applicant_id);
 
 
-        # prepara o formulário para preenchimento
-        $criteria = new criteria();
+                # prepara o formulário para preenchimento
+                $criteria = new criteria();
 
-        $role_object = $criteria->local_psf_get_role_by_id($vacancy->roleid);
+                $role_object = $criteria->local_psf_get_role_by_id($vacancy->roleid);
 
-        $role_object->itens = $criteria->local_psf_get_items_or_item_by_id();
-        foreach ($role_object->itens as $item_object){
-            $criteria_objects = $criteria->local_psf_get_all_criteria_by_params($vacancy->edictid, $role_object->id, $item_object->id);
-            $item_object->criterias = $criteria_objects;
-            unset($criteria_objects);
+                $role_object->itens = $criteria->local_psf_get_items_or_item_by_id();
+                foreach ($role_object->itens as $item_object){
+                    $criteria_objects = $criteria->local_psf_get_all_criteria_by_params($vacancy->edictid, $role_object->id, $item_object->id, 1);
+                    $item_object->criterias = $criteria_objects;
+                    unset($criteria_objects);
+                }
+
+                foreach ($role_object->itens as $item){ 
+                    if ($item->name == 'Capacitação'){ 
+                        $capacitacao = $item->criterias;
+                    } elseif ($item->name == 'Educação Formal'){ 
+                        $edu_formal = $item->criterias;
+                    } elseif ($item->name == 'Experiência Profissional')
+                        $exp_prof = $item->criterias;
+                }        
+
+                return $templating->render('enrollment/step2-html.php', array('edict' => $edict, 'vacancy' => $vacancy, 'applicant' => $applicant, 'role_object' => $role_object, 'inscript' => $inscript, 'capacitacao' => $capacitacao, 'edu_formal' => $edu_formal, 'exp_prof' => $exp_prof));
+            }
         }
-
-        foreach ($role_object->itens as $item){ 
-            if ($item->name == 'Capacitação'){ 
-                $capacitacao = $item->criterias;
-            } elseif ($item->name == 'Educação Formal'){ 
-                $edu_formal = $item->criterias;
-            } elseif ($item->name == 'Experiência Profissional')
-                $exp_prof = $item->criterias;
-        }        
-
-        return $templating->render('enrollment/step2-html.php', array('edict' => $edict, 'vacancy' => $vacancy, 'applicant' => $applicant, 'role_object' => $role_object, 'inscript' => $inscript, 'capacitacao' => $capacitacao, 'edu_formal' => $edu_formal, 'exp_prof' => $exp_prof));
+        
     }
 
     function completion(Request $request, $inscript_id){
         global $templating, $CFG;
 
-        $record = new stdClass();
+        if( $_SERVER['REQUEST_METHOD']=='POST' )
+        {
+            $current_request = md5( implode( $_POST ) );
 
-        $inscript_obj = new inscript();
-        $inscript = $inscript_obj->get_inscript($inscript_id);
+            if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
+            {
+                return $templating->render('enrollment/error-html.php');
+            }
+            else
+            {
+                $_SESSION['last_request']  = $current_request;
+                $record = new stdClass();
 
-        $curriculum = new curriculum();
+                $inscript_obj = new inscript();
+                $inscript = $inscript_obj->get_inscript($inscript_id);
 
-        foreach( $request->get('title') as $key => $t ) {
-            $this->set_form_params_curriculum($record, $request, $inscript, $key);
-            $curriculum->create($record);
+                $curriculum = new curriculum();
+
+                foreach( $request->get('title') as $key => $t ) {
+                    $this->set_form_params_curriculum($record, $request, $inscript, $key);
+                    $curriculum->create($record);
+                }
+                return $templating->render('enrollment/completion-html.php', array('inscript' => $inscript));
+            }
         }
-
-        return $templating->render('enrollment/completion-html.php', array('inscript' => $inscript));
     }
 
     function receipt($inscript_id){

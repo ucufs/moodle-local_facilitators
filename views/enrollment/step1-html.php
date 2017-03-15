@@ -4,7 +4,7 @@
 <?php $view['slots']->start('body') ?>
 
 <div class="container-fluid">
-
+<?php var_dump($_SESSION['last_request']); ?>
 <h3 class="text-center">Inscrição</h3>
 <div class="well well-small">
   <p>
@@ -23,7 +23,7 @@
   <div class="row-fluid">
     <div class="span6">
       <label>Nome</label>
-      <input type="text" name="name" class="span12" required>
+      <input type="text" name="name" class="span12" maxlength="255" autofocus required>
     </div>
     <div class="span3">
       <label>Matrícula SIAPE</label>
@@ -38,15 +38,15 @@
   <div class="row-fluid">
     <div class="span5">
       <label>Cargo</label>
-      <input type="text" name="role" class="span12" required>
+      <input type="text" name="role" class="span12" maxlength="50" required>
     </div>
     <div class="span2">
       <label>Departamento</label>
-      <input type="text" name="department" class="span12" required>
+      <input type="text" name="department" class="span12" maxlength="50" required>
     </div>
     <div class="span5">
       <label>E-mail</label>
-      <input type="text" name="email" class="span12" required>
+      <input type="text" name="email" class="span12" maxlength="45" required>
     </div>
   </div>
 
@@ -82,41 +82,41 @@
     </div>
     <div class="span3">
       <label>Tel. Residencial</label>
-      <input type="text" name="telephone" class="span12">
+      <input type="text" name="telephone" maxlength="11" class="span12">
     </div>
     <div class="span3">
       <label>Telefone Departamento</label>
-      <input type="text" name="department_telephone" class="span12">
+      <input type="text" name="department_telephone" maxlength="11" class="span12">
     </div>
     <div class="span2">
       <label>Celular</label>
-      <input type="text" name="cellular" class="span12" required>
+      <input type="text" name="cellular" class="span12" maxlength="11" required>
     </div>
   </div>
 
   <div class="row-fluid">
     <div class="span6">
       <label>Logradouro</label>
-      <input type="text" name="address" class="span12" required>
+      <input type="text" name="address" class="span12" maxlength="150" required>
     </div>
     <div class="span2">
       <label>Número</label>
-      <input type="text" name="number" class="span12" required>
+      <input type="text" name="number" class="span12" maxlength="10" required>
     </div>
     <div class="span4">
       <label>Complemento</label>
-      <input type="text" name="complement" class="span12">
+      <input type="text" name="complement" class="span12" maxlength="50">
     </div>
   </div>
 
   <div class="row-fluid">
     <div class="span5">
       <label>Bairro</label>
-      <input type="text" name="neighborhood" class="span12" required>
+      <input type="text" name="neighborhood" class="span12" maxlength="50" required>
     </div>
     <div class="span5">
       <label>Cidade</label>
-      <input type="text" name="city" class="span12" required>
+      <input type="text" name="city" class="span12" maxlength="60" required>
     </div>
     <div class="span2">
       <label>Estado</label>
