@@ -23,7 +23,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 function local_psf_extends_navigation(global_navigation $navigation) {
-    $psf = $navigation->add(get_string('pluginname', 'local_psf'), new moodle_url('/local/psf/'));
+    //$psf = $navigation->add(get_string('pluginname', 'local_psf'), new moodle_url('/local/psf/'));
 }
 
 function local_psf_get_role_name($id)
