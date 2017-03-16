@@ -119,7 +119,7 @@ use stdClass;
             }
             
             
-            $result = $DB->get_records_select('local_psf_criteria',$select, $params, 'criteria', '*');
+            $result = $DB->get_records_select('local_psf_criteria',$select, $params, 'points DESC', '*');
 
             return $result;
         }

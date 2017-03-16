@@ -1,7 +1,7 @@
 <?php $view->extend('template-html.php') ?>
 
 <?php $view['slots']->start('body') ?>
-<?php var_dump($_SESSION['last_request']); ?>
+
 <h3 class="text-center">Seleção de Facilitadores</h3>
 
 <div class="well well-small">

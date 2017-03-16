@@ -1,7 +1,6 @@
 <?php $view->extend('template-html.php') ?>
 
 <?php $view['slots']->start('body') ?>
-  <?php var_dump($_SESSION['last_request']); ?>
 
   <h3 class="text-center">Inscrição</h3>
   <div class="well well-small">
@@ -15,14 +14,14 @@
 
   <div class="row-fluid">
     <div class="span12">
-      <div class="alert alert-block">
+      <div class="alert alert-block" style="color: #004984">
         <small>
         <b>Insira o comprovante para cada item informado (Educação Formal, Capacitação, Experiência Profissional).</b>
         <ul class="unstyled">
           <li>Orientações para envio:</li>
           <li>- Apenas um (1) arquivo para cada item.</li>
           <li>- Tamanho máximo do arquivo: 2MB.</li>
-          <li>- Formatos permitidos: PDF, JPG, JPEG, PNG.</li>
+          <li><b>- Formatos permitidos: PDF, JPG, JPEG, PNG.</b></li>
         </ul>
         </small>
       </div>
@@ -105,7 +104,9 @@
       </select>
     </div>
     <div class="span4">
-      <label>Carga Horária</label>
+      <label>Carga Horária
+      <a href="#" data-toggle="tooltip" data-placement="right" title="Informe a carga horária da capacitação"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+      </label>
       <input type="number" name="workload[]" class="span12" value="" placeholder="Carga horária" maxlength="5" required>
     </div>
   </div>
@@ -174,6 +175,12 @@
         <?php };?>
       </select>
     </div>
+    <div class="span4">
+      <label>Carga Horária
+      <a href="#" data-toggle="tooltip" data-placement="right" title="Informe a carga horária, quando houver necessidade (instrutoria ou tutoria em cursos)"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+      </label>
+      <input type="number" name="workload[]" class="span12" value="" placeholder="Carga horária" maxlength="5">
+    </div>
   </div>
   <div class="row-fluid">
     <div class="span6">
@@ -184,8 +191,7 @@
       <label>Empresa/Instituição</label>
       <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Empresa/Instituição" maxlength="100" required>
     </div>
-  </div>
-  <input type="hidden" name="workload[]" value="-">
+  </div>  
   <div class="row-fluid">
     <div class="span3">
       <label>Data de Início

@@ -15,7 +15,6 @@ use stdClass;
 
 class enrollment_controller
 {
-
     function index(){
         global $templating;
 
@@ -67,7 +66,7 @@ class enrollment_controller
 
             if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
             {
-                return $templating->render('enrollment/error-html.php');
+                return $templating->render('enrollment/error-html.php', array('msg' => $this->msg_refresh()));
             }
             else
             {
@@ -97,7 +96,7 @@ class enrollment_controller
 
             if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
             {
-                return $templating->render('enrollment/error-html.php');
+                return $templating->render('enrollment/error-html.php', array('msg' => $this->msg_refresh()));
             }
             else
             {
@@ -114,10 +113,23 @@ class enrollment_controller
                 $vacancy->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
                 $vacancy->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
 
+                $older_inscriptions = $inscript_obj->check_registration_limit($applicant, $inscript, $vacancy);
+                $has_inscription_on_the_course = $inscript_obj->has_inscription_on_the_course($applicant, $inscript, $vacancy);
+
+
                 $obj = new edict();
                 $edict = $obj->get_edict($inscript->edictid);
 
-                return $templating->render('enrollment/step1-html.php', array('edict' => $edict, 'inscript' => $inscript, 'vacancy' => $vacancy, 'applicant' => $applicant));
+                if (count($older_inscriptions) >= 2){
+                    $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
+                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
+                } elseif (count($has_inscription_on_the_course) > 0) {
+                    $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado.';
+                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
+                } else {
+                    return $templating->render('enrollment/step1-html.php', array('edict' => $edict, 'inscript' => $inscript, 'vacancy' => $vacancy, 'applicant' => $applicant));
+                }
+                
             }
         }
     }
@@ -131,7 +143,7 @@ class enrollment_controller
 
             if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
             {
-                return $templating->render('enrollment/error-html.php');
+                return $templating->render('enrollment/error-html.php', array('msg' => $this->msg_refresh()));
             }
             else
             {
@@ -194,7 +206,7 @@ class enrollment_controller
 
             if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
             {
-                return $templating->render('enrollment/error-html.php');
+                return $templating->render('enrollment/error-html.php', array('msg' => $this->msg_refresh()));
             }
             else
             {
@@ -298,6 +310,14 @@ class enrollment_controller
             $document->move($path, $name);
             $record->document = $path . '/' . $name;
         }
+    }
+
+    function msg_refresh(){
+       return 'Não é possível utilizar o recurso do navegador para atualizar ou voltar a página. Seus dados foram perdidos e será necessário iniciar o processo de inscrição novamente.';
+    }
+
+    function check_restrictions($applicant, $inscript, $vacancy){
+
     }
 
 }

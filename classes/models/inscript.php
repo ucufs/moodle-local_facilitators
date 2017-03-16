@@ -57,4 +57,38 @@ class inscript
     function local_psf_get_resume_inscript($inscript_id){
     }
 
+    function check_registration_limit($applicant, $inscript, $vacancy){
+        global $DB;
+
+        $sql = 'SELECT inscript.inscription_number, vacancy.courseid 
+                FROM {local_psf_applicant} AS applicant
+                INNER JOIN {local_psf_inscript} AS inscript
+                ON inscript.applicantid = applicant.id
+                INNER JOIN {local_psf_vacancy} vacancy
+                ON inscript.vacancyid = vacancy.id
+                WHERE cpf = ?
+                GROUP BY vacancy.courseid';
+        $result = $DB->get_records_sql($sql, array($applicant->cpf));
+        return $result;
+    }
+
+    function is_equal_inscription_older(){
+
+    }
+
+    function has_inscription_on_the_course($applicant, $inscript, $vacancy){
+        global $DB;
+
+        $sql = 'SELECT inscript.inscription_number, vacancy.courseid
+            FROM {local_psf_applicant} applicant
+            INNER JOIN {local_psf_inscript} inscript
+            ON inscript.applicantid = applicant.id
+            INNER JOIN {local_psf_vacancy} vacancy
+            ON inscript.vacancyid = vacancy.id
+            WHERE applicant.cpf = ? 
+            AND vacancy.courseid = ?';
+        $result = $DB->get_records_sql($sql, array($applicant->cpf, $vacancy->courseid));
+        return $result;
+    }
+
 }

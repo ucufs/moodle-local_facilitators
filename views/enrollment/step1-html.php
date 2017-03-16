@@ -4,7 +4,7 @@
 <?php $view['slots']->start('body') ?>
 
 <div class="container-fluid">
-<?php var_dump($_SESSION['last_request']); ?>
+
 <h3 class="text-center">Inscrição</h3>
 <div class="well well-small">
   <p>
@@ -85,7 +85,7 @@
       <input type="text" name="telephone" maxlength="11" class="span12">
     </div>
     <div class="span3">
-      <label>Telefone Departamento</label>
+      <label>Tel. Departamento</label>
       <input type="text" name="department_telephone" maxlength="11" class="span12">
     </div>
     <div class="span2">
@@ -158,14 +158,14 @@
       <fieldset>
         <legend>Requisitos da Função</legend>
       </fieldset>
-      <div class="alert alert-block">
+      <div class="alert alert-block" style="color: #004984">
         <small>
-        <b>Insira o comprovante dos requisitos exigidos no edital.</b>
+        <b>Insira o comprovante para cada item informado (Educação Formal, Capacitação, Experiência Profissional).</b>
         <ul class="unstyled">
           <li>Orientações para envio:</li>
-          <li>- Apenas um (1) arquivo para cada requisito (base ou adicional).</li>
+          <li>- Apenas um (1) arquivo para cada item.</li>
           <li>- Tamanho máximo do arquivo: 2MB.</li>
-          <li>- Formatos permitidos: PDF, JPG, JPEG, PNG.</li>
+          <li><b>- Formatos permitidos: PDF, JPG, JPEG, PNG.</b></li>
         </ul>
         </small>
       </div>
