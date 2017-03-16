@@ -264,17 +264,17 @@ class enrollment_controller
         $additional_requisite = $request->files->get('additional_requisite');
 
         if ($base_requisite !== null){
-            $path = $CFG->dataroot . '\\psf\\' . $vacancy->edictid . '\\' . $inscript->inscription_number;
+            $path = $CFG->dataroot . '/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
             $name = 'req01_' . $base_requisite->getClientOriginalName();
             $base_requisite->move($path, $name);
-            $record->base_requisite = $path . '\\' . $name;
+            $record->base_requisite = $path . '/' . $name;
         }
         
         if ($additional_requisite !== null){
-            $path = $CFG->dataroot . '\\psf\\' . $vacancy->edictid . '\\' . $inscript->inscription_number;
+            $path = $CFG->dataroot . '/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
             $name = 'req02_' . $additional_requisite->getClientOriginalName();
             $additional_requisite->move($path, $name);
-            $record->additional_requisite = $path . '\\' . $name;
+            $record->additional_requisite = $path . '/' . $name;
         }
     }
 
@@ -293,10 +293,10 @@ class enrollment_controller
         $record->workload = $request->get('workload')[$key];
         $document = $request->files->get('document')[$key];
         if ($document !== null){
-            $path = $CFG->dataroot . '\\psf\\' . $inscript->edictid . '\\' . $inscript->inscription_number;
+            $path = $CFG->dataroot . '/psf/' . $inscript->edictid . '/' . $inscript->inscription_number;
             $name = 'cur_' . $document->getClientOriginalName();
             $document->move($path, $name);
-            $record->document = $path . '\\' . $name;
+            $record->document = $path . '/' . $name;
         }
     }
 
