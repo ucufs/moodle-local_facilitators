@@ -59,7 +59,7 @@
       </label>
       <select class="span12" name="campus">
         <option value=""></option>
-        <option <?= ($vacancy->campus == 'Campus de Itabaina' ) ? 'selected' : '' ?> >Campus de Itabaina</option>
+        <option <?= ($vacancy->campus == 'Campus de Itabaiana' ) ? 'selected' : '' ?> >Campus de Itabaiana</option>
         <option <?= ($vacancy->campus == 'Campus de Lagarto' ) ? 'selected' : '' ?> >Campus de Lagarto</option>
         <option <?= ($vacancy->campus == 'Campus de Laranjeiras' ) ? 'selected' : '' ?> >Campus de Laranjeiras</option>
         <option <?= ($vacancy->campus == 'Campus de São Cristóvão' ) ? 'selected' : '' ?> >Campus de São Cristóvão</option>
