@@ -107,7 +107,7 @@ class criteria_controller
         $record->roleid = $request->get('role_id');
         $record->itemid = $request->get('item_id');
         $record->criteria = $request->get('criteria');
-        $record->points = $request->get('points');
+        $record->points = ((float)str_replace(',', '.', $request->get('points'))) * 10;
         $record->maximum_points = $request->get('maximum_points');
         $record->measurement = $request->get('measurement');
         $record->status = 1;

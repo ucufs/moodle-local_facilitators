@@ -78,7 +78,7 @@
                                     <?= $criteria->criteria ?>
                                 </td>
                                 <td style="vertical-align: middle">
-                                    <?= $criteria->points ?>
+                                    <?= $criteria->points / 10 ?>
                                 </td>
                                 <td style="vertical-align: middle">
                                     <?= $criteria->maximum_points ?>

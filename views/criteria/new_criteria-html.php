@@ -78,7 +78,7 @@
                         </div>
                         <div class="span2">
                             <label>Pontos</label>
-                            <input type="text" name="points" class="span12" required tabindex="2" <?= ($psf_criteria != null) ? 'value="' . $psf_criteria->points . '"' : '' ?>/>
+                            <input type="text" name="points" class="span12" required tabindex="2" <?= ($psf_criteria != null) ? 'value="' . ($psf_criteria->points / 10) . '"' : '' ?>/>
                         </div>
                         <div class="span2">
                             <label>Máximo</label>
