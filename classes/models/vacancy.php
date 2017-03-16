@@ -96,7 +96,10 @@ class vacancy
         //   IGNORE_MISSING means compatible mode, false returned if record not found, debug message if more found;
         //   IGNORE_MULTIPLE means return first, ignore multiple records found(not recommended);
         //   MUST_EXIST means throw exception if no record or multiple records found
-        return $DB->get_field('course', 'fullname', array('id'=>$id), MUST_EXIST);
+        if ($id != 0){
+            return $DB->get_field('course', 'fullname', array('id'=>$id), MUST_EXIST);
+        } 
+        return '-';
     }
 
 }
