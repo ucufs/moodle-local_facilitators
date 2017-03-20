@@ -29,7 +29,7 @@ function xmldb_local_psf_upgrade($oldversion=0)
 
         // Define field base_requisite to be added to local_psf_applicant.
         $table = new xmldb_table('local_psf_applicant');
-        $field = new xmldb_field('base_requisite', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null, 'state');
+        $field = new xmldb_field('base_requisite', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, '-', 'state');
 
         // Conditionally launch add field base_requisite.
         if (!$dbman->field_exists($table, $field)) {
@@ -44,7 +44,7 @@ function xmldb_local_psf_upgrade($oldversion=0)
 
         // Define field additional_requisite to be added to local_psf_applicant.
         $table = new xmldb_table('local_psf_applicant');
-        $field = new xmldb_field('additional_requisite', XMLDB_TYPE_TEXT, null, null, null, null, null, 'base_requisite');
+        $field = new xmldb_field('additional_requisite', XMLDB_TYPE_TEXT, null, null, null, null, '-', 'base_requisite');
 
         // Conditionally launch add field additional_requisite.
         if (!$dbman->field_exists($table, $field)) {
