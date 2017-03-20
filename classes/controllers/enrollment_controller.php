@@ -124,7 +124,7 @@ class enrollment_controller
                     $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
                 } elseif (count($has_inscription_on_the_course) > 0) {
-                    $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado.';
+                    $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado. No entanto, o servidor ainda pode increver-se em outro evento.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
                 } else {
                     return $templating->render('enrollment/step1-html.php', array('edict' => $edict, 'inscript' => $inscript, 'vacancy' => $vacancy, 'applicant' => $applicant));
@@ -217,9 +217,10 @@ class enrollment_controller
                 $inscript = $inscript_obj->get_inscript($inscript_id);
 
                 $curriculum = new curriculum();
-
+                $i = 1;
                 foreach( $request->get('title') as $key => $t ) {
-                    $this->set_form_params_curriculum($record, $request, $inscript, $key);
+                    $i++;
+                    $this->set_form_params_curriculum($record, $request, $inscript, $key, $i);
                     $curriculum->create($record);
                 }
                 return $templating->render('enrollment/completion-html.php', array('inscript' => $inscript));
@@ -276,21 +277,21 @@ class enrollment_controller
         $additional_requisite = $request->files->get('additional_requisite');
 
         if ($base_requisite !== null){
-            $path = $CFG->dataroot . '/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
-            $name = 'req01_' . $base_requisite->getClientOriginalName();
+            $path = '../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
+            $name = 'req01_document';
             $base_requisite->move($path, $name);
             $record->base_requisite = $path . '/' . $name;
         }
         
         if ($additional_requisite !== null){
-            $path = $CFG->dataroot . '/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
-            $name = 'req02_' . $additional_requisite->getClientOriginalName();
+            $path = '../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
+            $name = 'req02_document';
             $additional_requisite->move($path, $name);
             $record->additional_requisite = $path . '/' . $name;
         }
     }
 
-    function set_form_params_curriculum($record, $request, $inscript, $key){
+    function set_form_params_curriculum($record, $request, $inscript, $key, $i){
         global $CFG;
         $record->applicantid = $inscript->applicantid;
         $record->criteriaid = $request->get('criteria_id')[$key];
@@ -305,8 +306,8 @@ class enrollment_controller
         $record->workload = $request->get('workload')[$key];
         $document = $request->files->get('document')[$key];
         if ($document !== null){
-            $path = $CFG->dataroot . '/psf/' . $inscript->edictid . '/' . $inscript->inscription_number;
-            $name = 'cur_' . $document->getClientOriginalName();
+            $path = '../data/moodledata/psf/' . $inscript->edictid . '/' . $inscript->inscription_number;
+            $name = 'cur_' . $i;
             $document->move($path, $name);
             $record->document = $path . '/' . $name;
         }

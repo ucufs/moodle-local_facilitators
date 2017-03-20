@@ -91,4 +91,73 @@ class inscript
         return $result;
     }
 
+    function get_applicant($applicant_id) {
+        global $DB;
+
+        $sql = 'SELECT 
+            applicant.name,
+            applicant.rg,
+            applicant.agent,
+            applicant.cpf,
+            applicant.siape,
+            applicant.email,
+            applicant.telephone,
+            applicant.cellular,            
+            applicant.department,
+            applicant.department_telephone,
+            applicant.work_schedule,
+            applicant.role,
+            applicant.address,
+            applicant.number,
+            applicant.complement,
+            applicant.neighborhood,
+            applicant.city,
+            applicant.state,
+            applicant.base_requisite,
+            applicant.additional_requisite,
+            inscript.edictid,
+            inscript.vacancyid,
+            inscript.inscription_date,
+            inscript.inscription_number,
+            vacancy.courseid, vacancy.roleid
+             
+            FROM {local_psf_inscript} inscript
+            INNER JOIN {local_psf_applicant} applicant
+            ON inscript.applicantid = applicant.id
+            INNER JOIN {local_psf_vacancy} vacancy
+            ON inscript.vacancyid = vacancy.id
+            WHERE applicant.id = ?';
+
+        $result = $DB->get_record_sql($sql, array($applicant_id));
+        return $result;
+    }
+
+
+    function get_curriculum($applicant_id) {
+        global $DB;
+
+        $sql = 'SELECT
+            curriculum.criteriaid,
+            curriculum.title,
+            curriculum.workload,
+            curriculum.dt_start,
+            curriculum.dt_end,
+            curriculum.institution,
+            curriculum.document,
+            item.name,
+            criteria.criteria
+            from {local_psf_curriculum} curriculum
+            inner join {local_psf_applicant} applicant
+            on applicant.id = curriculum.applicantid
+            inner join {local_psf_criteria} criteria
+            on criteria.id = curriculum.criteriaid
+            inner join {local_psf_item} item
+            on item.id = criteria.itemid
+            where applicant.id = ?
+            order by item.maximum_points DESC';
+
+        $result = $DB->get_records_sql($sql, array($applicant_id));
+        return $result;
+    }
+
 }

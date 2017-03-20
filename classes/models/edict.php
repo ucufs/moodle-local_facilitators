@@ -103,4 +103,21 @@ class edict
         return (($current_date >= $edict->opening) && ($current_date <= $edict->closing));
     }
 
+    function get_inscripts($edict_id){
+        global $DB;
+
+        $sql = 'SELECT inscript.id, inscript.inscription_number, inscript.inscription_date,
+            applicant.name, applicant.cpf, applicant.siape, 
+            vacancy.courseid, vacancy.roleid
+            FROM {local_psf_inscript} inscript
+            INNER JOIN {local_psf_applicant} applicant
+            ON inscript.applicantid = applicant.id
+            INNER JOIN {local_psf_vacancy} vacancy
+            ON inscript.vacancyid = vacancy.id
+            WHERE inscript.edictid = ?
+            ORDER BY applicant.name';
+        $result = $DB->get_records_sql($sql, array($edict_id));
+        return $result;
+    }
+
 }

@@ -84,7 +84,7 @@
       <a href="<?php echo URL_BASE . '/management/edict/change_status/' . $result->id ?>" title="<?= ($result->status==1) ? 'Desativar' : 'Ativar' ?> Edital" onclick="confirm('Deseja alterar o status do edital?')">
         <i class="fa fa-thumbs-<?= ($result->status==1) ? 'up' : 'down' ?>" aria-hidden="true"></i>
       </a>
-      <a href="#" title="Visualizar edital">
+      <a href="<?php echo URL_BASE . '/management/edict/show_inscripts/' . $result->id ?>" title="Visualizar inscritos">
         <i class="fa fa-eye" aria-hidden="true"></i>
       </a>
     </td>
