@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170217" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170320" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -99,6 +99,8 @@
         <FIELD NAME="neighborhood" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Bairro (endereço)."/>
         <FIELD NAME="city" TYPE="char" LENGTH="60" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Cidade (endereço)."/>
         <FIELD NAME="state" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Estado (endereço)."/>
+        <FIELD NAME="base_requisite" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Requisito base para a função."/>
+        <FIELD NAME="additional_requisite" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Requisito adicional para a função."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -130,6 +132,7 @@
         <FIELD NAME="vacancyid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Código da vaga que pretender concorrer"/>
         <FIELD NAME="inscription_date" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Data de inscrição"/>
         <FIELD NAME="inscription_number" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Número de inscrição gerado pelo sistema"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Status da inscrição (1: ativa, 0: inativa)."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
