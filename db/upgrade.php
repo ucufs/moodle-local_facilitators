@@ -35,13 +35,7 @@ function xmldb_local_psf_upgrade($oldversion=0)
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-
-        // Psf savepoint reached.
-        upgrade_plugin_savepoint(true, 2017032000, 'local', 'psf');
-    }
-
-    if ($oldversion < 2017032000) {
-
+        
         // Define field additional_requisite to be added to local_psf_applicant.
         $table = new xmldb_table('local_psf_applicant');
         $field = new xmldb_field('additional_requisite', XMLDB_TYPE_TEXT, null, null, null, null, '-', 'base_requisite');
@@ -50,14 +44,7 @@ function xmldb_local_psf_upgrade($oldversion=0)
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-
-        // Psf savepoint reached.
-        upgrade_plugin_savepoint(true, 2017032000, 'local', 'psf');
-    }
-
-    if ($oldversion < 2017032000) {
-
-        // Define field status to be added to local_psf_inscript.
+        
         $table = new xmldb_table('local_psf_inscript');
         $field = new xmldb_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'inscription_number');
 
@@ -68,5 +55,18 @@ function xmldb_local_psf_upgrade($oldversion=0)
 
         // Psf savepoint reached.
         upgrade_plugin_savepoint(true, 2017032000, 'local', 'psf');
+    }
+    if ($oldversion < 2017032001) {
+
+        $table = new xmldb_table('local_psf_inscript');
+        $field = new xmldb_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'inscription_number');
+
+        // Conditionally launch add field status.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017032001, 'local', 'psf');
     }
 }
