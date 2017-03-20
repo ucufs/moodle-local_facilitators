@@ -104,6 +104,9 @@
 </dl>
 
 <h4>Currículo</h4>
+<?php if (count($curriculum) == 0): ?>
+  O currículo não foi cadastrado.
+<?php else: ?>
 <?php foreach ($curriculum as $cur) { ?>
   <h5><?= $cur->name ?></h5>
   <dl>
@@ -143,5 +146,6 @@
     </dd>
   </dl>
 <?php } ?>
+<?php endif; ?>
 
 <?php $view['slots']->stop() ?>

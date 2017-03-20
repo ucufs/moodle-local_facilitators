@@ -277,15 +277,15 @@ class enrollment_controller
         $additional_requisite = $request->files->get('additional_requisite');
 
         if ($base_requisite !== null){
-            $path = '../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
-            $name = 'req01_document';
+            $path = '../../../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
+            $name = 'req01_document.' . $base_requisite->getClientOriginalExtension();
             $base_requisite->move($path, $name);
             $record->base_requisite = $path . '/' . $name;
         }
         
         if ($additional_requisite !== null){
-            $path = '../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
-            $name = 'req02_document';
+            $path = '../../../data/moodledata/psf/' . $vacancy->edictid . '/' . $inscript->inscription_number;
+            $name = 'req02_document.' . $additional_requisite->getClientOriginalExtension();
             $additional_requisite->move($path, $name);
             $record->additional_requisite = $path . '/' . $name;
         }
@@ -306,8 +306,8 @@ class enrollment_controller
         $record->workload = $request->get('workload')[$key];
         $document = $request->files->get('document')[$key];
         if ($document !== null){
-            $path = '../data/moodledata/psf/' . $inscript->edictid . '/' . $inscript->inscription_number;
-            $name = 'cur_' . $i;
+            $path = '../../../data/moodledata/psf/' . $inscript->edictid . '/' . $inscript->inscription_number;
+            $name = 'curriculum_' . $i . '.' . $document->getClientOriginalExtension();
             $document->move($path, $name);
             $record->document = $path . '/' . $name;
         }
