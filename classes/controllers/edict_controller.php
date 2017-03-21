@@ -102,6 +102,17 @@ class edict_controller
         return $templating->render('edict/show_inscription-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum));
     }
 
+    function cancel_inscription($inscript_id) {
+        $inscript = new inscript();
+        $inscript->cancel_inscription($inscript_id);
+
+        $insc = $inscript->get_inscript($inscript_id);
+
+        $app = new Application();
+        var_dump($insc);
+        return $app->redirect(URL_BASE . '/management/edict/show_inscripts/' . $insc->edictid);
+    }
+
     private function set_form_params($record, $request) {
         $record->title = $request->get('title');
         $record->edict_number = $request->get('edict_number');

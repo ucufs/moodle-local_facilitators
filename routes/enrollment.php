@@ -41,6 +41,7 @@ $app->post('/enrollment/step1/{inscript_id}', "$controller::step1");
 $app->post('/enrollment/step2/{inscript_id}', "$controller::step2");
 $app->post('/enrollment/completion/{inscript_id}', "$controller::completion");
 $app->get('/enrollment/receipt/{inscript_id}', "$controller::receipt");
+$app->get('/enrollment/cancel_inscription/{inscript_id}', "$controller::cancel_inscription");
 
 // *********************************** //
 

@@ -67,13 +67,26 @@ class inscript
                 INNER JOIN {local_psf_vacancy} vacancy
                 ON inscript.vacancyid = vacancy.id
                 WHERE cpf = ?
+                AND inscript.status = 1
                 GROUP BY vacancy.courseid';
         $result = $DB->get_records_sql($sql, array($applicant->cpf));
         return $result;
     }
 
-    function is_equal_inscription_older(){
+    function is_equal_inscription_older($applicant, $vacancy){
+        global $DB;
 
+        $sql = 'SELECT inscript.inscription_number, vacancy.courseid 
+             FROM mdl_local_psf_applicant AS applicant
+             INNER JOIN mdl_local_psf_inscript AS inscript
+             ON inscript.applicantid = applicant.id
+             INNER JOIN mdl_local_psf_vacancy vacancy
+             ON inscript.vacancyid = vacancy.id
+             WHERE cpf = ?
+             AND inscript.status = 1
+             AND inscript.vacancyid = ?';
+        $result = $DB->get_records_sql($sql, array($applicant->cpf, $vacancy->id));
+        return $result;
     }
 
     function has_inscription_on_the_course($applicant, $inscript, $vacancy){
@@ -86,7 +99,7 @@ class inscript
             INNER JOIN {local_psf_vacancy} vacancy
             ON inscript.vacancyid = vacancy.id
             WHERE applicant.cpf = ? 
-            AND vacancy.courseid = ?';
+            AND vacancy.courseid = ? AND inscript.status = 1';
         $result = $DB->get_records_sql($sql, array($applicant->cpf, $vacancy->courseid));
         return $result;
     }
@@ -158,6 +171,17 @@ class inscript
 
         $result = $DB->get_records_sql($sql, array($applicant_id));
         return $result;
+    }
+
+    function cancel_inscription($inscript_id)
+    {
+        global $DB;
+
+        $table = 'local_psf_inscript';
+        $inscript = $this->get_inscript($inscript_id);
+        $inscript->status = 0;
+
+        $DB->update_record($table, $inscript);
     }
 
 }

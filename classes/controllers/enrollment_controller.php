@@ -115,13 +115,16 @@ class enrollment_controller
 
                 $older_inscriptions = $inscript_obj->check_registration_limit($applicant, $inscript, $vacancy);
                 $has_inscription_on_the_course = $inscript_obj->has_inscription_on_the_course($applicant, $inscript, $vacancy);
-
+                $has_equal_inscrition = $inscript_obj->is_equal_inscription_older($applicant, $vacancy);
 
                 $obj = new edict();
                 $edict = $obj->get_edict($inscript->edictid);
 
                 if (count($older_inscriptions) >= 2){
                     $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
+                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
+                } elseif (count($has_equal_inscrition) > 0) {
+                    $msg = 'Não foi possível realizar a inscrição. O servidor já realizou uma inscrição para a função e evento selecionados.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
                 } elseif (count($has_inscription_on_the_course) > 0) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado. No entanto, o servidor ainda pode increver-se em outro evento.';
@@ -317,8 +320,13 @@ class enrollment_controller
        return 'Não é possível utilizar o recurso do navegador para atualizar ou voltar a página. Seus dados foram perdidos e será necessário iniciar o processo de inscrição novamente.';
     }
 
-    function check_restrictions($applicant, $inscript, $vacancy){
+    function cancel_inscription($inscript_id) {
+        $inscript = new inscript();
+        $inscript->cancel_inscription($inscript_id);
 
+        $app = new Application();
+
+        return $app->redirect(URL_BASE);
     }
 
 }

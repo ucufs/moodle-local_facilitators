@@ -31,7 +31,7 @@
       <div class="span12">
         <button type="submit" class="btn btn-primary pull-right">
         <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Prosseguir</button>
-        <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>      
+        <a href="<?php echo URL_BASE . '/enrollment/cancel_inscription/' . $inscript_id ?>" class="btn btn-default">Cancelar</a>      
       </div>
     </div>
 

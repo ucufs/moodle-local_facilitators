@@ -53,7 +53,7 @@
     </div>
     <div class="span6">
       <label>Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" maxlength="100" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Informe o nome completo da Instituição" maxlength="100" required>
     </div>
   </div>
   <div class="row-fluid">
@@ -117,7 +117,7 @@
     </div>
     <div class="span6">
       <label>Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Instituição" maxlength="100" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Informe o nome completo da Instituição" maxlength="100" required>
     </div>
   </div>
   <div class="row-fluid">
@@ -189,7 +189,7 @@
     </div>
     <div class="span6">
       <label>Empresa/Instituição</label>
-      <input type="text" name="institution[]" class="span12" value="" placeholder="Digite o nome da Empresa/Instituição" maxlength="100" required>
+      <input type="text" name="institution[]" class="span12" value="" placeholder="Informe o nome completo da Empresa/Instituição" maxlength="100" required>
     </div>
   </div>  
   <div class="row-fluid">
@@ -226,7 +226,7 @@
   <div class="row-fluid">
     <div class="span12">
       <button type="submit" class="btn btn-success pull-right">Finalizar inscrição</button>
-      <a href="<?php echo URL_BASE ?>" class="btn btn-default">Cancelar</a>
+      <a href="<?php echo URL_BASE . '/enrollment/cancel_inscription/' . $inscript->id ?>" class="btn btn-default">Cancelar</a>
     </div>
   </div>
 

@@ -31,8 +31,14 @@
     <td style="vertical-align: middle"><small><?= $inscript->course_name; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->role_name; ?></small></td>
     <td style="vertical-align: middle"><small><?= date("d/m/Y H:i", $inscript->inscription_date); ?></small></td>
-    <td style="vertical-align: middle"><small><a href="<?php echo URL_BASE . '/management/edict/show_inscription/' . $inscript->id ?>" title="Ver detalhes"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></small></td>
-    <td>
+    <td style="vertical-align: middle">
+    	<small>
+    		<?php if ($inscript->status == 0) : ?>
+	      <span class="label label-important">Cancelada</span><br/>
+	      <?php endif; ?>
+    		<a href="<?php echo URL_BASE . '/management/edict/show_inscription/' . $inscript->id ?>" title="Ver detalhes"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    		<a href="<?php echo URL_BASE . '/management/edict/cancel_inscription/' . $inscript->id ?>" title="Cancelar inscrição" onclick="confirm('Tem certeza que deseja cancelar a inscrição?')"><i class="fa fa-times" aria-hidden="true"></i></a>
+    	</small>
     </td>
   </tr>
   <?php } ?>
