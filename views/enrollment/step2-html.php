@@ -19,7 +19,6 @@
         <b>Insira o comprovante para cada item informado (Educação Formal, Capacitação, Experiência Profissional).</b>
         <ul class="unstyled">
           <li>Orientações para envio:</li>
-          <li>- Apenas um (1) arquivo para cada item.</li>
           <li>- Tamanho máximo do arquivo: 2MB.</li>
           <li><b>- Formatos permitidos: PDF, JPG, JPEG, PNG.</b></li>
         </ul>
@@ -75,7 +74,7 @@
         <a href="#" data-toggle="tooltip" data-placement="right" title="diplomas, certificados, certidões e ata/declaração de aprovação sem restrição e diplomas estrangeiros revalidados no Brasil" 
         data-original-title="Insira aqui o comprovante de Educação Formal"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" required>
+      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
     </div>
   </div>
 
@@ -139,7 +138,7 @@
         data-original-title="Insira aqui o comprovante"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
       <div id="group_1">
-      <input type="file" class="filer_input span12" name="document[]" id="cap_1" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" required>
+      <input type="file" class="filer_input span12" name="document[]" id="cap_1" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
       </div>
     </div>
   </div>
@@ -210,7 +209,7 @@
         <a href="#" data-toggle="tooltip" data-placement="right" title="carteira profissional de trabalho, certificado de atuação e declaração expedida por Órgão ou Empresa Pública ou Privada na qual o candidato tenha desempenhado as atividades"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
       <div id="group_1">
-      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" required>
+      <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
       </div>
     </div>
   </div>

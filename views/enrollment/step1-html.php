@@ -160,10 +160,9 @@
       </fieldset>
       <div class="alert alert-block" style="color: #004984">
         <small>
-        <b>Insira o comprovante para cada item informado (Educação Formal, Capacitação, Experiência Profissional).</b>
+        <b>Insira o comprovante dos requisitos da função.</b>
         <ul class="unstyled">
           <li>Orientações para envio:</li>
-          <li>- Apenas um (1) arquivo para cada item.</li>
           <li>- Tamanho máximo do arquivo: 2MB.</li>
           <li><b>- Formatos permitidos: PDF, JPG, JPEG, PNG.</b></li>
         </ul>
@@ -177,14 +176,14 @@
         <a href="#" data-toggle="tooltip" data-placement="right" title="" 
         data-original-title="<?= $vacancy->base_requisite ?>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <input type="file" class="span12 filer_input" name="base_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" required>
+      <input type="file" class="span12 filer_input" name="base_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
     </div>
     <div class="span6">
       <label>Requisito(s) Adicional(is)
         <a href="#" data-toggle="tooltip" data-placement="right" title="" 
         data-original-title="<?= $vacancy->additional_requisite ?>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <input type="file" class="span12 filer_input" name="additional_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2">
+      <input type="file" class="span12 filer_input" name="additional_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true">
     </div>
   </div><br/>
 

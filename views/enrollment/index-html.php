@@ -8,9 +8,11 @@
 <fieldset>
 <legend>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></legend>
 	<p><?= $edict->title ?><br /> 
-	Período de inscrição: <?= date("d/m/Y H:i", $edict->opening) ?> a <?= date("d/m/Y H:i", $edict->closing) ?></p>
+	<!-- Período de inscrição: <?#= date("d/m/Y H:i", $edict->opening) ?> a <?#= date("d/m/Y H:i", $edict->closing) ?></p> -->
+	Retorno das inscrições: <?= date("d/m/Y H:i", $edict->opening) ?>
   <?php if (($edict->has_vacancies || ($edict->has_criterias)) && ($edict->has_opened)): ?>
     <p><a href="<?php echo URL_BASE . '/inscricao/' . $edict->id ?>">Inscrição</a></p>
+    <p style="font-size: smaller; font-weight: bold;">O sistema de inscrição é melhor visualizado utilizando o <a href="https://www.google.com.br/chrome/browser/desktop/" alt="Clique aqui para fazer o download do navegador" target="_blank">Google Chrome</a>.</p>
   <?php endif; ?>
   <p><a href="<?= $edict->file ?>" target="_blank">Edital</a></p>
 </fieldset>
