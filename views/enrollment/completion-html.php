@@ -2,8 +2,11 @@
 
 <?php $view['slots']->start('body') ?>
 
-  <br/><br/>
+<div class="text-center" style="margin-top: 10px;">
+  <img src="<?= URL_BASE ?>/imgs/Etapa5.png" height="50px">
+</div>
 
+  <br/><br/>
   <div class="alert alert-success" role="alert">
     <p><b>Inscrição realizada com sucesso!</b></p>
     <!-- <p>O comprovante de inscrição foi enviado para seu e-mail.</p> -->

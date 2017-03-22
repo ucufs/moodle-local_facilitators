@@ -3,9 +3,12 @@
 
 <?php $view['slots']->start('body') ?>
 
+<div class="text-center" style="margin-top: 10px; margin-bottom: 25px">
+  <img src="<?= URL_BASE ?>/imgs/Etapa3.png">
+</div>
+
 <div class="container-fluid">
 
-<h3 class="text-center">Inscrição</h3>
 <div class="well well-small">
   <p>
     <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>

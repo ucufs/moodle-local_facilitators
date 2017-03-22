@@ -2,7 +2,9 @@
 
 <?php $view['slots']->start('body') ?>
 
-<h3 class="text-center">Seleção de Facilitadores</h3>
+<div class="text-center" style="margin-top: 10px; margin-bottom: 25px">
+  <img src="<?= URL_BASE ?>/imgs/Etapa1.png">
+</div>
 
 <div class="well well-small">
   <p>

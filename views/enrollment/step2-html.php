@@ -2,7 +2,10 @@
 
 <?php $view['slots']->start('body') ?>
 
-  <h3 class="text-center">Inscrição</h3>
+<div class="text-center" style="margin-top: 10px; margin-bottom: 25px">
+  <img src="<?= URL_BASE ?>/imgs/Etapa4.png">
+</div>
+
   <div class="well well-small">
     <p>
       <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
@@ -42,7 +45,7 @@
     <label>
       <input type="radio" value="<?= $ef->id?>" name="criteria_id[]" value="" autofocus checked>
       <?= $ef->criteria ?>
-    </label><br/>        
+    </label><br/>
   <?php };?>
   <br />
   <div class="row-fluid">
@@ -137,7 +140,7 @@
         <a href="#" data-toggle="tooltip" data-placement="right" title="certificados de conclusão ou declaração de aprovação" 
         data-original-title="Insira aqui o comprovante"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <div id="group_1">
+      <div id="group_1_capacitacao">
       <input type="file" class="filer_input span12" name="document[]" id="cap_1" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
       </div>
     </div>
@@ -147,8 +150,9 @@
 <div id="nova_capacitacao">  
 </div>
 <div class="row-fluid">
-  <a class="btn btn-primary btn-small pull-right" onclick="add_input('capacitacao', 'nova_capacitacao');"> Adicionar nova capacitação </a>  
+  <a class="btn btn-primary btn-small" onclick="add_input('capacitacao', 'nova_capacitacao');"> Adicionar nova capacitação </a>  
 </div>
+<hr class="split">
 
 <div id="exp_prof" class="clone_exp_prof">
   <div class="row-fluid">
@@ -208,7 +212,7 @@
       <label>Comprovante de experiência profissional
         <a href="#" data-toggle="tooltip" data-placement="right" title="carteira profissional de trabalho, certificado de atuação e declaração expedida por Órgão ou Empresa Pública ou Privada na qual o candidato tenha desempenhado as atividades"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <div id="group_1">
+      <div id="group_1_exp_prof">
       <input type="file" class="span12 filer_input" name="document[]" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
       </div>
     </div>
@@ -218,9 +222,9 @@
 <div id="nova_exp_prof">  
 </div>
 <div class="row-fluid">
-  <a class="btn btn-primary btn-small pull-right" onclick="add_input('exp_prof', 'nova_exp_prof');"> Adicionar nova experiência profissional </a>  
+  <a class="btn btn-primary btn-small" onclick="add_input('exp_prof', 'nova_exp_prof');"> Adicionar nova experiência profissional </a>  
 </div>
-
+<hr class="split">
  <br />
   <div class="row-fluid">
     <div class="span12">

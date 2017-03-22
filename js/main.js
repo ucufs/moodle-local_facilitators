@@ -69,16 +69,16 @@ function add_input(source, destiny){
   clone = $('#' + source).clone().find("input").val("").end();  
   cloneCount = $('#' + source + ' .filer_input').length + 1;
   
-  new_id = "group_" + cloneCount;
-  clone.find('#group_1').attr('id', new_id).end();
+  new_id = "group_" + cloneCount + '_' + source;
+  clone.find('#group_1_' + source).attr('id', new_id).end();
   clone.find("input[type=file]").attr('id', cloneCount).end().appendTo('#' + destiny);
-  $('#group_' + cloneCount).find("input[type=file]").parent().detach();
+  $('#' + new_id).find("input[type=file]").parent().detach();
   
-  new_input = '<input type="file" class="span12 filer_input" name="document[]" id="' + cloneCount +
+  new_input = '<input type="file" class="span12 filer_input" name="document[]" id="' + new_id +
    '" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="5" required>';
   
-  $('#group_' + cloneCount).append(new_input);
-  $('#' + cloneCount + '.filer_input').filer();
+  $('#' + new_id).append(new_input);
+  $('#' + new_id + '.filer_input').filer();
   $('[data-toggle="tooltip"]').tooltip();
   drawNavigation();
 }
