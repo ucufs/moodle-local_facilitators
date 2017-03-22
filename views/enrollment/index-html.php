@@ -8,8 +8,7 @@
 <fieldset>
 <legend>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></legend>
 	<p><?= $edict->title ?><br /> 
-	<!-- Período de inscrição: <?#= date("d/m/Y H:i", $edict->opening) ?> a <?#= date("d/m/Y H:i", $edict->closing) ?></p> -->
-	Retorno das inscrições: <?= date("d/m/Y H:i", $edict->opening) ?>
+	Período de inscrição: <?= date("d/m/Y H:i", $edict->opening) ?> a <?= date("d/m/Y H:i", $edict->closing) ?></p>
   <?php if (($edict->has_vacancies || ($edict->has_criterias)) && ($edict->has_opened)): ?>
   	<p><a href="https://capacitese.ufs.br/pluginfile.php/23/mod_forum/attachment/13809/Manual_Inscricao_PSF.pdf">Manual de Inscrição</a></p>
     <p><a href="<?php echo URL_BASE . '/inscricao/' . $edict->id ?>">Inscrição</a></p>

@@ -205,7 +205,7 @@ class enrollment_controller
 
         if( $_SERVER['REQUEST_METHOD']=='POST' )
         {
-            $current_request = md5( implode(',', $POST[0]) );
+            $current_request = md5( implode(',', $_POST[0]) );
 
             if( isset( $_SESSION['last_request'] ) && $_SESSION['last_request']== $current_request )
             {
