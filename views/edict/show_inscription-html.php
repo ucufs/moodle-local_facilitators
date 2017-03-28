@@ -22,7 +22,7 @@
   <div class="span6">
     <dl>
       <dt>Função/Campus</dt>
-      <dd><?= $inscript->role_name ?></dd>
+      <dd><?= $inscript->role_name ?><?= $inscript->campus ?></dd>
     </dl>
 
     <dl>
