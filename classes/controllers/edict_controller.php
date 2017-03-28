@@ -108,7 +108,7 @@ class edict_controller
         $curriculum = $inscript_obj->get_curriculum($inscript->applicantid);
 
         foreach ($curriculum as $cur) {
-            $curriculum->document_src = $this->get_pic($cur->document);
+            $cur->document_src = $this->get_pic($cur->document);
         }
 
         return $templating->render('edict/show_inscription-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum, 'inscript' => $inscript));
