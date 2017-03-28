@@ -101,6 +101,7 @@ class edict_controller
         $vacancy = $vac->get_vacancy($inscript->vacancyid);
         $inscript->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
         $inscript->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+        $inscript->campus = $vacancy->campus;
 
         $applicant = $inscript_obj->get_applicant($inscript->applicantid);
         $applicant->base_requisite_src = $this->get_pic($applicant->base_requisite);

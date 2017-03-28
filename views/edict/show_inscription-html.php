@@ -21,7 +21,7 @@
   </div>
   <div class="span6">
     <dl>
-      <dt>Função</dt>
+      <dt>Função/Campus</dt>
       <dd><?= $inscript->role_name ?></dd>
     </dl>
 
@@ -116,7 +116,7 @@
   <dt>Requisito base</dt>
   <dd>
     <ul class="thumbnails">
-      <li class="span8">
+      <li class="span12">
         <?php if (preg_split('/;/', $applicant->base_requisite_src)[0] == 'data: application/pdf'){ ?>
           <object data="<?= $applicant->base_requisite_src ?>"></object>
           <embed width="600" height="250" name="plugin" src="<?= $applicant->base_requisite_src ?>" type="application/pdf">
@@ -134,7 +134,7 @@
   <dt>Requisito adicional</dt>
   <dd>
     <ul class="thumbnails">
-      <li class="span8">
+      <li class="span12">
         <?php if (preg_split('/;/', $applicant->additional_requisite_src)[0] == 'data: application/pdf'){ ?>
           <object data="<?= $applicant->additional_requisite_src ?>"></object>
           <embed width="600" height="250" name="plugin" src="<?= $applicant->additional_requisite_src ?>" type="application/pdf">
@@ -184,7 +184,7 @@
     <dt>Comprovante</dt>
     <dd>
       <ul class="thumbnails">
-        <li class="span8">
+        <li class="span12">
         <?php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
           <object data="<?= $cur->document_src ?>"></object>
           <embed width="600" height="250" name="plugin" src="<?= $cur->document_src ?>" type="application/pdf">
