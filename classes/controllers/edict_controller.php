@@ -81,13 +81,14 @@ class edict_controller
         $edict = $edict_obj->get_edict($edict_id);
 
         $inscripts = $edict_obj->get_inscripts($edict_id);
-
+        $active_inscripts = 0;
         foreach ($inscripts as $inscript) {
             $inscript->role_name = $vac->local_psf_get_role_name($inscript->roleid);
             $inscript->course_name = $vac->local_psf_get_course_name($inscript->courseid);
+            $active_inscripts = ($inscript->status == '1') ? $active_inscripts + 1  : $active_inscripts;
         }
 
-        return $templating->render('edict/show_inscripts-html.php', array('inscripts' => $inscripts, 'edict' => $edict));
+        return $templating->render('edict/show_inscripts-html.php', array('inscripts' => $inscripts, 'edict' => $edict, 'active_inscripts' => $active_inscripts));
     }
 
     function show_inscription($inscript_id) {
@@ -96,10 +97,21 @@ class edict_controller
         $inscript_obj = new inscript();
         $inscript = $inscript_obj->get_inscript($inscript_id);
 
+        $vac = new vacancy();
+        $vacancy = $vac->get_vacancy($inscript->vacancyid);
+        $inscript->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
+        $inscript->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+
         $applicant = $inscript_obj->get_applicant($inscript->applicantid);
+        $applicant->base_requisite_src = $this->get_pic($applicant->base_requisite);
+        $applicant->additional_requisite_src = $this->get_pic($applicant->additional_requisite);
         $curriculum = $inscript_obj->get_curriculum($inscript->applicantid);
 
-        return $templating->render('edict/show_inscription-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum));
+        foreach ($curriculum as $cur) {
+            $curriculum->document_src = $this->get_pic($cur->document);
+        }
+
+        return $templating->render('edict/show_inscription-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum, 'inscript' => $inscript));
     }
 
     function cancel_inscription($inscript_id) {
@@ -109,9 +121,24 @@ class edict_controller
         $insc = $inscript->get_inscript($inscript_id);
 
         $app = new Application();
-        var_dump($insc);
         return $app->redirect(URL_BASE . '/management/edict/show_inscripts/' . $insc->edictid);
     }
+
+    public function get_pic($path) {
+        $image = str_replace('\\', '\\\\', $path);
+        // Read image path, convert to base64 encoding
+        $imageData = base64_encode(file_get_contents($image));
+
+        // Format the image SRC:  data:{mime};base64,{data};
+        $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
+        return $src;
+
+        // if ( is_file( $file ) ) {
+        //     return new BinaryFileResponse( $path );
+        // }
+        //make some error stuff
+    }
+
 
     private function set_form_params($record, $request) {
         $record->title = $request->get('title');

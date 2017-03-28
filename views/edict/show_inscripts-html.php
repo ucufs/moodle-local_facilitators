@@ -9,6 +9,7 @@
     <b>Edital n° <?= $edict->edict_number ?>/<?= $edict->validity_year ?></b><br/>
     <?= $edict->title ?>
   </p>
+  <p><b><small>Inscrições ativas: <?= $active_inscripts ?></small></b></p>
 </div>
 
 <table class="table table-condensed table-hover sortable">
