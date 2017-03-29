@@ -56,7 +56,7 @@
   <div class="row-fluid">
     <div class="span2">
       <label>RG</label>
-      <input type="text" name="rg" class="span12" maxlength="8">
+      <input type="text" name="rg" class="span12" maxlength="15">
     </div>
     <div class="span2">
       <label>Emissor</label>

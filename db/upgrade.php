@@ -69,4 +69,18 @@ function xmldb_local_psf_upgrade($oldversion=0)
         // Psf savepoint reached.
         upgrade_plugin_savepoint(true, 2017032001, 'local', 'psf');
     }
+
+    if ($oldversion < 2017032900) {
+
+        // Changing type of field rg on table local_psf_applicant to char.
+        $table = new xmldb_table('local_psf_applicant');
+        $field = new xmldb_field('rg', XMLDB_TYPE_CHAR, '15', null, XMLDB_NOTNULL, null, '-', 'cellular');
+
+        // Launch change of type for field rg.
+        $dbman->change_field_type($table, $field);
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017032900, 'local', 'psf');
+    }
+
 }
