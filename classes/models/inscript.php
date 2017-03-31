@@ -76,7 +76,7 @@ class inscript
     function is_equal_inscription_older($applicant, $vacancy){
         global $DB;
 
-        $sql = 'SELECT inscript.inscription_number, vacancy.courseid 
+        $sql = 'SELECT inscript.id, inscript.inscription_number, vacancy.courseid 
              FROM mdl_local_psf_applicant AS applicant
              INNER JOIN mdl_local_psf_inscript AS inscript
              ON inscript.applicantid = applicant.id
@@ -187,6 +187,21 @@ class inscript
         $inscript->status = 0;
 
         $DB->update_record($table, $inscript);
+    }
+
+    function check_email($inscription_number, $email) {
+        global $DB;
+
+        $sql = 'SELECT inscript.id, inscript.applicantid, applicant.email
+            FROM {local_psf_inscript} inscript
+            INNER JOIN {local_psf_applicant} applicant
+            ON applicant.id = applicantid
+            WHERE inscript.inscription_number = ? 
+            AND applicant.email = ?';
+
+        $result = $DB->get_record_sql($sql, array($inscription_number, $email));
+        return $result;
+
     }
 
 }

@@ -115,17 +115,17 @@ class enrollment_controller
 
                 $older_inscriptions = $inscript_obj->check_registration_limit($applicant, $inscript, $vacancy);
                 $has_inscription_on_the_course = $inscript_obj->has_inscription_on_the_course($applicant, $inscript, $vacancy);
-                $has_equal_inscrition = $inscript_obj->is_equal_inscription_older($applicant, $vacancy);
+                $has_equal_inscription = $inscript_obj->is_equal_inscription_older($applicant, $vacancy);
 
                 $obj = new edict();
                 $edict = $obj->get_edict($inscript->edictid);
 
-                if (count($older_inscriptions) >= 2){
+                if (count($older_inscriptions) >= 2) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
-                } elseif (count($has_equal_inscrition) > 0) {
+                } elseif (count($has_equal_inscription) > 0) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já realizou uma inscrição para a função e evento selecionados.';
-                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
+                    return $templating->render('enrollment/error-html.php', array('msg' => $msg, 'cancelation_option' => true, 'has_equal_inscription' => $has_equal_inscription));
                 } elseif (count($has_inscription_on_the_course) > 0) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado. No entanto, o servidor ainda pode increver-se em outro evento.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
@@ -320,13 +320,29 @@ class enrollment_controller
        return 'Não é possível utilizar o recurso do navegador para atualizar ou voltar a página. Seus dados foram perdidos e será necessário iniciar o processo de inscrição novamente.';
     }
 
-    function cancel_inscription($inscript_id) {
-        $inscript = new inscript();
-        $inscript->cancel_inscription($inscript_id);
+    function cancel_inscription($inscript_id, Request $request) {
+        global $templating;
+        $inscript_obj = new inscript();
+        $inscript = $inscript_obj->get_inscript($inscript_id);
+        if ($_SERVER['REQUEST_METHOD']=='POST') {            
+            $check_email = $inscript_obj->check_email($inscript->inscription_number, $request->get('email'));
+            $result = ($check_email) ? $inscript_obj->cancel_inscription($inscript_id) : 'error';   
+        } else {
+            $result = $inscript_obj->cancel_inscription($inscript_id);            
+        }
 
-        $app = new Application();
-
-        return $app->redirect(URL_BASE);
+        if ($result == 'error') {
+            $applicant_obj = new applicant();
+            $applicant = $applicant_obj->get_applicant($inscript->applicantid);
+            $vacancy_obj = new vacancy();
+            $vacancy = $vacancy_obj->get_vacancy($inscript->vacancyid);
+            $has_equal_inscription = $inscript_obj->is_equal_inscription_older($applicant, $vacancy);
+            $msg = 'O e-mail informado não confere com o e-mail cadastrado, não foi possível cancelar a inscrição.';
+            return $templating->render('enrollment/error-html.php', array('msg' => $msg, 'cancelation_option' => true, 'has_equal_inscription' => $has_equal_inscription));   
+        } else {
+            $msg = 'Inscrição cancelada com sucesso.';
+            return $templating->render('enrollment/success-html.php', array('msg' => $msg));
+        }        
     }
 
 }
