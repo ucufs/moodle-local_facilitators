@@ -41,8 +41,7 @@ $management->get('/edict/show_inscripts/{edict_id}', "$controller::show_inscript
 $management->get('/edict/show_inscription/{inscript_id}', "$controller::show_inscription");
 $management->get('/edict/cancel_inscription/{inscript_id}', "$controller::cancel_inscription");
 $management->get('/edict/change_status/{id}', "$controller::change_status");
-$management->get('/edict/criteria', "$controller::");
-$management->get('/edict/pic/{name}', "$controller::get_pic");
+$management->post('/edict/validate_inscription/{inscript_id}', "$controller::validate_inscription");
 
 // *********************************** //
 

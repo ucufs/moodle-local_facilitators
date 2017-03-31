@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use psf\models\edict;
 use psf\models\vacancy;
 use psf\models\inscript;
+use psf\models\applicant;
+use psf\models\curriculum;
 use stdClass;
 
 class edict_controller
@@ -102,6 +104,8 @@ class edict_controller
         $inscript->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
         $inscript->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
         $inscript->campus = $vacancy->campus;
+        $inscript->base_requisite = $vacancy->base_requisite;
+        $inscript->additional_requisite = $vacancy->additional_requisite;
 
         $applicant = $inscript_obj->get_applicant($inscript->applicantid);
         $applicant->base_requisite_src = $this->get_pic($applicant->base_requisite);
@@ -138,6 +142,33 @@ class edict_controller
         //     return new BinaryFileResponse( $path );
         // }
         //make some error stuff
+    }
+
+    function validate_inscription(Request $request, $inscript_id) {
+        $inscript_obj = new inscript();
+        $inscript = $inscript_obj->get_inscript($inscript_id);
+        
+        $applicant_obj = new applicant();
+        $applicant = $applicant_obj->get_applicant($inscript->applicantid);
+
+        $record_ap = new stdClass();
+        $record_ap->id = $applicant->id;
+        $record_ap->valid = ($request->get('applicant_valid') == '1') ? 1 : 0;
+        $record_ap->observation = $request->get('applicant_observation');
+        $applicant_obj->update($record_ap);
+
+        $curriculum_obj = new curriculum();
+
+        foreach ($request->get('id') as $key => $curriculum) {
+            $record = new stdClass();
+            $record->id = $request->get('id')[$key];
+            $record->observation = $request->get('observation')[$key];
+            $record->valid = ($request->get('valid')[$key] == '1') ? 1 : 0;
+            $curriculum_obj->update($record);
+        }
+
+        $app = new Application();
+        return $app->redirect(URL_BASE . '/management/edict/show_inscripts/' . $inscript->edictid);
     }
 
 

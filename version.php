@@ -22,7 +22,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $plugin->version   = 2017032900;
+=======
+$plugin->version   = 2017033000;
+>>>>>>> change-field-rg
 $plugin->requires  = 2013111811;
 $plugin->cron      = 0;
 $plugin->component = 'local_psf';

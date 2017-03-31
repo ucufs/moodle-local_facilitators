@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/psf/db" VERSION="20170329" COMMENT="XMLDB file for Moodle local/psf"
+<XMLDB PATH="local/psf/db" VERSION="20170330" COMMENT="XMLDB file for Moodle local/psf"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -101,6 +101,8 @@
         <FIELD NAME="state" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Estado (endereço)."/>
         <FIELD NAME="base_requisite" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Requisito base para a função."/>
         <FIELD NAME="additional_requisite" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Requisito adicional para a função."/>
+        <FIELD NAME="valid" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Indica se os dados inseridos para comprovar os requisitos exigidos no edital são válidos ou não. Válido: 1, inválido: 0."/>
+        <FIELD NAME="observation" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Observações sobre a validação dos requisitos."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -117,6 +119,8 @@
         <FIELD NAME="dt_end" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Data em que finalizou do curso, evento, etc."/>
         <FIELD NAME="institution" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="-" SEQUENCE="false" COMMENT="Nome da instituição que lecionou, ou cursou, ou participou do evento, etc."/>
         <FIELD NAME="document" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Documento que comprove as informações passadas no currículo"/>
+        <FIELD NAME="valid" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Indica se os dados inseridos para comprovar os requisitos exigidos no edital são válidos ou não. Válido: 1, inválido: 0."/>
+        <FIELD NAME="observation" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Observação sobre a validação do item do currículo."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

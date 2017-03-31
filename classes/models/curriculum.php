@@ -53,4 +53,12 @@ class curriculum
         $table = 'local_psf_curriculum';
         return $DB->insert_record($table, $record);
     }
+
+    function update(stdClass $record)
+    {
+        global $DB;
+
+        $table = 'local_psf_curriculum';
+        $DB->update_record($table, $record);
+    }
 }

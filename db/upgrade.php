@@ -83,4 +83,46 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017032900, 'local', 'psf');
     }
 
+    if ($oldversion < 2017033000) {
+
+        // Define field valid to be added to local_psf_curriculum.
+        $table = new xmldb_table('local_psf_curriculum');
+        $field = new xmldb_field('valid', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'document');
+
+        // Conditionally launch add field valid.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field observation to be added to local_psf_curriculum.
+        $table = new xmldb_table('local_psf_curriculum');
+        $field = new xmldb_field('observation', XMLDB_TYPE_TEXT, null, null, null, null, null, 'valid');
+
+        // Conditionally launch add field observation.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field valid to be added to local_psf_applicant.
+        $table = new xmldb_table('local_psf_applicant');
+        $field = new xmldb_field('valid', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'additional_requisite');
+
+        // Conditionally launch add field valid.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field observation to be added to local_psf_applicant.
+        $table = new xmldb_table('local_psf_applicant');
+        $field = new xmldb_field('observation', XMLDB_TYPE_TEXT, null, null, null, null, null, 'valid');
+
+        // Conditionally launch add field observation.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017033000, 'local', 'psf');
+    }
+
 }

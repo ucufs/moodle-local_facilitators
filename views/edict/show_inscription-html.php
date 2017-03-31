@@ -21,8 +21,8 @@
   </div>
   <div class="span6">
     <dl>
-      <dt>Função/Campus</dt>
-      <dd><?= $inscript->role_name ?><?= $inscript->campus ?></dd>
+      <dt>Função / Campus</dt>
+      <dd><?= $inscript->role_name ?> / <?= $inscript->campus ?></dd>
     </dl>
 
     <dl>
@@ -113,7 +113,9 @@
 <hr class="split">
 
 <dl>
-  <dt>Requisito base</dt>
+  <dt>Requisito base
+    <p class="text-warning"><small><?= $inscript->base_requisite ?></small></p>
+  </dt>
   <dd>
     <ul class="thumbnails">
       <li class="span12">
@@ -131,7 +133,9 @@
 </dl>
 
 <dl>
-  <dt>Requisito adicional</dt>
+  <dt>Requisito adicional
+  <p class="text-warning"><small><?= $inscript->additional_requisite ?></small></p>
+  </dt>
   <dd>
     <ul class="thumbnails">
       <li class="span12">
@@ -148,6 +152,27 @@
   </dd>
 </dl>
 
+<form action="<?php echo URL_BASE . '/management/edict/validate_inscription/' . $inscript->id ?>" method="POST">
+
+<div class="row-fluid">
+  <div class="span12">
+    <label>Observações para requisitos base e adicional
+    <small class="text-warning">Insira aqui as observações para os requisitos base e adicional, quando houver</small>
+    </label>
+    <textarea name="applicant_observation" class="span12" rows="4"><?= $applicant->observation ?></textarea>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span6">
+    <label class="text-error">
+      <b>Os requisitos acima são válidos?</b>
+      <a href="#" data-toggle="tooltip" data-placement="right" title="" 
+        data-original-title="Marque apenas quando os requisitos forem válidos de acordo com o edital"><i class="fa fa-info-circle" aria-hidden="true"></i></a>    
+      <input style="zoom: 2; margin-top: 1px;" name="applicant_valid" type="checkbox" <?= ($applicant->valid == 1) ? 'checked' : '' ?> value="1">
+    </label>
+  </div>
+</div>
+
 <hr class="split">
 
 <h4>Currículo</h4>
@@ -155,31 +180,46 @@
   O currículo não foi cadastrado.
 <?php else: ?>
 <?php foreach ($curriculum as $cur) { ?>
-  <h5><?= $cur->name ?></h5>
+  <h5><?= $cur->name ?></h5>  
+  <input type="hidden" name="id[]" value="<?= $cur->id ?>">
   <dl>
     <dt>Item</dt>
     <dd><?= $cur->criteria ?></dd>
   </dl>
-  <dl>
-    <dt>Título</dt>
-    <dd><?= $cur->title ?></dd>
-  </dl>
-  <dl>
-    <dt>Carga Horária</dt>
-    <dd><?= $cur->workload ?></dd>
-  </dl>
-  <dl>
-    <dt>Data de Início</dt>
-    <dd><?= date("d/m/Y", $cur->dt_start) ?></dd>
-  </dl>
-  <dl>
-    <dt>Data de Término</dt>
-    <dd><?= date("d/m/Y", $cur->dt_end) ?></dd>
-  </dl>
-  <dl>
-    <dt>Instituição</dt>
-    <dd><?= $cur->institution ?></dd>
-  </dl>
+  <div class="row-fluid">
+    <div class="span6">
+      <dl>
+        <dt>Título</dt>
+        <dd><?= $cur->title ?></dd>
+      </dl>
+    </div>
+    <div class="span6">
+      <dl>
+        <dt>Instituição</dt>
+        <dd><?= $cur->institution ?></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <dl>
+        <dt>Carga Horária</dt>
+        <dd><?= $cur->workload ?></dd>
+      </dl>
+    </div>
+    <div class="span4">
+      <dl>
+        <dt>Data de Início</dt>
+        <dd><?= date("d/m/Y", $cur->dt_start) ?></dd>
+      </dl>
+    </div>
+    <div class="span4">
+      <dl>
+        <dt>Data de Término</dt>
+        <dd><?= date("d/m/Y", $cur->dt_end) ?></dd>
+      </dl>
+    </div>
+  </div>
   <dl>
     <dt>Comprovante</dt>
     <dd>
@@ -197,7 +237,36 @@
       </ul>
     </dd>
   </dl>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <label>Observações para o item inserido pelo candidato
+      <small class="text-warning">Insira aqui as observações para o item inserido pelo candidato, quando houver</small>
+      </label>
+      <textarea name="observation[]" class="span12" rows="4"><?= $cur->observation ?></textarea>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6">
+      <label class="text-error">
+        <b>O item acima é válido?</b>
+        <a href="#" data-toggle="tooltip" data-placement="right" title="" 
+          data-original-title="Marque apenas quando item for válido, de acordo com o edital"><i class="fa fa-info-circle" aria-hidden="true"></i></a>    
+        <input name="valid[]" style="zoom: 2; margin-top: 1px;" type="checkbox" value="1" <?= ($cur->valid == 1) ? 'checked' : '' ?> >
+      </label>
+    </div>
+  </div>
+<hr class="split">
 <?php } ?>
 <?php endif; ?>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <button type="submit" class="btn btn-primary pull-right">Salvar</button>
+      <a href="<?php echo URL_BASE . '/management/edict/show_inscripts/' . $inscript->edictid ?>" class="btn btn-default">Cancelar</a>      
+    </div>
+  </div>
+
+</form>
 
 <?php $view['slots']->stop() ?>

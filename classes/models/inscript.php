@@ -128,6 +128,8 @@ class inscript
             applicant.state,
             applicant.base_requisite,
             applicant.additional_requisite,
+            applicant.valid,
+            applicant.observation,
             inscript.edictid,
             inscript.vacancyid,
             inscript.inscription_date,
@@ -150,6 +152,7 @@ class inscript
         global $DB;
 
         $sql = 'SELECT
+            curriculum.id,
             curriculum.criteriaid,
             curriculum.title,
             curriculum.workload,
@@ -157,6 +160,8 @@ class inscript
             curriculum.dt_end,
             curriculum.institution,
             curriculum.document,
+            curriculum.valid,
+            curriculum.observation,
             item.name,
             criteria.criteria
             from {local_psf_curriculum} curriculum

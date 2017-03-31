@@ -68,4 +68,12 @@ class applicant
         $table = 'local_psf_applicant';
         return $DB->insert_record($table, $record);
     }
+
+    function update(stdClass $record)
+    {
+        global $DB;
+
+        $table = 'local_psf_applicant';
+        $DB->update_record($table, $record);
+    }
 }
