@@ -120,12 +120,12 @@ class enrollment_controller
                 $obj = new edict();
                 $edict = $obj->get_edict($inscript->edictid);
 
-                if (count($older_inscriptions) >= 2) {
-                    $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
-                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
-                } elseif (count($has_equal_inscription) > 0) {
+                if (count($has_equal_inscription) > 0) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já realizou uma inscrição para a função e evento selecionados.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg, 'cancelation_option' => true, 'has_equal_inscription' => $has_equal_inscription));
+                } elseif (count($older_inscriptions) >= 2) {
+                    $msg = 'Não foi possível realizar a inscrição. O servidor já se inscreveu em dois eventos, atingindo o máximo de inscrições permitidas.';
+                    return $templating->render('enrollment/error-html.php', array('msg' => $msg));
                 } elseif (count($has_inscription_on_the_course) > 0) {
                     $msg = 'Não foi possível realizar a inscrição. O servidor já possui uma inscrição no evento selecionado. No entanto, o servidor ainda pode increver-se em outro evento.';
                     return $templating->render('enrollment/error-html.php', array('msg' => $msg));
