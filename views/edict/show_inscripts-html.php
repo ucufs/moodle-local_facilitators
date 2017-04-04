@@ -24,14 +24,14 @@
     <th colspan="2"><small>Ações</small></th>
   </tr>
   <?php foreach ($inscripts as $inscript) { ?>
-  <tr>
+  <tr class="<?= ($inscript->checked == 1) ? 'success' : '' ?>" >
   	<td style="vertical-align: middle"><small><?= $inscript->inscription_number; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->name; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->cpf; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->siape; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->course_name; ?></small></td>
     <td style="vertical-align: middle"><small><?= $inscript->role_name; ?></small></td>
-    <td style="vertical-align: middle"><small><?= date("d/m/Y H:i", $inscript->inscription_date); ?></small></td>
+    <td style="vertical-align: middle" sorttable_customkey="<?= date("YmdHi", $inscript->inscription_date); ?>"><small><?= date("d/m/Y H:i", $inscript->inscription_date); ?></small></td>
     <td style="vertical-align: middle">
     	<small>
     		<?php if ($inscript->status == 0) : ?>

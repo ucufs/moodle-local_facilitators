@@ -23,7 +23,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-$plugin->version   = 2017033000;
+$plugin->version   = 2017040400;
 $plugin->requires  = 2013111811;
 $plugin->cron      = 0;
 $plugin->component = 'local_psf';

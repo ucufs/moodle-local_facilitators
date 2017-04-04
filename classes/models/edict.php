@@ -107,7 +107,7 @@ class edict
         global $DB;
 
         $sql = 'SELECT inscript.id, inscript.inscription_number, inscript.inscription_date,
-            inscript.status, applicant.name, applicant.cpf, applicant.siape, 
+            inscript.status, inscript.checked, applicant.name, applicant.cpf, applicant.siape, 
             vacancy.courseid, vacancy.roleid
             FROM {local_psf_inscript} inscript
             INNER JOIN {local_psf_applicant} applicant

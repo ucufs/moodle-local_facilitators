@@ -166,6 +166,8 @@ class edict_controller
             $record->valid = ($request->get('valid')[$key] == '1') ? 1 : 0;
             $curriculum_obj->update($record);
         }
+        
+        $inscript_obj->mark_as_checked($inscript_id);
 
         $app = new Application();
         return $app->redirect(URL_BASE . '/management/edict/show_inscripts/' . $inscript->edictid);

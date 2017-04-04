@@ -165,9 +165,7 @@
 <div class="row-fluid">
   <div class="span6">
     <label class="text-error">
-      <b>Os requisitos acima são válidos?</b>
-      <a href="#" data-toggle="tooltip" data-placement="right" title="" 
-        data-original-title="Marque apenas quando os requisitos forem válidos de acordo com o edital"><i class="fa fa-info-circle" aria-hidden="true"></i></a>    
+      <b>Os requisitos acima são válidos?</b>  
       <input style="zoom: 2; margin-top: 1px;" name="applicant_valid" type="checkbox" <?= ($applicant->valid == 1) ? 'checked' : '' ?> value="1">
     </label>
   </div>
@@ -186,6 +184,26 @@
     <dt>Item</dt>
     <dd><?= $cur->criteria ?></dd>
   </dl>
+  <div class="row-fluid">
+    <div class="span3">
+      <dl>
+        <dt>Pontuação unitária</dt>
+        <dd><?= $cur->points/10 ?></dd>
+      </dl>
+    </div>
+    <div class="span3">
+      <dl>
+        <dt>Pontuação máxima</dt>
+        <dd><?= $cur->maximum_points ?></dd>
+      </dl>
+    </div>
+    <div class="span4">
+      <dl>
+        <dt>Unidade de medida</dt>
+        <dd><?= $cur->measurement ?></dd>
+      </dl>
+    </div>
+  </div>
   <div class="row-fluid">
     <div class="span6">
       <dl>
@@ -249,9 +267,7 @@
   <div class="row-fluid">
     <div class="span6">
       <label class="text-error">
-        <b>O item acima é válido?</b>
-        <a href="#" data-toggle="tooltip" data-placement="right" title="" 
-          data-original-title="Marque apenas quando item for válido, de acordo com o edital"><i class="fa fa-info-circle" aria-hidden="true"></i></a>    
+        <b>O item acima é válido?</b>   
         <input name="valid[]" style="zoom: 2; margin-top: 1px;" type="checkbox" value="1" <?= ($cur->valid == 1) ? 'checked' : '' ?> >
       </label>
     </div>

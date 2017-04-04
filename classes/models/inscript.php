@@ -163,7 +163,10 @@ class inscript
             curriculum.valid,
             curriculum.observation,
             item.name,
-            criteria.criteria
+            criteria.criteria,
+            criteria.points,
+            criteria.maximum_points,
+            criteria.measurement
             from {local_psf_curriculum} curriculum
             inner join {local_psf_applicant} applicant
             on applicant.id = curriculum.applicantid
@@ -202,6 +205,17 @@ class inscript
         $result = $DB->get_record_sql($sql, array($inscription_number, $email));
         return $result;
 
+    }
+
+    function mark_as_checked($inscript_id) {
+        global $DB;
+
+        $table = 'local_psf_inscript';
+        $record = new stdClass();
+        $record->id = $inscript_id;
+        $record->checked = 1;
+
+        $DB->update_record($table, $record);
     }
 
 }

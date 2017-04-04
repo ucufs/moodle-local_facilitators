@@ -125,4 +125,19 @@ function xmldb_local_psf_upgrade($oldversion=0)
         upgrade_plugin_savepoint(true, 2017033000, 'local', 'psf');
     }
 
+    if ($oldversion < 2017040400) {
+
+        // Define field checked to be added to local_psf_inscript.
+        $table = new xmldb_table('local_psf_inscript');
+        $field = new xmldb_field('checked', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'status');
+
+        // Conditionally launch add field checked.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Psf savepoint reached.
+        upgrade_plugin_savepoint(true, 2017040400, 'local', 'psf');
+    }
+
 }
