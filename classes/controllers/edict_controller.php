@@ -153,22 +153,21 @@ class edict_controller
 
         $record_ap = new stdClass();
         $record_ap->id = $applicant->id;
-        $record_ap->valid = ($request->get('applicant_valid') == '1') ? 1 : 0;
+        $record_ap->valid = ($request->get('applicant_valid') != null) ? $request->get('applicant_valid') : 0;
         $record_ap->observation = $request->get('applicant_observation');
         $applicant_obj->update($record_ap);
 
         $curriculum_obj = new curriculum();
-
         foreach ($request->get('id') as $key => $curriculum) {
             $record = new stdClass();
             $record->id = $request->get('id')[$key];
             $record->observation = $request->get('observation')[$key];
-            $record->valid = ($request->get('valid')[$key] == '1') ? 1 : 0;
+            $record->valid = ($request->get('valid')[$key] != null) ? $request->get('valid')[$key] : 0;
             $curriculum_obj->update($record);
         }
         
         $inscript_obj->mark_as_checked($inscript_id);
-
+        
         $app = new Application();
         return $app->redirect(URL_BASE . '/management/edict/show_inscripts/' . $inscript->edictid);
     }

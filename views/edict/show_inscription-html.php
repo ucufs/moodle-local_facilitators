@@ -177,6 +177,7 @@
 <?php if (count($curriculum) == 0): ?>
   O currículo não foi cadastrado.
 <?php else: ?>
+<? $i = 0; ?>
 <?php foreach ($curriculum as $cur) { ?>
   <h5><?= $cur->name ?></h5>  
   <input type="hidden" name="id[]" value="<?= $cur->id ?>">
@@ -267,12 +268,13 @@
   <div class="row-fluid">
     <div class="span6">
       <label class="text-error">
-        <b>O item acima é válido?</b>   
-        <input name="valid[]" style="zoom: 2; margin-top: 1px;" type="checkbox" value="1" <?= ($cur->valid == 1) ? 'checked' : '' ?> >
+        <b>O item acima é válido?</b>
+        <input name="valid[<?= $i ?>]" style="zoom: 2; margin-top: 1px;" type="checkbox" value="1" <?= ($cur->valid == 1) ? 'checked' : '' ?> >
       </label>
     </div>
   </div>
 <hr class="split">
+<?php $i++; ?>
 <?php } ?>
 <?php endif; ?>
 
