@@ -140,8 +140,9 @@
     <ul class="thumbnails">
       <li class="span12">
         <?php if (preg_split('/;/', $applicant->additional_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <object data="<?= $applicant->additional_requisite_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $applicant->additional_requisite_src ?>" type="application/pdf">
+          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <!-- <object data="<?= $applicant->additional_requisite_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?= $applicant->additional_requisite_src ?>" type="application/pdf"> -->
         <?php } else {?>
           <a href="<?= $applicant->additional_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
             <img src="<?= $applicant->additional_requisite_src ?>" alt="">
@@ -245,8 +246,9 @@
       <ul class="thumbnails">
         <li class="span12">
         <?php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
-          <object data="<?= $cur->document_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $cur->document_src ?>" type="application/pdf">
+          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <!-- <object data="<?= $cur->document_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?= $cur->document_src ?>" type="application/pdf"> -->
         <?php } else {?>
           <a href="<?= $cur->document_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
             <img src="<?= $cur->document_src ?>" alt="">
