@@ -247,7 +247,7 @@
       <ul class="thumbnails">
         <li class="span12">
         <?php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <a href="<?= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
           <!-- <object data="<?= $cur->document_src ?>"></object>
           <embed width="600" height="250" name="plugin" src="<?= $cur->document_src ?>" type="application/pdf"> -->
         <?php } else {?>
