@@ -120,8 +120,9 @@
     <ul class="thumbnails">
       <li class="span12">
         <?php if (preg_split('/;/', $applicant->base_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <object data="<?= $applicant->base_requisite_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $applicant->base_requisite_src ?>" type="application/pdf">
+          <a href="<?= $applicant->base_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <!--<object data="<?= $applicant->base_requisite_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?= $applicant->base_requisite_src ?>" type="application/pdf">-->
         <?php } else {?>
           <a href="<?= $applicant->base_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
             <img src="<?= $applicant->base_requisite_src ?>" alt="">
