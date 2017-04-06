@@ -33,7 +33,7 @@ $controller = psf\controllers\enrollment_controller::class;
 // ********** Route Mapping ********** //
 
 $app->get('/', "$controller::index");
-$app->get('/inscricao/{id}', "$controller::enrollment");
+$app->get('/358c811ef60b3e28bb49e910f55ff473/{id}', "$controller::enrollment");
 $app->post('/enrollment/step/{edict_id}', "$controller::step");
 $app->post('/enrollment/step1/{inscript_id}', "$controller::step1");
 $app->post('/enrollment/step2/{inscript_id}', "$controller::step2");

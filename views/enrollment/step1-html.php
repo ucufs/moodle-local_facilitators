@@ -186,7 +186,7 @@
         <a href="#" data-toggle="tooltip" data-placement="right" title="" 
         data-original-title="<?= $vacancy->additional_requisite ?>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
       </label>
-      <input type="file" class="span12 filer_input" name="additional_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true">
+      <input type="file" class="span12 filer_input" name="additional_requisite" data-jfiler-limit="1" data-jfiler-extensions="pdf,jpg,jpeg,png" data-jfiler-maxSize="2" data-jfiler-showThumbs="true" required>
     </div>
   </div><br/>
 

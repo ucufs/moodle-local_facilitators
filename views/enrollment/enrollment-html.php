@@ -14,7 +14,7 @@
 </div>
 <input type="hidden" name="edict_id" id="edict_id" value="<?= $edict->id ?>">
 
-<?php if ($edict->has_opened): ?>
+<!-- <?#php if ($edict->has_opened): ?> -->
 
 <p>Selecione a vaga que possui interesse e clique em <span class="label label-info">Prosseguir</span></p><br/>
 
@@ -67,8 +67,8 @@
 
   </form>
 
-<?php else: ?>
+<!-- <?#php else: ?>
   Inscrições indisponíveis.
-<?php endif; ?>
+<?#php endif; ?> -->
 
 <?php $view['slots']->stop() ?>
