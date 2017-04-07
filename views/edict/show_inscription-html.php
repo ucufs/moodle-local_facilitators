@@ -144,11 +144,11 @@
           <a href="<?#= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
           <!-- <object data="<?#= $applicant->additional_requisite_src ?>"></object>
           <embed width="600" height="250" name="plugin" src="<?#= $applicant->additional_requisite_src ?>" type="application/pdf"> -->
-        <?php } else {?>
+        <?#php } else {?>
           <a href="<?#= $applicant->additional_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
             <img src="<?#= $applicant->additional_requisite_src ?>" alt="">
           </a>
-        <?php } ?>
+        <?#php } ?>
       </li>
     </ul>
   </dd>
