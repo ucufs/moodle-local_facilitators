@@ -231,13 +231,13 @@
     <div class="span4">
       <dl>
         <dt>Data de Início</dt>
-        <dd><?= date("d/m/Y", $cur->dt_start) ?></dd>
+        <dd><?#= date("d/m/Y", $cur->dt_start) ?></dd>
       </dl>
     </div>
     <div class="span4">
       <dl>
         <dt>Data de Término</dt>
-        <dd><?= date("d/m/Y", $cur->dt_end) ?></dd>
+        <dd><?#= date("d/m/Y", $cur->dt_end) ?></dd>
       </dl>
     </div>
   </div>
