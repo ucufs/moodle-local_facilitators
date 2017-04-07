@@ -112,43 +112,7 @@
 
 <hr class="split">
 
-<dl>
-  <dt>Requisito base
-    <p class="text-warning"><small><?= $inscript->base_requisite ?></small></p>
-  </dt>
-  <dd>
-    <ul class="thumbnails">
-      <li class="span12">
-        <?php if (preg_split('/;/', $applicant->base_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $applicant->base_requisite_src ?>" target="_blank">Visualizar arquivo</a>
-        <?php } else {?>
-          <a href="<?= $applicant->base_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $applicant->base_requisite_src ?>" alt="">
-          </a>
-        <?php } ?>
-      </li>
-    </ul>
-  </dd>
-</dl>
-
-<dl>
-  <dt>Requisito adicional
-  <p class="text-warning"><small><?= $inscript->additional_requisite ?></small></p>
-  </dt>
-  <dd>
-    <ul class="thumbnails">
-      <li class="span12">
-        <?php if (preg_split('/;/', $applicant->additional_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
-        <?php } else {?>
-          <a href="<?= $applicant->additional_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $applicant->additional_requisite_src ?>" alt="">
-          </a>
-        <?php } ?>
-      </li>
-    </ul>
-  </dd>
-</dl>
+<!-- exibir comprovantes -->
 
 <form action="<?php echo URL_BASE . '/management/edict/validate_inscription/' . $inscript->id ?>" method="POST">
 
@@ -237,22 +201,8 @@
       </dl>
     </div>
   </div>
-  <dl>
-    <dt>Comprovante</dt>
-    <dd>
-      <ul class="thumbnails">
-        <li class="span12">
-        <?php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
-        <?php } else {?>
-          <a href="<?= $cur->document_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $cur->document_src ?>" alt="">
-          </a>
-        <?php } ?>
-        </li>
-      </ul>
-    </dd>
-  </dl>
+
+  <!-- exibir comprovantes -->
 
   <div class="row-fluid">
     <div class="span12">
