@@ -119,15 +119,15 @@
   <dd>
     <ul class="thumbnails">
       <li class="span12">
-        <?php if (preg_split('/;/', $applicant->base_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $applicant->base_requisite_src ?>" target="_blank">Visualizar arquivo</a>
-          <!--<object data="<?= $applicant->base_requisite_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $applicant->base_requisite_src ?>" type="application/pdf">-->
-        <?php } else {?>
-          <a href="<?= $applicant->base_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $applicant->base_requisite_src ?>" alt="">
+        <?#php if (preg_split('/;/', $applicant->base_requisite_src)[0] == 'data: application/pdf'){ ?>
+          <a href="<?#= $applicant->base_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <!--<object data="<?#= $applicant->base_requisite_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?#= $applicant->base_requisite_src ?>" type="application/pdf">-->
+        <?#php } else {?>
+          <a href="<?#= $applicant->base_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
+            <img src="<?#= $applicant->base_requisite_src ?>" alt="">
           </a>
-        <?php } ?>
+        <?#php } ?>
       </li>
     </ul>
   </dd>
@@ -140,13 +140,13 @@
   <dd>
     <ul class="thumbnails">
       <li class="span12">
-        <?php if (preg_split('/;/', $applicant->additional_requisite_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
-          <!-- <object data="<?= $applicant->additional_requisite_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $applicant->additional_requisite_src ?>" type="application/pdf"> -->
+        <?#php if (preg_split('/;/', $applicant->additional_requisite_src)[0] == 'data: application/pdf'){ ?>
+          <a href="<?#= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <!-- <object data="<?#= $applicant->additional_requisite_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?#= $applicant->additional_requisite_src ?>" type="application/pdf"> -->
         <?php } else {?>
-          <a href="<?= $applicant->additional_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $applicant->additional_requisite_src ?>" alt="">
+          <a href="<?#= $applicant->additional_requisite_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
+            <img src="<?#= $applicant->additional_requisite_src ?>" alt="">
           </a>
         <?php } ?>
       </li>
@@ -246,13 +246,13 @@
     <dd>
       <ul class="thumbnails">
         <li class="span12">
-        <?php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
-          <a href="<?= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
-          <!-- <object data="<?= $cur->document_src ?>"></object>
-          <embed width="600" height="250" name="plugin" src="<?= $cur->document_src ?>" type="application/pdf"> -->
-        <?php } else {?>
-          <a href="<?= $cur->document_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
-            <img src="<?= $cur->document_src ?>" alt="">
+        <?#php if (preg_split('/;/', $cur->document_src)[0] == 'data: application/pdf'){ ?>
+          <a href="<?#= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
+          <!-- <object data="<?#= $cur->document_src ?>"></object>
+          <embed width="600" height="250" name="plugin" src="<?#= $cur->document_src ?>" type="application/pdf"> -->
+        <?#php } else {?>
+          <a href="<?#= $cur->document_src ?>" class="thumbnail" target="_blank" title="Clique para abrir a imagem em outra aba">
+            <img src="<?#= $cur->document_src ?>" alt="">
           </a>
         <?php } ?>
         </li>
