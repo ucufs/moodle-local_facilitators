@@ -112,7 +112,31 @@
 
 <hr class="split">
 
-<!-- exibir comprovantes -->
+  <dl>
+    <dt>Requisito base
+      <p class="text-warning"><small><?= $inscript->base_requisite ?></small></p>
+    </dt>
+    <dd>
+      <ul class="thumbnails">
+        <li class="span12">          
+          <a href="<?= $applicant->base_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+        </li>
+      </ul>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Requisito adicional
+    <p class="text-warning"><small><?= $inscript->additional_requisite ?></small></p>
+    </dt>
+    <dd>
+      <ul class="thumbnails">
+        <li class="span12">
+          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+        </li>
+      </ul>
+    </dd>
+  </dl>
 
 <form action="<?php echo URL_BASE . '/management/edict/validate_inscription/' . $inscript->id ?>" method="POST">
 
@@ -202,7 +226,16 @@
     </div>
   </div>
 
-  <!-- exibir comprovantes -->
+  <dl>
+    <dt>Comprovante</dt>
+    <dd>
+      <ul class="thumbnails">
+        <li class="span12">
+          <a href="<?= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
+        </li>
+      </ul>
+    </dd>
+  </dl>
 
   <div class="row-fluid">
     <div class="span12">
