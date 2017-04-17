@@ -38,6 +38,7 @@
 	      <span class="label label-important">Cancelada</span><br/>
 	      <?php endif; ?>
     		<a href="<?php echo URL_BASE . '/management/edict/show_inscription/' . $inscript->id ?>" title="Ver detalhes"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="<?php echo URL_BASE . '/management/edict/show_mirror/' . $inscript->id ?>" title="Ver espelho de análise curricular"><i class="fa fa-book" aria-hidden="true"></i></i></a>
     		<a href="<?php echo URL_BASE . '/management/edict/cancel_inscription/' . $inscript->id ?>" title="Cancelar inscrição" onclick="confirm('Tem certeza que deseja cancelar a inscrição?')"><i class="fa fa-times" aria-hidden="true"></i></a>
     	</small>
     </td>

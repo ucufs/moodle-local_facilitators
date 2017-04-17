@@ -119,6 +119,32 @@ class edict_controller
         return $templating->render('edict/show_inscription-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum, 'inscript' => $inscript));
     }
 
+    function show_mirror($inscript_id) {
+        global $templating;
+
+        $inscript_obj = new inscript();
+        $inscript = $inscript_obj->get_inscript($inscript_id);
+
+        $vac = new vacancy();
+        $vacancy = $vac->get_vacancy($inscript->vacancyid);
+        $inscript->role_name = $vac->local_psf_get_role_name($vacancy->roleid);
+        $inscript->course_name = $vac->local_psf_get_course_name($vacancy->courseid);
+        $inscript->campus = $vacancy->campus;
+        $inscript->base_requisite = $vacancy->base_requisite;
+        $inscript->additional_requisite = $vacancy->additional_requisite;
+
+        $applicant = $inscript_obj->get_applicant($inscript->applicantid);
+        $applicant->base_requisite_src = $this->get_pic($applicant->base_requisite);
+        $applicant->additional_requisite_src = $this->get_pic($applicant->additional_requisite);
+        $curriculum = $inscript_obj->get_curriculum($inscript->applicantid);
+
+        foreach ($curriculum as $cur) {
+            $cur->document_src = $this->get_pic($cur->document);
+        }
+
+        return $templating->render('edict/show_mirror-html.php', array('applicant' => $applicant, 'curriculum' => $curriculum, 'inscript' => $inscript));
+    }
+
     function cancel_inscription($inscript_id) {
         $inscript = new inscript();
         $inscript->cancel_inscription($inscript_id);

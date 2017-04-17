@@ -39,6 +39,7 @@ $management->get('/edict/edit/{id}', "$controller::edit");
 $management->post('/edict/update/{id}', "$controller::update");
 $management->get('/edict/show_inscripts/{edict_id}', "$controller::show_inscripts");
 $management->get('/edict/show_inscription/{inscript_id}', "$controller::show_inscription");
+$management->get('/edict/show_mirror/{inscript_id}', "$controller::show_mirror");
 $management->get('/edict/cancel_inscription/{inscript_id}', "$controller::cancel_inscription");
 $management->get('/edict/change_status/{id}', "$controller::change_status");
 $management->post('/edict/validate_inscription/{inscript_id}', "$controller::validate_inscription");
