@@ -132,7 +132,7 @@
     <dd>
       <ul class="thumbnails">
         <li class="span12">
-          <a href="<?#= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
+          <a href="<?= $applicant->additional_requisite_src ?>" target="_blank">Visualizar arquivo</a>
         </li>
       </ul>
     </dd>
@@ -231,7 +231,7 @@
     <dd>
       <ul class="thumbnails">
         <li class="span12">
-          <a href="<?#= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
+          <a href="<?= $cur->document_src ?>" target="_blank">Visualizar arquivo</a>
         </li>
       </ul>
     </dd>
